@@ -4,9 +4,7 @@ import React, { useState } from "react";
 
 import Link from "next/link";
 
-type Props = {};
-
-const ForgotPassword = (props: Props) => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
 

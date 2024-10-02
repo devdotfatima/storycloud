@@ -4,9 +4,7 @@ import { EyeIcon, EyeOff } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

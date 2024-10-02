@@ -2,9 +2,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { EyeIcon, EyeOff } from "lucide-react";
-type Props = {};
 
-const SignUp = (props: Props) => {
+const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
