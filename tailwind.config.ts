@@ -9,8 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        purple: {
+          DEFAULT: "#6A6FD5",
+          100: "#EBECFF",
+          400: "#AAADF4",
+        },
       },
       fontFamily: {
         crimson: ["var(--font-crimson-pro)", "serif"], // Use Crimson Pro
