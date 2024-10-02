@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -17,10 +18,12 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="w-full max-w-sm p-8 bg-white rounded-lg md:max-w-md">
-        <img
+        <Image
           src={"/unlock.svg"}
           alt="forgot password main icon"
           className="w-10 h-10 mx-auto"
+          height={10}
+          width={10}
         />
 
         <h2 className="mt-3 mb-6   text-center text-purple">
