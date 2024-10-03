@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const SingleSelect = (props: Props) => {
+const SingleSelect = () => {
   return <div>SingleSelect</div>;
 };
 

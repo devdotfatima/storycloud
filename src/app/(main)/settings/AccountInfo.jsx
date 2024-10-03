@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const AccountInfo = () => {
   return (
@@ -10,7 +11,12 @@ const AccountInfo = () => {
         <ArrowLeft />
       </a>
       <div className="flex items-end gap-4 mb-5 text-purple">
-        <img src={"/user-purple.svg"} />
+        <Image
+          src={"/user-purple.svg"}
+          alt="info icon"
+          width={30}
+          height={30}
+        />
         <p> account info</p>
       </div>
       <div className="flex flex-col gap-4 ">

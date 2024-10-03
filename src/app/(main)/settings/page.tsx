@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { settingTabs } from "./consts";
 
@@ -27,9 +28,12 @@ const Settings = () => {
         <ul className="flex flex-col justify-start h-full gap-2 px-10 py-4 bg-white border-l-2 border-purple-100">
           <li className="mt-8 mb-8 ">
             <Link href="/" className="flex items-center rounded-lg text-purple">
-              <img
+              <Image
                 src={"/settings-purple.svg"}
                 className="w-7 h-7 text-purple"
+                alt="Settings Icon"
+                width={20}
+                height={20}
               />
               <h2 className=" text-xl  ml-4 text-center  ">settings</h2>
             </Link>
@@ -44,7 +48,13 @@ const Settings = () => {
                 } flex items-center py-2 px-3  w-52 -ml-3  font-normal  justify-start  `}
                 onClick={() => setActiveTab(tab.id)}
               >
-                <img src={tab.icon} className=" w-7 h-7" />
+                <Image
+                  src={tab.icon}
+                  alt={`${tab.label} icon`}
+                  className=" w-7 h-7"
+                  width={20}
+                  height={20}
+                />
 
                 <span className="justify-start ml-4 lowercase whitespace-nowrap">
                   {tab.label}

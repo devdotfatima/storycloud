@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import SingleSelect from "@/shared/components/SingleSelect";
 
@@ -10,7 +11,13 @@ const HelpAndSupport = () => {
         <ArrowLeft />
       </a>
       <div className="flex items-center gap-4 mb-5 text-purple ">
-        <img src={"/help-purple.svg"} /> Help & Support
+        <Image
+          src={"/help-purple.svg"}
+          alt="help and support icon"
+          width={30}
+          height={30}
+        />{" "}
+        Help & Support
       </div>
       <form className="flex flex-col gap-4 ">
         <div className="flex flex-col ">
