@@ -45,7 +45,7 @@ const Sidebar = () => {
               activeClassName="bg-purple bg-opacity-15"
               href={"/settings"}
               className={
-                "hover:bg-purple hover:bg-opacity-15 flex items-center py-2 px-5  w-full text-black "
+                "hover:bg-purple hover:bg-opacity-15 font-normal flex items-center py-2 px-5  w-full   "
               }
             >
               <Image
@@ -55,9 +55,7 @@ const Sidebar = () => {
                 src={menuItems[menuItems.length - 1]?.icon || ""}
                 className="h-[1.75rem] w-[1.75rem]"
               />
-              <p className="flex-1 ml-5 whitespace-nowrap text-[1.25rem]">
-                settings
-              </p>
+              <p className="flex-1 ml-5 whitespace-nowrap ">settings</p>
             </NavLink>
           </div>
         </div>
@@ -69,7 +67,7 @@ const Sidebar = () => {
       >
         <div className="h-full px-3 py-4 overflow-y-auto">
           <div className="flex flex-col justify-between h-full">
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-4 ">
               <li className="pt-3 mb-10">
                 <Link
                   href="/"
@@ -94,7 +92,7 @@ const Sidebar = () => {
                 href={"/settings"}
                 activeClassName="bg-purple bg-opacity-15"
                 className={
-                  "hover:bg-secondaryBlue hover:bg-opacity-15 flex items-center py-2 px-2 justify-center rounded-lg text-black"
+                  "hover:bg-secondaryBlue hover:bg-opacity-15 font-normal flex items-center py-2 px-2 justify-center rounded-lg  "
                 }
               >
                 <Image
@@ -133,7 +131,7 @@ const Sidebar = () => {
             </NavLink>
           </div>
 
-          <ul className="flex justify-between items-center p-1 bg-white rounded-2xl h-[3.25rem] text-sm">
+          <ul className="flex justify-between items-center p-1 bg-white rounded-2xl h-[3.25rem] text-sm sm:text-base ">
             {memoizedMenuItems.map((item) => (
               <SidebarItem
                 key={item.name}

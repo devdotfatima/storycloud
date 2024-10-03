@@ -58,7 +58,7 @@ const ForgotPassword = () => {
 
               <div className="flex items-center my-4">
                 <hr className="flex-grow border-t border-purple" />
-                <span className="mx-4 text-black">or</span>
+                <span className="mx-4  ">or</span>
                 <hr className="flex-grow border-t border-purple" />
               </div>
               <div className="flex items-center justify-center ">
@@ -92,7 +92,7 @@ const ForgotPassword = () => {
       </div>
       {!emailSent ? (
         <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-lg shadow-md md:max-w-md">
-          <p className="text-center text-black">
+          <p className="text-center  ">
             {"Don't have an account? "}
             <Link href={"/login"} className="cursor-pointer text-purple ">
               Sign up

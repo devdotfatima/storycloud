@@ -67,7 +67,7 @@ const Login = () => {
 
           <div className="flex items-center my-4">
             <hr className="flex-grow border-t border-purple" />
-            <span className="mx-4 text-black">or</span>
+            <span className="mx-4  ">or</span>
             <hr className="flex-grow border-t border-purple" />
           </div>
 
@@ -89,7 +89,7 @@ const Login = () => {
         </form>
       </div>
       <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-lg shadow-md md:max-w-md">
-        <p className="text-center text-black">
+        <p className="text-center  ">
           {"don't have an account? "}
           <Link className="cursor-pointer text-purple " href={"/signup"}>
             {"Sign up"}

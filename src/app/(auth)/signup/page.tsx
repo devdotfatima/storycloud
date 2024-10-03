@@ -12,7 +12,7 @@ const SignUp = () => {
         <h2 className="mb-7 text-4xl font-medium font-crimson text-center ">
           storycloud
         </h2>
-        <form className="font-normal">
+        <form className="">
           <div className="mb-6">
             <label className="block mb-2" htmlFor="email">
               Email
@@ -73,7 +73,7 @@ const SignUp = () => {
 
           <div className="flex items-center justify-between mb-4">
             <Link
-              href={"/"}
+              href={"/profile/edit"}
               className="w-full px-4 py-2 font-medium text-center   bg-purple text-purple bg-opacity-15 focus:outline-none focus:ring"
               type="button"
             >
@@ -83,7 +83,7 @@ const SignUp = () => {
         </form>
       </div>
       <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-lg shadow-md md:max-w-md">
-        <p className="text-center text-black">
+        <p className="text-center  ">
           {"already have an account? "}
           <Link className="cursor-pointer text-purple" href={"/login"}>
             {"Log in"}
