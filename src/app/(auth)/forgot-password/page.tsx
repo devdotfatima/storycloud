@@ -39,7 +39,7 @@ const ForgotPassword = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <input
-                  className="w-full px-3 py-1 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+                  className="w-full px-3 py-1 leading-tight   "
                   id="email"
                   type="email"
                   placeholder="user@gmail.com"

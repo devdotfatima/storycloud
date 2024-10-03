@@ -19,7 +19,7 @@ const Login = () => {
               Email
             </label>
             <input
-              className="w-full px-3 py-1 leading-tight text-gray-700 border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+              className="w-full px-3 py-1 leading-tight text-gray-700  "
               id="email"
               type="email"
               placeholder="user@gmail.com"
@@ -40,7 +40,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                className="w-full px-3 py-1 leading-tight text-gray-700 border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+                className="w-full px-3 py-1 leading-tight text-gray-700  "
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="*****"

@@ -18,7 +18,7 @@ const SignUp = () => {
               Email
             </label>
             <input
-              className="w-full px-3 py-1 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+              className="w-full px-3 py-1 leading-tight   "
               id="email"
               type="email"
               placeholder="user@gmail.com"
@@ -36,7 +36,7 @@ const SignUp = () => {
             </div>
 
             <input
-              className="w-full px-3 py-1.5 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+              className="w-full px-3 py-1.5 leading-tight   "
               id="birthday"
               type="date"
             />
@@ -48,7 +48,7 @@ const SignUp = () => {
             </label>
             <div className="relative">
               <input
-                className="w-full px-3 py-1 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+                className="w-full px-3 py-1 leading-tight   "
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="*****"

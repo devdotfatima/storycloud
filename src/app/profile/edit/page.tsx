@@ -60,7 +60,7 @@ const EditProfile = () => {
               full name
             </label>
             <input
-              className="w-full px-3 py-1 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+              className="w-full px-3 py-1 leading-tight   "
               id="full name"
               type="text"
               value={fullName}
@@ -75,7 +75,7 @@ const EditProfile = () => {
 
             <div className="relative">
               <input
-                className="w-full px-3 py-1 leading-tight  border appearance-none border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0"
+                className="w-full px-3 py-1 leading-tight   "
                 id="username"
                 type="text"
                 value={username}
