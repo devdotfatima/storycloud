@@ -5,12 +5,12 @@ import SingleSelect from "@/shared/components/SingleSelect";
 
 const HelpAndSupport = () => {
   return (
-    <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-8 p-10 lowercase md:p-0 md:w-full md:h-full md:relative ">
+    <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100 ">
       <a href="/settings" className="md:hidden">
         {" "}
         <ArrowLeft />
       </a>
-      <div className="flex items-center gap-4 mb-5 text-purple ">
+      <div className="flex items-center gap-4 md:mb-5 text-purple ">
         <Image
           src={"/help-purple.svg"}
           alt="help and support icon"
@@ -19,7 +19,7 @@ const HelpAndSupport = () => {
         />{" "}
         Help & Support
       </div>
-      <form className="flex flex-col gap-4 ">
+      <form className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col ">
           <SingleSelect label={"Topic"} />
         </div>
@@ -30,7 +30,7 @@ const HelpAndSupport = () => {
             name="subject"
             placeholder="subject"
             id="subject"
-            className="w-full p-2 pl-5 lg:w-1/2 max-w-sm"
+            className="w-full p-2 pl-5  sm:max-w-sm lg:max-w-lg "
           />
         </div>
 
@@ -40,7 +40,7 @@ const HelpAndSupport = () => {
             name=""
             placeholder="type in your message"
             id="message"
-            className="w-full p-2 pl-5 lg:w-1/2 max-w-sm rounded-2xl resize-none"
+            className="w-full p-2 pl-5  sm:max-w-sm lg:max-w-lg rounded-2xl resize-none"
             rows={5}
           />
         </div>

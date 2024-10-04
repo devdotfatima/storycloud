@@ -5,12 +5,12 @@ import Image from "next/image";
 
 const AccountInfo = () => {
   return (
-    <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-8 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
+    <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen  gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
       <a href="/settings" className="md:hidden">
         {" "}
         <ArrowLeft />
       </a>
-      <div className="flex items-end gap-4 mb-5 text-purple">
+      <div className="flex items-end gap-4 md:mb-5 text-purple">
         <Image
           src={"/user-purple.svg"}
           alt="info icon"
@@ -19,7 +19,7 @@ const AccountInfo = () => {
         />
         <p> account info</p>
       </div>
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email</label>
           <input
@@ -27,7 +27,7 @@ const AccountInfo = () => {
             name=""
             placeholder="user@gmail.com"
             id="email"
-            className="p-1 px-3  sm:max-w-sm lg:w-1/2 placeholder:text-black"
+            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
           />
         </div>
 
@@ -38,7 +38,7 @@ const AccountInfo = () => {
             name=""
             placeholder="mm/dd/yyyy"
             id="dob"
-            className="p-1 px-3  sm:max-w-sm lg:w-1/2 placeholder:text-black"
+            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
           />
         </div>
 
@@ -49,7 +49,7 @@ const AccountInfo = () => {
             name=""
             id="password"
             placeholder="******"
-            className="py-1  sm:max-w-sm lg:w-1/2 placeholder:text-black"
+            className="py-1   sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
           />
         </div>
         <Link href={"/"} className=" text-purple underline">

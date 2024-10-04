@@ -1,8 +1,8 @@
 import AccountInfo from "./AccountInfo";
 import HelpAndSupport from "./HelpAndSupport";
-// import TermsAndConditions from "./TermsAndConditions";
-// import DeleteAccount from "./DeleteAccount";
-// import SignOut from "./SignOut/index";
+import TermsAndConditions from "./TermsAndConditions";
+import DeleteAccount from "./DeleteAccount";
+import SignOut from "./SignOut/index";
 
 export const settingTabs = [
   {
@@ -17,22 +17,22 @@ export const settingTabs = [
     icon: "/help.svg",
     content: <HelpAndSupport />,
   },
-  // {
-  //   id: 3,
-  //   label: "Terms & Conditions",
-  //   icon: "/document.svg",
-  //   content: <TermsAndConditions />,
-  // },
-  // {
-  //   id: 4,
-  //   label: "Delete Account",
-  //   icon: "/trash.svg",
-  //   content: <DeleteAccount />,
-  // },
-  // {
-  //   id: 5,
-  //   label: "Sign Out",
-  //   icon: "/logOut.svg",
-  //   content: <SignOut />,
-  // },
+  {
+    id: 3,
+    label: "Terms & Conditions",
+    icon: "/document.svg",
+    content: <TermsAndConditions />,
+  },
+  {
+    id: 4,
+    label: "Delete Account",
+    icon: "/trash.svg",
+    content: <DeleteAccount />,
+  },
+  {
+    id: 5,
+    label: "Sign Out",
+    icon: "/log-out.svg",
+    content: <SignOut />,
+  },
 ];

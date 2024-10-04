@@ -23,8 +23,11 @@ const Settings = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 z-50 flex  lowercase md:z-10 md:relative  ">
-      <div className={` w-screen md:w-72   h-screen `} aria-label="Sidebar">
+    <div className="absolute top-0 z-50 flex  lowercase md:z-10 md:relative  overflow-hidden ">
+      <div
+        className={` w-screen md:w-72   h-screen overflow-hidden `}
+        aria-label="Sidebar"
+      >
         <ul className="flex flex-col justify-start h-full gap-2 px-10 py-4 bg-white border-l-2 border-purple-100">
           <li className="mt-8 mb-8 ">
             <Link href="/" className="flex items-center rounded-lg text-purple">
@@ -70,7 +73,7 @@ const Settings = () => {
           storycloud
         </Link>
       </div>
-      <div className="flex-1 block md:py-9 md:pl-8 lg:pl-20 bg-purple-100 ">
+      <div className="flex-1 block md:py-9 md:pl-8 lg:pl-20  overflow-hidden ">
         {settingTabs.find((tab) => tab.id === activeTab)?.content}
       </div>
     </div>
