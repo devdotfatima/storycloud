@@ -25,7 +25,7 @@ const Terms = () => {
         />{" "}
         Terms & Conditions
       </div>
-      <div className="pr-1  rounded-xl  bg-white max-h-[75vh] max-w-5xl ">
+      <div className="pr-1  rounded-2xl  bg-white max-h-[75vh] max-w-5xl ">
         <div className="p-4 text-base  w-full flex flex-col gap-4 overflow-y-auto h-full">
           {" "}
           <section>
@@ -264,7 +264,7 @@ const Terms = () => {
         </div>
         <Link
           href={isChecked ? "/signup" : "#"}
-          className={`flex items-center justify-center w-full h-8 bg-white rounded-xl text-purple max-w-36 md:max-w-64 ${
+          className={`flex items-center justify-center w-full h-8 bg-white  text-purple max-w-36 md:max-w-64 ${
             isChecked ? "" : "opacity-65 cursor-not-allowed"
           }`}
           onClick={handleClick}
