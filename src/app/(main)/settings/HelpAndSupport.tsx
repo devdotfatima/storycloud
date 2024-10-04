@@ -21,7 +21,7 @@ const HelpAndSupport = () => {
       </div>
       <form className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col ">
-          <SingleSelect label={"Topic"} />
+          {/* <SingleSelect label={"Topic"} /> */}
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="subject">Subject</label>
