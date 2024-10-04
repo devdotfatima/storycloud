@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
-import SingleSelect from "@/shared/components/SingleSelect";
+// import SingleSelect from "@/shared/components/SingleSelect";
 
 const HelpAndSupport = () => {
   return (
