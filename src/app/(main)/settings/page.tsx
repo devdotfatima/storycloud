@@ -23,7 +23,7 @@ const Settings = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 z-50 flex  lowercase md:z-10 md:relative  overflow-hidden ">
+    <div className="absolute top-0 z-50 flex   lowercase md:z-10 md:relative  overflow-hidden ">
       <div
         className={` w-screen md:w-72   h-screen overflow-hidden `}
         aria-label="settings tabs"
