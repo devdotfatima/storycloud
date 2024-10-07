@@ -9,7 +9,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="w-full max-w-sm p-8 bg-white rounded-lg md:max-w-md shadow-md">
+      <div className="w-full max-w-sm p-8 bg-white rounded-2xl md:max-w-md shadow-md">
         <h2 className="mb-7 text-4xl font-medium font-crimson text-center ">
           storycloud
         </h2>
@@ -19,7 +19,7 @@ const Login = () => {
               Email
             </label>
             <input
-              className="w-full px-3 py-1 leading-tight text-gray-700  "
+              className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
               id="email"
               type="email"
               placeholder="user@gmail.com"
@@ -40,7 +40,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                className="w-full px-3 py-1 leading-tight text-gray-700  "
+                className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="*****"
@@ -58,7 +58,7 @@ const Login = () => {
           <div className="flex items-center justify-between mb-4">
             <Link
               href={"/"}
-              className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none focus:ring"
+              className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none"
               type="button"
             >
               Log In
@@ -88,7 +88,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-lg shadow-md md:max-w-md">
+      <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-2xl shadow-md md:max-w-md">
         <p className="text-center  ">
           {"don't have an account? "}
           <Link className="cursor-pointer text-purple " href={"/signup"}>

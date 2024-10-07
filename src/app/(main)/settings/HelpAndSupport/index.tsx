@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
-// import SingleSelect from "@/shared/components/SingleSelect";
+import TopicsDropdown from "./TopicsDropdown";
 
 const HelpAndSupport = () => {
   return (
@@ -14,14 +14,16 @@ const HelpAndSupport = () => {
         <Image
           src={"/help-purple.svg"}
           alt="help and support icon"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
+          className="w-7 h-7 text-purple"
         />{" "}
         Help & Support
       </div>
       <form className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
-        <div className="flex flex-col ">
-          {/* <SingleSelect label={"Topic"} /> */}
+        <div className="flex flex-col  gap-2">
+          <label htmlFor="subject">topic</label>
+          <TopicsDropdown />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="subject">Subject</label>
@@ -46,7 +48,7 @@ const HelpAndSupport = () => {
         </div>
         <button
           type="submit"
-          className="p-2 mt-6  text-white w-60  bg-purple-400"
+          className="p-2 mt-6  text-white w-full sm:w-60  bg-purple-400"
         >
           send
         </button>

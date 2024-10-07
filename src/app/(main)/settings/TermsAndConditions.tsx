@@ -9,13 +9,13 @@ const TermsAndConditions = () => {
         {" "}
         <ArrowLeft />
       </a>
-      <div className="flex items-center gap-4 lg:mb-5 text-purple">
+      <div className="flex items-center gap-4 lg:mb-3 text-purple">
         <Image
           alt="terms icon"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
+          className="w-7 h-7 text-purple"
           src={"/document-purple.svg"}
-          className=" text-secondaryBlue"
         />
         Terms & Conditions
       </div>

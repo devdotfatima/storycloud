@@ -22,7 +22,7 @@ const Sidebar = () => {
         className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white  hidden xl:block `}
         aria-label="Sidebar"
       >
-        <div className="h-full px-7 py-4 overflow-y-auto flex flex-col justify-between ">
+        <div className="h-full px-7 py-4 pb-9 overflow-y-auto flex flex-col justify-between ">
           <ul className="space-y-2 ">
             <li className="pt-3 mb-10">
               <Link href="/" className="flex items-center px-5 pt-2 rounded-lg">
@@ -65,7 +65,7 @@ const Sidebar = () => {
         className={`fixed top-0 left-0 z-40 w-20 h-screen hidden md:block xl:hidden bg-white`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto">
+        <div className="h-full px-3 py-4 pb-9 overflow-y-auto">
           <div className="flex flex-col justify-between h-full">
             <ul className="space-y-4 ">
               <li className="pt-3 mb-10">

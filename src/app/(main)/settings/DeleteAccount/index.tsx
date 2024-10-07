@@ -11,17 +11,18 @@ const DeleteAccount = () => {
         {" "}
         <ArrowLeft />
       </a>
-      <div className="flex items-center gap-4  md:mb-5 text-purple">
+      <div className="flex items-center gap-4  md:mb-4 text-purple">
         <Image
-          width={30}
-          height={30}
+          width={20}
+          height={20}
+          className="w-7 h-7 text-purple"
           alt="delete account icon"
           src={"/trash-purple.svg"}
         />
         Delete account
       </div>
 
-      <p className="w-full max-w-sm  lg:max-w-lg">
+      <p className="w-full max-w-sm  lg:max-w-lg mb-3">
         Deleting your account will permanently remove all your profile
         information, including recordings, photos, videos, comments, likes, and
         friends.

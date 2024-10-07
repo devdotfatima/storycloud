@@ -15,14 +15,15 @@ const SignOut = () => {
         <Image
           src={"/log-out-purple.svg"}
           alt="logout icon"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
+          className="w-7 h-7 text-purple"
         />
         Sign Out
       </div>
       <Dialog>
         <DialogTrigger asChild>
-          <button className="p-2 md:mt-6  text-center text-white w-full md:w-72  bg-purple-400">
+          <button className="p-2   text-center text-white w-full md:w-72  bg-purple-400">
             sign out
           </button>
         </DialogTrigger>

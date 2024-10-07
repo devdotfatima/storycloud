@@ -10,12 +10,13 @@ const AccountInfo = () => {
         {" "}
         <ArrowLeft />
       </a>
-      <div className="flex items-end gap-4 md:mb-5 text-purple">
+      <div className="flex items-end gap-4 md:mb-3 text-purple">
         <Image
           src={"/user-purple.svg"}
           alt="info icon"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
+          className="w-7 h-7 text-purple"
         />
         <p> account info</p>
       </div>
@@ -27,7 +28,8 @@ const AccountInfo = () => {
             name=""
             placeholder="user@gmail.com"
             id="email"
-            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
+            readOnly
+            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full placeholder:text-grey"
           />
         </div>
 
@@ -36,9 +38,11 @@ const AccountInfo = () => {
           <input
             type="date"
             name=""
+            value="2013-10-02"
+            readOnly
             placeholder="mm/dd/yyyy"
             id="dob"
-            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
+            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full text-grey"
           />
         </div>
 
@@ -48,8 +52,9 @@ const AccountInfo = () => {
             type="email"
             name=""
             id="password"
+            readOnly
             placeholder="******"
-            className="py-1   sm:max-w-sm lg:max-w-lg w-full placeholder:text-black"
+            className="py-1   sm:max-w-sm lg:max-w-lg w-full placeholder:text-grey"
           />
         </div>
         <Link href={"/"} className=" text-purple underline">

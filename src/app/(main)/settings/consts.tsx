@@ -1,5 +1,5 @@
 import AccountInfo from "./AccountInfo";
-import HelpAndSupport from "./HelpAndSupport";
+import HelpAndSupport from "./HelpAndSupport/index";
 import TermsAndConditions from "./TermsAndConditions";
 import DeleteAccount from "./DeleteAccount";
 import SignOut from "./SignOut/index";

@@ -54,7 +54,7 @@ label {
 }
 
 input {
-  @apply border appearance-none px-3 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0;
+  @apply border-0 appearance-none px-3 border-purple-400  focus:outline-none ring-purple focus:ring-0 focus:border-0;
 }
 
 @layer base {

@@ -17,29 +17,29 @@ const ForgotPassword = () => {
   };
   return (
     <>
-      <div className="w-full max-w-sm p-8 bg-white rounded-lg md:max-w-md">
-        <Image
-          src={"/unlock.svg"}
-          alt="forgot password main icon"
-          className="w-10 h-10 mx-auto"
-          height={10}
-          width={10}
-        />
+      <div className="w-full max-w-sm  px-7 bg-white rounded-2xl md:max-w-md min-h-[380px] flex flex-col gap-10  pt-[52px] items-center">
+        <div>
+          <Image
+            src={"/unlock.svg"}
+            alt="forgot password main icon"
+            className="w-10 h-10 mx-auto"
+            height={10}
+            width={10}
+          />
 
-        <h2 className="mt-3 mb-6   text-center text-purple">
-          Forgot password?
-        </h2>
+          <h2 className="mt-3    text-center text-purple">Forgot password?</h2>
+        </div>
 
         {!emailSent ? (
-          <>
+          <div className="mb-10 ">
             <p className="mb-10   text-center">
               Enter your email and we’ll send you a link to get back into your
               account.
             </p>
-            <form onSubmit={handleSubmit}>
+            <form className="w-full" onSubmit={handleSubmit}>
               <div className="mb-6">
                 <input
-                  className="w-full px-3 py-1 leading-tight   "
+                  className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
                   id="email"
                   type="email"
                   placeholder="user@gmail.com"
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
               <div className="flex items-center justify-between mb-6">
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 text-center    text-purple bg-purple-100 focus:outline-none focus:ring"
+                  className="w-full px-4 py-2 text-center  outline-none border-0 ring-0   text-purple bg-purple-100 focus:outline-none"
                 >
                   send link
                 </button>
@@ -73,17 +73,17 @@ const ForgotPassword = () => {
                 </p>
               </div>
             </form>
-          </>
+          </div>
         ) : (
-          <div className="text-center w-full ">
-            <p className="mb-6 px-8 text-center">
+          <div className="w-full flex flex-col gap-8 items-center">
+            <p className=" px-8 text-center ">
               A link has been sent to your email
             </p>
-            <p className="mb-6 text-purple">{email}</p>
+            <p className=" text-purple">{email}</p>
 
             <Link
               href="/login"
-              className="block w-full px-4 py-2 text-center  text-purple bg-purple-100 focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 text-center  text-purple bg-purple-100 focus:outline-none"
             >
               Back to Login
             </Link>
@@ -91,7 +91,7 @@ const ForgotPassword = () => {
         )}
       </div>
       {!emailSent ? (
-        <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-lg shadow-md md:max-w-md">
+        <div className="w-full max-w-sm p-6 mt-10 bg-white rounded-2xl shadow-md md:max-w-md">
           <p className="text-center  ">
             {"Don't have an account? "}
             <Link href={"/login"} className="cursor-pointer text-purple ">
