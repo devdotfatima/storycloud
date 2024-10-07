@@ -117,6 +117,7 @@ const EditProfile = () => {
             <div className="relative">
               <textarea
                 value={bio}
+                onChange={(e) => setBio(e.target.value)}
                 placeholder="Enter your bio!"
                 className="w-full px-3 py-1 leading-tight  border appearance-none text-grey border-purple-400  focus:outline-none h-28 resize-none rounded-xl sm:rounded-2xl ring-purple focus:ring-2 focus:border-0"
                 id="bio"
