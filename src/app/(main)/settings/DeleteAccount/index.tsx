@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+
 import DeleteAccountConfirmationModal from "./components/DeleteAccountConfirmationModal";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 

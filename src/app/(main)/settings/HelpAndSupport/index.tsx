@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+
 import TopicsDropdown from "./TopicsDropdown";
 
 const HelpAndSupport = () => {

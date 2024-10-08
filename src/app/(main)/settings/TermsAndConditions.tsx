@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+
 import Image from "next/image";
 
 const TermsAndConditions = () => {
