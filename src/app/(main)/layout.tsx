@@ -6,7 +6,7 @@ const Layout = ({ children }: LayoutPropsT) => {
   return (
     <div className="h-screen overflow-hidden   ">
       <Sidebar />
-      <div className="mt-[9.55rem] xl:ml-64 md:mt-0 md:ml-20 lg:mt-0 overflow-y-hidden h-[80.5vh] md:h-screen">
+      <div className="mt-[9.55rem] xl:ml-64 md:mt-0 md:ml-20 lg:mt-0 overflow-y-auto h-[80vh] md:h-screen">
         {children}
       </div>
     </div>

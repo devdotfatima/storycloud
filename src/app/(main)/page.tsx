@@ -1,42 +1,9 @@
-"use client";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React from "react";
 
 const Page = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isAtScrollContainer, setIsAtScrollContainer] = useState(false);
-
-  const isFirefox =
-    typeof navigator !== "undefined" &&
-    navigator.userAgent.toLowerCase().includes("firefox");
-
-  const handleScroll = (event: React.WheelEvent) => {
-    const container = scrollContainerRef.current;
-    if (isAtScrollContainer && container) {
-      const scrollAmount = isFirefox ? event.deltaY * 0.8 : event.deltaY; // Adjust specifically for Firefox
-      container.scrollLeft += scrollAmount;
-    }
-  };
-
-  const handleScrollDetection = () => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      const { top } = container.getBoundingClientRect();
-      // If the container's top is visible in the viewport, enable horizontal scrolling
-      setIsAtScrollContainer(top < window.innerHeight);
-    }
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", handleScrollDetection, { passive: true });
-    return () => window.removeEventListener("scroll", handleScrollDetection);
-  }, []);
-
   return (
-    <div
-      className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 py-10   h-full overflow-y-auto"
-      onWheel={handleScroll}
-    >
+    <div className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 py-10 mb-6 sm:mb-0 ">
       <div className="flex flex-col md:flex-row gap-8 pr-8 md:pr-16 xl:pr-28 ">
         <div className="flex flex-col gap-3 lg:gap-6 md:w-1/2">
           <h2 className="text-purple">freestyle</h2>
@@ -70,7 +37,7 @@ const Page = () => {
 
       <div className="flex flex-col gap-6">
         <h3 className="text-purple">questions from your friends</h3>
-        <div className="flex gap-10 overflow-x-auto" ref={scrollContainerRef}>
+        <div className="flex gap-10 overflow-x-auto">
           {Array.from({ length: 10 }, (_, index) => (
             <div
               key={index}
