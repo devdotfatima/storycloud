@@ -5,19 +5,26 @@ import Image from "next/image";
 const TermsAndConditions = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-8 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
-      <a href="/settings" className="md:hidden">
-        {" "}
-        <ArrowLeft />
-      </a>
-      <div className="flex items-center gap-4 lg:mb-3 text-purple">
-        <Image
-          alt="terms icon"
-          width={20}
-          height={20}
-          className="w-7 h-7 text-purple"
-          src={"/document-purple.svg"}
-        />
-        Terms & Conditions
+      <div className="flex items-center gap-4 md:mb-4 text-purple">
+        <a href="/settings" className="md:hidden">
+          <Image
+            src={"/return-purple.svg"}
+            alt="info icon"
+            width={7}
+            height={7}
+            className="w-4 h-4 text-purple"
+          />
+        </a>
+        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+          <Image
+            alt="terms icon"
+            width={20}
+            height={20}
+            className="w-7 h-7 text-purple"
+            src={"/document-purple.svg"}
+          />
+          Terms & Conditions
+        </div>
       </div>
 
       <div className="pr-1  rounded-2xl  bg-white h-[75vh] xl:h-[80vh] sm:mr-6 lg:mr-20 overflow-y-hidden ">

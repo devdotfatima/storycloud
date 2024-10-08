@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,19 +5,27 @@ import Image from "next/image";
 const AccountInfo = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen  gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
-      <a href="/settings" className="md:hidden">
-        {" "}
-        <ArrowLeft />
-      </a>
-      <div className="flex items-end gap-4 md:mb-3 text-purple">
-        <Image
-          src={"/user-purple.svg"}
-          alt="info icon"
-          width={20}
-          height={20}
-          className="w-7 h-7 text-purple"
-        />
-        <p> account info</p>
+      <div className="flex items-center gap-4 md:mb-4 text-purple">
+        <a href="/settings" className="md:hidden">
+          <Image
+            src={"/return-purple.svg"}
+            alt="info icon"
+            width={7}
+            height={7}
+            className="w-4 h-4 text-purple"
+          />
+        </a>
+        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+          {" "}
+          <Image
+            src={"/user-purple.svg"}
+            alt="info icon"
+            width={20}
+            height={20}
+            className="w-7 h-7 text-purple"
+          />
+          <p> account info</p>
+        </div>
       </div>
       <div className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col gap-2">

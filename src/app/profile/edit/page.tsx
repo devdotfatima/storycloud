@@ -62,7 +62,7 @@ const EditProfile = () => {
               full name
             </label>
             <input
-              className="w-full px-3 py-1 leading-tight text-grey  "
+              className="w-full px-3 py-2 leading-tight text-grey border border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0   "
               id="full name"
               placeholder="Full Name"
               type="text"
@@ -78,7 +78,7 @@ const EditProfile = () => {
 
             <div className="relative">
               <input
-                className="w-full px-3 py-1 leading-tight  text-grey "
+                className="w-full px-3 py-2 leading-tight  text-grey border  border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0 "
                 id="username"
                 type="text"
                 placeholder="username"

@@ -6,20 +6,28 @@ import TopicsDropdown from "./TopicsDropdown";
 const HelpAndSupport = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100 ">
-      <a href="/settings" className="md:hidden">
-        {" "}
-        <ArrowLeft />
-      </a>
-      <div className="flex items-center gap-4 md:mb-5 text-purple ">
-        <Image
-          src={"/help-purple.svg"}
-          alt="help and support icon"
-          width={20}
-          height={20}
-          className="w-7 h-7 text-purple"
-        />{" "}
-        Help & Support
+      <div className="flex items-center gap-4 md:mb-4 text-purple">
+        <a href="/settings" className="md:hidden">
+          <Image
+            src={"/return-purple.svg"}
+            alt="info icon"
+            width={7}
+            height={7}
+            className="w-4 h-4 text-purple"
+          />
+        </a>
+        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+          <Image
+            src={"/help-purple.svg"}
+            alt="help and support icon"
+            width={20}
+            height={20}
+            className="w-7 h-7 text-purple"
+          />{" "}
+          Help & Support
+        </div>
       </div>
+
       <form className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col  gap-2">
           <label htmlFor="subject">topic</label>
