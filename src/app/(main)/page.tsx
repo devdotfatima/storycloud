@@ -37,11 +37,11 @@ const Page = () => {
 
       <div className="flex flex-col gap-6">
         <h3 className="text-purple">questions from your friends</h3>
-        <div className="flex gap-10 overflow-x-auto">
-          {Array.from({ length: 10 }, (_, index) => (
+        <div className="flex gap-10 overflow-x-auto pr-8 md:pr-16 xl:pr-28">
+          {Array.from({ length: 2 }, (_, index) => (
             <div
               key={index}
-              className="flex flex-col p-5 gap-10 bg-white min-w-80 w-full rounded-xl h-[320px] cursor-pointer hover:scale-95 transition-all ease-in duration-300"
+              className="flex flex-col p-5 gap-10 bg-white min-w-80 md:w-2/4 rounded-xl h-[320px] cursor-pointer hover:scale-95 transition-all ease-in duration-300"
             >
               <div className="flex items-center gap-4 font-medium">
                 <Image
