@@ -13,7 +13,7 @@ body,
 /* WebKit-specific scrollbars (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 4px;
-  height: 0px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,4 +61,41 @@ input {
   :root {
     --radius: 0.5rem;
   }
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  padding: 0px;
+  background: #b1b1b1; /* Ensure the background is transparent to avoid conflicts */
+}
+
+.custom-range::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  background: #6a6fd5; /* Thumb color */
+  border-radius: 50%;
+  border-color: #6a6fd5;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: 0px; /* Center the thumb with the track */
+}
+
+.custom-range::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  background: #6a6fd5; /* Thumb color */
+  border-radius: 50%;
+  cursor: pointer;
+  border-color: #6a6fd5;
+}
+
+.custom-range::-ms-thumb {
+  height: 12px;
+  width: 12px;
+  background: #6a6fd5; /* Thumb color */
+  border-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
 }

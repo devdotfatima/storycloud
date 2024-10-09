@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import QuestionCard from "./components/QuestionCard";
 
 const Page = () => {
   return (
@@ -38,24 +39,8 @@ const Page = () => {
       <div className="flex flex-col gap-6">
         <h3 className="text-purple">questions from your friends</h3>
         <div className="flex gap-10 overflow-x-auto pr-8 md:pr-16 xl:pr-28">
-          {Array.from({ length: 2 }, (_, index) => (
-            <div
-              key={index}
-              className="flex flex-col p-5 gap-10 bg-white min-w-80 md:w-2/4 rounded-xl h-[320px] cursor-pointer hover:scale-95 transition-all ease-in duration-300"
-            >
-              <div className="flex items-center gap-4 font-medium">
-                <Image
-                  className="rounded-full h-16 w-16"
-                  src={"/profile_image.png"}
-                  alt="profile image"
-                  width={60}
-                  height={60}
-                />
-                <p className="text-purple">candice_li</p>
-              </div>
-
-              <h4 className="font-crimson text-4xl">How did you meet dad?</h4>
-            </div>
+          {Array.from({ length: 20 }, (_, index) => (
+            <QuestionCard key={index} />
           ))}
         </div>
       </div>
