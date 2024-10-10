@@ -1,4 +1,4 @@
-import RecordStory from "@/shared/components/RecordStory";
+import RecordStoryModal from "@/shared/components/RecordStoryModal";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import Image from "next/image";
 import React from "react";
@@ -22,7 +22,7 @@ const QuestionCard = () => {
           <h4 className="font-crimson text-4xl">How did you meet dad?</h4>
         </div>
       </DialogTrigger>
-      <RecordStory />
+      <RecordStoryModal />
     </Dialog>
   );
 };
