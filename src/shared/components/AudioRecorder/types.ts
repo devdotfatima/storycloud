@@ -1,9 +1,11 @@
+import { Controls } from "./../../../../node_modules/react-voice-visualizer/dist/types/types.d";
 export type AudioRecorderT = {
-  elapsedTime: number;
+  formattedRecordingDuration: string;
+  recordingTime: number;
+  recorderControls: Controls;
   isRecording: boolean;
   isPaused: boolean;
   toggleRecording: () => void;
-  formatTime: (time: number) => string;
   handleRestart: () => void;
   handleDelete: () => void;
 };
