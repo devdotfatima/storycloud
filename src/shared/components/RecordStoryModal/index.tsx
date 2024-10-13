@@ -9,9 +9,9 @@ import AudioRecorder from "../AudioRecorder";
 const RecordStoryModal = () => {
   const recorderControls = useVoiceVisualizer();
   const {
-    recordedBlob,
+    // recordedBlob,
     startRecording,
-    audioSrc,
+    // audioSrc,
     stopRecording,
     recordingTime,
     isPausedRecording,
@@ -39,13 +39,12 @@ const RecordStoryModal = () => {
     stopRecording();
   };
 
-  const stopAudioRecorder: () => void = (save: boolean = true) => {
+  const stopAudioRecorder: () => void = () => {
     stopRecording();
   };
 
   return (
     <DialogContent
-      aria-description="record your story to the question "
       aria-describedby="record your story to the question "
       className=" w-full max-w-screen-sm lg:max-w-[860px]  max-h-[1000px] bg-transparent h-[100svh]  sm:h-[90svh]   overflow-hidden    lg:pr-12  pt-[20px] "
     >
