@@ -1,15 +1,15 @@
-import { useVoiceVisualizer } from "react-voice-visualizer";
-import React from "react";
+import React, { useCallback } from "react";
 import AudioRecorder from "../../AudioRecorder";
 import { DialogTitle } from "../../ui/dialog";
 import { RecordAnswerPropsT } from "./types";
 
-const RecordAnswer = ({ goToNextStep }: RecordAnswerPropsT) => {
-  const recorderControls = useVoiceVisualizer();
+const RecordAnswer = ({
+  goToNextStep,
+  recorderControls,
+  goToPreviousStep,
+}: RecordAnswerPropsT) => {
   const {
-    // recordedBlob,
     startRecording,
-    // audioSrc,
     stopRecording,
     recordingTime,
     isPausedRecording,
@@ -30,6 +30,7 @@ const RecordAnswer = ({ goToNextStep }: RecordAnswerPropsT) => {
   const handleRestart = () => {
     stopRecording();
     clearCanvas();
+    goToPreviousStep();
     startRecording();
   };
 
@@ -37,14 +38,13 @@ const RecordAnswer = ({ goToNextStep }: RecordAnswerPropsT) => {
     stopRecording();
   };
 
-  const stopAudioRecorder: () => void = () => {
+  const onNext = useCallback(() => {
     stopRecording();
-  };
+    console.log("stooped");
 
-  const onNext = () => {
-    stopAudioRecorder();
     goToNextStep();
-  };
+  }, [stopRecording, goToNextStep]);
+
   return (
     <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 md:gap-10">
       <button

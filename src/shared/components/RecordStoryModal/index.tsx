@@ -1,17 +1,21 @@
 "use client";
+import { useVoiceVisualizer } from "react-voice-visualizer";
+import Image from "next/image";
 import React, { useState } from "react";
 import { DialogContent, DialogClose } from "../ui/dialog";
-import Image from "next/image";
 import { steps } from "./consts";
 
 const RecordStoryModal = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const recorderControls = useVoiceVisualizer();
+
   const goToNextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
-  // const goToPreviousStep = () => {
-  //   setCurrentStep((prev) => prev - 1);
-  // };
+  const goToPreviousStep = () => {
+    setCurrentStep((prev) => prev - 1);
+  };
 
   const CurrentStepComponent = steps[currentStep].component;
 
@@ -31,7 +35,12 @@ const RecordStoryModal = () => {
           height={30}
         />
       </DialogClose>
-      <CurrentStepComponent goToNextStep={goToNextStep} />
+
+      <CurrentStepComponent
+        goToPreviousStep={goToPreviousStep}
+        recorderControls={recorderControls}
+        goToNextStep={goToNextStep}
+      />
     </DialogContent>
   );
 };
