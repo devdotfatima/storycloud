@@ -9,9 +9,9 @@ const RecordStoryModal = () => {
   const goToNextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
-  const goToPreviousStep = () => {
-    setCurrentStep((prev) => prev - 1);
-  };
+  // const goToPreviousStep = () => {
+  //   setCurrentStep((prev) => prev - 1);
+  // };
 
   const CurrentStepComponent = steps[currentStep].component;
 
