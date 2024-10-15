@@ -131,7 +131,7 @@ const AnswerAndStats = ({
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         />
-        <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+        {/* <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button> */}
 
         {/* Display current time, total duration, and formatted duration */}
         <div className="flex justify-between w-full">
