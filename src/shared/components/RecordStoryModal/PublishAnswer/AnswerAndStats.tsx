@@ -38,8 +38,7 @@ const AnswerAndStats = ({
     if (wavesurfer) wavesurfer.playPause();
   };
 
-  const { audioSrc, startRecording, stopRecording, clearCanvas } =
-    recorderControls;
+  const { audioSrc, stopRecording, clearCanvas } = recorderControls;
 
   // Format time function
   const formatTime = (seconds: number) => {
@@ -53,7 +52,6 @@ const AnswerAndStats = ({
     stopRecording();
     clearCanvas();
     goToPreviousStep();
-    startRecording();
   };
 
   return (

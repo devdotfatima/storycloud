@@ -31,7 +31,6 @@ const RecordAnswer = ({
     stopRecording();
     clearCanvas();
     goToPreviousStep();
-    startRecording();
   };
 
   const handleDelete = () => {
