@@ -5,11 +5,13 @@ import SidebarItem from "./SidebarItem";
 import NavLink from "./NavLink";
 import Link from "next/link";
 import Image from "next/image";
+import Notifications from "../Notifications";
 
 const Sidebar = () => {
   const [showNotifications, setShowNotifications] = useState(false);
 
   const toggleNotifications = () => setShowNotifications(!showNotifications);
+  const onClose = () => setShowNotifications(false);
 
   const memoizedMenuItems = useMemo(
     () => menuItems.filter((item) => item.name !== "settings"),
@@ -143,6 +145,7 @@ const Sidebar = () => {
           </ul>
         </div>
       </nav>
+      {showNotifications && <Notifications onClose={onClose} />}
     </>
   );
 };
