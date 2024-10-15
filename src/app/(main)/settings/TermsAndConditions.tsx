@@ -27,7 +27,7 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-      <div className="pr-1  rounded-2xl  bg-white h-[75vh] xl:h-[80vh] sm:mr-6 lg:mr-20 overflow-y-hidden ">
+      <div className="pr-1  rounded-2xl  bg-white h-[75svh] xl:h-[80svh] sm:mr-6 lg:mr-20 overflow-y-hidden ">
         <div className="p-4 text-base  w-full flex flex-col gap-4 overflow-y-auto h-full">
           {" "}
           <section>

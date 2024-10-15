@@ -25,7 +25,7 @@ const Terms = () => {
         />{" "}
         Terms & Conditions
       </div>
-      <div className="pr-1  rounded-2xl  bg-white max-h-[75vh] max-w-5xl ">
+      <div className="pr-1  rounded-2xl  bg-white max-h-[75svh] max-w-5xl ">
         <div className="p-4 text-base  w-full flex flex-col gap-4 overflow-y-auto h-full">
           {" "}
           <section>
