@@ -1,0 +1,17 @@
+import React from "react";
+import ProfileView from "./components/ProfileView";
+
+const Profile = () => {
+  return (
+    <ProfileView
+      userId={null}
+      userName="Lauren Li"
+      userHandle="lauren_li"
+      userBio="Foodie, wine lover, and world traveler. Join me on a culinary adventure as we dive into different flavors across the world!"
+      postCount={15}
+      friendCount={15}
+    />
+  );
+};
+
+export default Profile;
