@@ -5,6 +5,7 @@ import React from "react";
 import StoryCard from "@/shared/components/StoryCard";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import { ProfileViewPropsT } from "../types";
+import FriendsListModal from "./FriendsListModal";
 
 const ProfileView = ({
   userId,
@@ -39,7 +40,7 @@ const ProfileView = ({
             <DialogTrigger asChild>
               <button className="font-normal">{friendCount} friends</button>
             </DialogTrigger>
-            {/* <FollowersModal /> */}
+            <FriendsListModal />
           </Dialog>
         </div>
 
