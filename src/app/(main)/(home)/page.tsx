@@ -4,7 +4,7 @@ import QuestionCard from "./components/QuestionCard";
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 py-10 mb-6 sm:mb-0 ">
+    <div className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 py-10 mb-6 sm:mb-0 overflow-y-auto h-full ">
       <div className="flex flex-col md:flex-row gap-8 pr-8 md:pr-16 xl:pr-28 ">
         <div className="flex flex-col gap-3 lg:gap-6 md:w-1/2">
           <h2 className="text-purple">freestyle</h2>

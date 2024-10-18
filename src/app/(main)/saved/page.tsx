@@ -3,7 +3,7 @@ import React from "react";
 
 const Saved = () => {
   return (
-    <div className="flex flex-col gap-5 py-2 px-5 md:py-10 md:gap-10 xl:gap-20 md:px-16">
+    <div className="flex flex-col gap-5 py-2 px-5 md:py-10 md:gap-10 xl:gap-20 md:px-16 h-full overflow-y-auto">
       <form className="w-full mx-auto mb-2  h-11  md:mb-0 max-w-[800px]">
         <label htmlFor="default-search" className=" sr-only dark:text-white">
           Search

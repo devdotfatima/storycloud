@@ -23,7 +23,7 @@ const Explore = () => {
   }, [activeTabIndex]);
 
   return (
-    <div className="flex-1  flex flex-col px-5 md:p-12  w-full gap-10 h-full">
+    <div className="flex-1  flex flex-col px-5 md:p-12  w-full gap-10 h-full overflow-y-auto">
       <div className="relative flex w-full px-1.5 py-1 mx-auto text-purple  bg-white max-w-[800px]  flew-row rounded-2xl backdrop-blur-sm">
         <span
           className="absolute flex overflow-hidden transition-all duration-300 top-1 h-10 rounded-2xl -z-10"
