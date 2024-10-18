@@ -1,9 +1,7 @@
 import StoryCard from "@/shared/components/StoryCard";
 import React from "react";
 
-type Props = {};
-
-const Stories = (props: Props) => {
+const Stories = () => {
   return (
     <div className="flex flex-col gap-5  px-5  md:gap-10 xl:gap-16 md:px-16">
       <form className="w-full mx-auto mb-2  h-11  md:mb-0 max-w-[800px]">

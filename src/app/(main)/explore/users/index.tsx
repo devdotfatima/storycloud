@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-const Users = (props: Props) => {
+const Users = () => {
   return (
     <div className="flex flex-col gap-5  px-5  md:gap-10 xl:gap-16 md:px-16">
       <form className="w-full mx-auto   h-11  md:mb-0 max-w-[800px]">
