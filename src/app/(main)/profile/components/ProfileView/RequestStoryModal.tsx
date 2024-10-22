@@ -8,13 +8,16 @@ import {
   Dialog,
 } from "@/shared/components/ui/dialog";
 import StorySentModal from "./StorySentModal";
-type Props = {};
 
-const RequestStoryModal = (props: Props) => {
+const RequestStoryModal = () => {
   return (
     <DialogContent className="bg-transparent w-full  h-[100svh] sm:h-[90svh]  lg:overflow-hidden sm:max-w-[600px] lg:max-h-[600px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
       <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white">
-        <img src={"/close-purple.svg"} alt="Close" className="w-6 h-6" />
+        <Image
+          src={"/close-purple.svg"}
+          alt="Close modal"
+          className="w-6 h-6"
+        />
       </DialogClose>
       <div className="flex flex-col items-center w-full h-full  py-6  px-5 sm:px-10 mx-auto overflow-hidden bg-white shadow-md rounded-t-2xl sm:rounded-2xl gap-5 lg:gap-7 lg:py-10  ">
         <DialogTitle className="text-purple ">request a story</DialogTitle>

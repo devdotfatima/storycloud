@@ -81,7 +81,7 @@ const ProfileView = ({
                     </SelectTrigger>
                     <SelectContent className=" w-full overflow-auto  rounded-2xl border-0 h-full  ring-0 focus:outline-none p-0  bg-transparent">
                       <button
-                        onClick={(e) => {
+                        onClick={() => {
                           setHasSentRequest(false);
                         }}
                         className={cn(
@@ -140,7 +140,7 @@ const ProfileView = ({
       ) : (
         <div className="grid grid-cols-1 gap-6 md:gap-20   mx-auto  max-w-[1100px] w-full h-fit pb-32 lg:pb-0 lg:grid-cols-2">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((recipe, index) => (
-            <div className="mx-auto">
+            <div className="mx-auto" key={index}>
               {/* {index + 1} */}
               <StoryCard
                 key={recipe}
