@@ -5,4 +5,6 @@ export type ProfileViewPropsT = {
   userBio: string;
   postCount: number;
   friendCount: number;
+  isFriend?: boolean;
+  profileImage: string;
 };

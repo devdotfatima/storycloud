@@ -5,7 +5,7 @@ import { DialogContent, DialogClose } from "@/shared/components/ui/dialog";
 
 const FriendsListModal = () => {
   return (
-    <DialogContent className="bg-transparent w-full  h-[88svh] lg:h-[90svh]  lg:overflow-hidden sm:max-w-[640px] lg:max-h-[999px]  pt-[20px] lg:pr-8 border-0 outline-none rounded-2xl ">
+    <DialogContent className="bg-transparent w-full  h-[88svh] lg:h-[90svh]  lg:overflow-hidden sm:max-w-[640px] lg:max-h-[999px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
       <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white">
         <img src={"/close-purple.svg"} alt="Close" className="w-6 h-6" />
       </DialogClose>

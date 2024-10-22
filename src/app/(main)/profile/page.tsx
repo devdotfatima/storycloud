@@ -10,6 +10,7 @@ const Profile = () => {
       userBio="Foodie, wine lover, and world traveler. Join me on a culinary adventure as we dive into different flavors across the world!"
       postCount={15}
       friendCount={15}
+      profileImage="/profile_image.png"
     />
   );
 };
