@@ -14,6 +14,8 @@ const StorySentModal = () => {
           src={"/close-purple.svg"}
           alt="Close modal"
           className="w-6 h-6"
+          width={24}
+          height={24}
         />
       </DialogClose>
       <div className="flex flex-col items-center w-full h-full  py-6  px-5 sm:px-10 mx-auto overflow-hidden bg-white shadow-md rounded-t-2xl sm:rounded-2xl gap-5 lg:gap-7 lg:py-10 justify-between  ">
