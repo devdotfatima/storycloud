@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import React from "react";
 import ProfileView from "../components/ProfileView";
-import profiles from "@/shared/consts";
+import { profiles } from "@/shared/consts";
 
 const Profile = () => {
   const { userHandle } = useParams();

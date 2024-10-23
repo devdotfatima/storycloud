@@ -3,6 +3,7 @@ import RecordAnswer from "./RecordAnswer";
 
 import Transcript from "./PublishAnswer/TranscriptAndComments/Transcript";
 import Comments from "./PublishAnswer/TranscriptAndComments/Comments";
+
 export const steps = [
   { id: 1, component: RecordAnswer },
   { id: 2, component: PublishAnswer },

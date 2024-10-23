@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type ProfileViewPropsT = {
   userId: string | null; // Assuming userId can be null for the edit profile case
   userName: string;
@@ -6,5 +8,5 @@ export type ProfileViewPropsT = {
   postCount: number;
   friendCount: number;
   isFriend?: boolean;
-  profileImage: string;
+  profileImage: StaticImageData | string;
 };

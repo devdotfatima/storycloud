@@ -6,7 +6,6 @@ import { RecordAnswerPropsT } from "./types";
 const RecordAnswer = ({
   goToNextStep,
   recorderControls,
-  goToPreviousStep,
 }: RecordAnswerPropsT) => {
   const {
     startRecording,
@@ -30,11 +29,11 @@ const RecordAnswer = ({
   const handleRestart = () => {
     stopRecording();
     clearCanvas();
-    goToPreviousStep();
   };
 
   const handleDelete = () => {
     stopRecording();
+    clearCanvas();
   };
 
   const onNext = useCallback(() => {
@@ -43,6 +42,7 @@ const RecordAnswer = ({
 
     goToNextStep();
   }, [stopRecording, goToNextStep]);
+  console.log(recordingTime);
 
   return (
     <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 md:gap-10">

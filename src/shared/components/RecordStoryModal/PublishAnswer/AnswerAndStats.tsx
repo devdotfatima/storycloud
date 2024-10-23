@@ -3,13 +3,11 @@ import Image from "next/image";
 import WavesurferPlayer from "@wavesurfer/react";
 import WaveSurfer from "wavesurfer.js";
 import { AnswerAndStatsPropsT } from "./types";
-import { Dialog, DialogTrigger } from "../../ui/dialog";
 import RestartAudioModal from "../../AudioRecorder/RestartAudioModal";
 import ProfileImage from "../../../../assets/images/profile_image.png";
 import HeartIcon from "../../../../assets/icons/heart.svg";
 import MessageIcon from "../../../../assets/icons/message.svg";
 import BookmarkIcon from "../../../../assets/icons/bookmark.svg";
-import RestartIcon from "../../../../assets/icons/restart.svg";
 import PlayIcon from "../../../../assets/icons/play.svg";
 import PauseWhiteIcon from "../../../../assets/icons/pause-white.svg";
 import TrashIcon from "../../../../assets/icons/trash.svg";
@@ -47,7 +45,8 @@ const AnswerAndStats = ({
     if (wavesurfer) wavesurfer.playPause();
   };
 
-  const { audioSrc, stopRecording, clearCanvas } = recorderControls;
+  const { audioSrc, stopRecording, clearCanvas, recordingTime } =
+    recorderControls;
 
   // Format time function
   const formatTime = (seconds: number) => {
@@ -118,52 +117,39 @@ const AnswerAndStats = ({
       </div>
 
       {/* Audio Player Controls */}
-      <div className="flex flex-col items-center mt-5 w-full">
-        <WavesurferPlayer
-          height={50}
-          waveColor="#6A6FD5"
-          progressColor={"#AAADF4"}
-          barWidth={5}
-          barRadius={10}
-          width="500px"
-          cursorColor="#B1B1B1"
-          autoplay={false}
-          url={audioSrc}
-          onReady={onReady}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-        />
-        {/* <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button> */}
-
-        {/* Display current time, total duration, and formatted duration */}
-        <div className="flex justify-between w-full">
+      <div className="flex flex-col items-center  w-full ">
+        <div className="flex justify-between gap-4 w-full items-center ">
           <span>{formatTime(currentTime)}</span>
+          <WavesurferPlayer
+            height={50}
+            waveColor="#6A6FD5"
+            progressColor={"#AAADF4"}
+            barWidth={5}
+            barRadius={10}
+            width="370px"
+            cursorColor="transparent"
+            autoplay={false}
+            url={audioSrc}
+            onReady={onReady}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          />
+
           <span>{formatTime(duration)}</span>
         </div>
 
-        <div className="flex justify-between w-full space-x-6 mt-10 items-center">
-          <Dialog>
-            <DialogTrigger asChild className={`${" pointer-events-auto"}`}>
-              <button className=" flex flex-col  items-center justify-center gap-1.5">
-                <Image
-                  alt="restart recording"
-                  className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
-                  width={60}
-                  height={60}
-                  src={RestartIcon}
-                />
-                <span className={`text-base ${"text-black"} `}>restart</span>
-              </button>
-            </DialogTrigger>
-            <RestartAudioModal handleRestart={handleRestart} />
-          </Dialog>
+        <div className="flex justify-between w-full space-x-6 mt-6 items-center ">
+          <RestartAudioModal
+            handleRestart={handleRestart}
+            recordingTime={duration}
+          />
 
           <button
             onClick={onPlayPause}
             className={`w-20 h-20 md:w-24 md:h-24 lg:w-24 bg-purple-400 lg:h-24 rounded-full text-white flex justify-center items-center`}
           >
             <Image
-              src={`${isPlaying ? PauseWhiteIcon : PlayIcon}`}
+              src={isPlaying ? PauseWhiteIcon : PlayIcon}
               alt="play recording"
               width={40}
               height={30}

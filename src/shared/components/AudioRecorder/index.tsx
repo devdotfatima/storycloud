@@ -1,16 +1,13 @@
+"use client";
 import Image from "next/image";
 import { VoiceVisualizer } from "react-voice-visualizer";
-import React from "react";
-import { Dialog, DialogTrigger } from "../ui/dialog";
+import React, { useMemo } from "react";
 import { AudioRecorderT } from "./types";
 import DeleteAudioModal from "./DeleteAudioModal";
 import RestartAudioModal from "./RestartAudioModal";
-import RestartIcon from "../../../assets/icons/restart.svg";
-import RestartGreyIcon from "../../../assets/icons/restart-grey.svg";
 import PauseIcon from "../../../assets/icons/pause.svg";
 import MicrophonePurpleIcon from "../../../assets/icons/microphone-purple.svg";
-import TrashIcon from "../../../assets/icons/trash.svg";
-import TrashGreyIcon from "../../../assets/icons/trash-grey.svg";
+import { convertTimeToSeconds, formatTime, TotalRecordingTime } from "./utils";
 
 const AudioRecorder = ({
   formattedRecordingDuration,
@@ -22,63 +19,50 @@ const AudioRecorder = ({
   handleDelete,
   handleRestart,
 }: AudioRecorderT) => {
+  const recordingDurationInSeconds = useMemo(
+    () => convertTimeToSeconds(formattedRecordingDuration),
+    [formattedRecordingDuration]
+  );
+
+  const remainingTimeInSeconds = useMemo(
+    () => TotalRecordingTime - recordingDurationInSeconds,
+    [recordingDurationInSeconds]
+  );
+
+  const remainingTime = useMemo(
+    () => formatTime(remainingTimeInSeconds),
+    [remainingTimeInSeconds]
+  );
   return (
     <div className="flex flex-col relative items-center  justify-center overflow-hidden  h-fit space-y-0 xl:space-y-6 max-w-[600px] mx-auto w-full">
       <div className="relative   flex items-end flex-col justify-end w-full space-y-1 lg:space-y-3 ">
-        <div className=" w-full max-w-[600px] mx-auto  h-16   relative ">
-          <hr className="border-b-1.5 z-[0]  absolute top-[29px] rounded-full border-grey w-full  " />
-
-          <VoiceVisualizer
-            controls={recorderControls}
-            mainBarColor="#6A6FD5"
-            secondaryBarColor="#B1B1B1"
-            fullscreen={true}
-            barWidth={5}
-            height={60}
-            isProgressIndicatorShown={false}
-            isControlPanelShown={false}
-            isDefaultUIShown={false}
-          />
-        </div>
-        <div className="text-sm text-black w-full flex justify-between">
-          <span className="block">{formattedRecordingDuration} </span>{" "}
-          {/* recorder Audio Time */}
-          <span className="block">05:00</span> {/* Total Duration */}
+        <div className=" flex w-full max-w-[600px] mx-auto  h-16 items-center gap-4  relative ">
+          <span className="text-purple font-medium">{remainingTime}</span>
+          <div className="relative w-full">
+            <hr className="border-b-1.5 z-[0]  absolute top-[29px] rounded-full border-grey w-full  " />
+            <VoiceVisualizer
+              controls={recorderControls}
+              mainBarColor="#6A6FD5"
+              secondaryBarColor="#B1B1B1"
+              fullscreen={true}
+              barWidth={5}
+              height={60}
+              isProgressIndicatorShown={false}
+              isControlPanelShown={false}
+              isDefaultUIShown={false}
+            />
+          </div>
+          <span className="text-red font-medium">
+            {formattedRecordingDuration}
+          </span>{" "}
         </div>
       </div>
 
       <div className="flex justify-between w-full  h-fit ">
-        <Dialog>
-          <DialogTrigger
-            asChild
-            className={`${
-              recordingTime === 0
-                ? " pointer-events-none"
-                : " pointer-events-auto"
-            }`}
-          >
-            <button
-              onClick={toggleRecording}
-              className=" flex flex-col  items-center justify-center gap-1.5"
-            >
-              <Image
-                alt="restart recording"
-                className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
-                width={60}
-                height={60}
-                src={`${recordingTime === 0 ? RestartGreyIcon : RestartIcon}`}
-              />
-              <span
-                className={`text-base ${
-                  recordingTime === 0 ? "text-grey" : "text-black"
-                } `}
-              >
-                restart
-              </span>
-            </button>
-          </DialogTrigger>
-          <RestartAudioModal handleRestart={handleRestart} />
-        </Dialog>
+        <RestartAudioModal
+          recordingTime={recordingTime}
+          handleRestart={handleRestart}
+        />
 
         <button
           onClick={toggleRecording}
@@ -103,37 +87,10 @@ const AudioRecorder = ({
           )}
         </button>
 
-        <Dialog>
-          <DialogTrigger
-            asChild
-            className={`${
-              recordingTime === 0
-                ? " pointer-events-none"
-                : " pointer-events-auto"
-            }`}
-          >
-            <button
-              onClick={toggleRecording}
-              className=" flex flex-col  items-center justify-center gap-1.5"
-            >
-              <Image
-                alt="delete recording"
-                width={60}
-                height={60}
-                className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
-                src={`${recordingTime === 0 ? TrashGreyIcon : TrashIcon}`}
-              />
-              <span
-                className={`text-base ${
-                  recordingTime === 0 ? "text-grey" : "text-black"
-                } `}
-              >
-                delete
-              </span>
-            </button>
-          </DialogTrigger>
-          <DeleteAudioModal handleDelete={handleDelete} />
-        </Dialog>
+        <DeleteAudioModal
+          handleDelete={handleDelete}
+          recordingTime={recordingTime}
+        />
       </div>
     </div>
   );

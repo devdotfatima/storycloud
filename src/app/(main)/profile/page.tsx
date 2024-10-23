@@ -1,5 +1,6 @@
 import React from "react";
 import ProfileView from "./components/ProfileView";
+import ProfileImage from "../../../assets/images/profile_image.png";
 
 const Profile = () => {
   return (
@@ -10,7 +11,7 @@ const Profile = () => {
       userBio="Foodie, wine lover, and world traveler. Join me on a culinary adventure as we dive into different flavors across the world!"
       postCount={15}
       friendCount={15}
-      profileImage="/profile_image.png"
+      profileImage={ProfileImage}
     />
   );
 };
