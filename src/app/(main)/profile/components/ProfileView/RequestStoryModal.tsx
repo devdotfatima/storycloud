@@ -19,6 +19,12 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
     setRequestStoryModalOpen(false);
     setStorySentModalOpen(false);
   };
+  console.log({
+    isRequestStoryModalOpen,
+    isStorySentModalOpen,
+    handleCloseModals,
+  });
+
   return (
     <Dialog>
       <DialogTrigger asChild disabled={!isFriend}>
