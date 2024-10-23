@@ -5,6 +5,7 @@ import React, { useRef, useEffect } from "react";
 import { NotificationsPropsT } from "./types";
 import { notifications } from "./consts";
 import NotificationItem from "./NotificationItem";
+import BellIcon from "../../../assets/icons/bell.svg";
 
 const Notifications = ({ onClose }: NotificationsPropsT) => {
   const notificationsRef = useRef<HTMLDivElement | null>(null);
@@ -33,7 +34,7 @@ const Notifications = ({ onClose }: NotificationsPropsT) => {
       {/* Header section with notification bell */}
       <div className="items-center hidden gap-4 px-6  md:flex">
         <Image
-          src={"/bell.svg"}
+          src={BellIcon}
           alt="notification icon"
           className="w-6 h-6"
           height={24}

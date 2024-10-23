@@ -1,8 +1,9 @@
 import React from "react";
-
 import Image from "next/image";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import SignOutConfirmationModal from "./SignOutConfirmationModal";
+import ReturnPurpleIcon from "../../../../assets/icons/return-purple.svg";
+import LogOutPurpleIcon from "../../../../assets/icons/log-out-purple.svg";
 
 const SignOut = () => {
   return (
@@ -10,7 +11,7 @@ const SignOut = () => {
       <div className="flex items-center gap-4 md:mb-4 text-purple">
         <a href="/settings" className="md:hidden">
           <Image
-            src={"/return-purple.svg"}
+            src={ReturnPurpleIcon}
             alt="info icon"
             width={7}
             height={7}
@@ -19,7 +20,7 @@ const SignOut = () => {
         </a>
         <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
           <Image
-            src={"/log-out-purple.svg"}
+            src={LogOutPurpleIcon}
             alt="logout icon"
             width={20}
             height={20}

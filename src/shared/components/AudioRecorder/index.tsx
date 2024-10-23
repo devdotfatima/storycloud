@@ -5,6 +5,12 @@ import { Dialog, DialogTrigger } from "../ui/dialog";
 import { AudioRecorderT } from "./types";
 import DeleteAudioModal from "./DeleteAudioModal";
 import RestartAudioModal from "./RestartAudioModal";
+import RestartIcon from "../../../assets/icons/restart.svg";
+import RestartGreyIcon from "../../../assets/icons/restart-grey.svg";
+import PauseIcon from "../../../assets/icons/pause.svg";
+import MicrophonePurpleIcon from "../../../assets/icons/microphone-purple.svg";
+import TrashIcon from "../../../assets/icons/trash.svg";
+import TrashGreyIcon from "../../../assets/icons/trash-grey.svg";
 
 const AudioRecorder = ({
   formattedRecordingDuration,
@@ -60,9 +66,7 @@ const AudioRecorder = ({
                 className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
                 width={60}
                 height={60}
-                src={`${
-                  recordingTime === 0 ? "./restart-grey.svg" : "./restart.svg"
-                }`}
+                src={`${recordingTime === 0 ? RestartGreyIcon : RestartIcon}`}
               />
               <span
                 className={`text-base ${
@@ -82,7 +86,7 @@ const AudioRecorder = ({
         >
           {isRecording && !isPaused ? (
             <Image
-              src={"/pause.svg"}
+              src={PauseIcon}
               alt="pause the recording"
               width={48}
               height={48}
@@ -90,7 +94,7 @@ const AudioRecorder = ({
             />
           ) : (
             <Image
-              src={"/microphone-purple.svg"}
+              src={MicrophonePurpleIcon}
               alt="start the recording"
               width={48}
               height={48}
@@ -117,9 +121,7 @@ const AudioRecorder = ({
                 width={60}
                 height={60}
                 className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
-                src={`${
-                  recordingTime === 0 ? "./trash-grey.svg" : "./trash.svg"
-                }`}
+                src={`${recordingTime === 0 ? TrashGreyIcon : TrashIcon}`}
               />
               <span
                 className={`text-base ${

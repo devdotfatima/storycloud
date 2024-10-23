@@ -2,6 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import EditWhiteIcon from "../../../assets/icons/edit-white.svg";
+import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
+import ValidationFailIcon from "../../../assets/icons/validation-fail.svg";
+import ValidationPassIcon from "../../../assets/icons/validation-pass.svg";
 
 const EditProfile = () => {
   const [fullName, setFullName] = useState<string>("");
@@ -29,7 +33,7 @@ const EditProfile = () => {
                 className=" absolute top-1 p-1.5 rounded-full right-2 bg-purple-400 cursor-pointer"
               >
                 <Image
-                  src={"/edit-white.svg"}
+                  src={EditWhiteIcon}
                   width={12}
                   height={12}
                   alt="edit image file icon"
@@ -48,9 +52,7 @@ const EditProfile = () => {
                 width={80}
                 height={80}
                 src={
-                  selectedProfileImage
-                    ? selectedProfileImage
-                    : "/user-purple.svg"
+                  selectedProfileImage ? selectedProfileImage : UserPurpleIcon
                 }
                 alt="Profile"
                 className="w-14 h-14  object-contain bg-purple-100"
@@ -93,7 +95,7 @@ const EditProfile = () => {
                   <Image
                     width={24}
                     height={24}
-                    src={"/validation-pass.svg"}
+                    src={ValidationPassIcon}
                     alt="validation pass"
                     className="w-6 h-6 rounded-full"
                   />
@@ -101,7 +103,7 @@ const EditProfile = () => {
                   <Image
                     width={24}
                     height={24}
-                    src={"/validation-fail.svg"}
+                    src={ValidationFailIcon}
                     alt="validation fail"
                     className="w-6 h-6 rounded-full"
                   />

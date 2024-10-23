@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import DocumentPurpleIcon from "../../assets/icons/document-purple.svg";
 
 const Terms = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -18,7 +19,7 @@ const Terms = () => {
     <div className="flex flex-col items-center w-screen h-screen gap-8 p-6  lg:p-10">
       <div className="flex items-center gap-4 text-purple">
         <Image
-          src={"/documentPurple.svg"}
+          src={DocumentPurpleIcon}
           height={28}
           width={28}
           alt="document icon"

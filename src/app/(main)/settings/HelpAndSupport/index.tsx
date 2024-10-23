@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-
 import TopicsDropdown from "./TopicsDropdown";
+import ReturnPurpleIcon from "../../../../assets/icons/return-purple.svg";
+import HelpPurpleIcon from "../../../../assets/icons/help-purple.svg";
 
 const HelpAndSupport = () => {
   return (
@@ -9,7 +10,7 @@ const HelpAndSupport = () => {
       <div className="flex items-center gap-4 md:mb-4 text-purple">
         <a href="/settings" className="md:hidden">
           <Image
-            src={"/return-purple.svg"}
+            src={ReturnPurpleIcon}
             alt="info icon"
             width={7}
             height={7}
@@ -18,7 +19,7 @@ const HelpAndSupport = () => {
         </a>
         <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
           <Image
-            src={"/help-purple.svg"}
+            src={HelpPurpleIcon}
             alt="help and support icon"
             width={20}
             height={20}

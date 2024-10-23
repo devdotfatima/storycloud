@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { EyeIcon, EyeOff } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import GoogleImage from "../../../assets/images/google.png";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +78,7 @@ const Login = () => {
               type="button"
             >
               <Image
-                src={`/google.png`}
+                src={GoogleImage}
                 alt={"google sign in Logo"}
                 width="64"
                 className="w-10 h-10 mr-3"

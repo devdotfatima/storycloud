@@ -5,13 +5,15 @@ import {
   DialogClose,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
+import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
+import StorySentIcon from "../../../../../assets/images/story_sent.png";
 
 const StorySentModal = () => {
   return (
     <DialogContent className="bg-transparent w-full  h-[100svh] sm:h-[90svh]  lg:overflow-hidden sm:max-w-[600px] lg:max-h-[600px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
       <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white">
         <Image
-          src={"/close-purple.svg"}
+          src={ClosePurpleIcon}
           alt="Close modal"
           className="w-6 h-6"
           width={24}
@@ -32,7 +34,7 @@ const StorySentModal = () => {
         </h3>
         <div className="h-full flex items-center ">
           <Image
-            src={"/story_sent.png"}
+            src={StorySentIcon}
             width={237}
             height={160}
             alt="story has been sent"

@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ReturnPurpleIcon from "../../../assets/icons/return-purple.svg";
+import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
 
 const AccountInfo = () => {
   return (
@@ -8,7 +10,7 @@ const AccountInfo = () => {
       <div className="flex items-center gap-4 md:mb-4 text-purple">
         <a href="/settings" className="md:hidden">
           <Image
-            src={"/return-purple.svg"}
+            src={ReturnPurpleIcon}
             alt="info icon"
             width={7}
             height={7}
@@ -18,7 +20,7 @@ const AccountInfo = () => {
         <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
           {" "}
           <Image
-            src={"/user-purple.svg"}
+            src={UserPurpleIcon}
             alt="info icon"
             width={20}
             height={20}

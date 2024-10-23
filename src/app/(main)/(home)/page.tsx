@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import QuestionCard from "./components/QuestionCard";
+import BookImage from "../../../assets/images/book.png";
+import CatOnWallImage from "../../../assets/images/cat_on_wall.png";
 
 const Page = () => {
   return (
@@ -9,7 +11,7 @@ const Page = () => {
         <div className="flex flex-col gap-3 lg:gap-6 md:w-1/2">
           <h2 className="text-purple">freestyle</h2>
           <Image
-            src={"/book.png"}
+            src={BookImage}
             alt="book image"
             className="rounded-2xl h-96 w-full object-cover"
             layout="responsive"
@@ -25,7 +27,7 @@ const Page = () => {
               Tell us about your first pet!
             </p>
             <Image
-              src={"/cat_on_wall.png"}
+              src={CatOnWallImage}
               alt="cat image"
               className="rounded-2xl h-96 w-full object-cover"
               layout="responsive"

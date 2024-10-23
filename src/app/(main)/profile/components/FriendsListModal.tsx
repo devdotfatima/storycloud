@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { DialogContent, DialogClose } from "@/shared/components/ui/dialog";
+import ProfileImage from "../../../../assets/images/profile_image.png";
 
 const FriendsListModal = () => {
   return (
@@ -20,7 +21,7 @@ const FriendsListModal = () => {
               className="flex items-center gap-3"
             >
               <Image
-                src={"/profile_image.png"}
+                src={ProfileImage}
                 alt="User avatar"
                 height={88}
                 width={88}

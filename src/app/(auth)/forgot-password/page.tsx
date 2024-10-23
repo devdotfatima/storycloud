@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-
 import Link from "next/link";
 import Image from "next/image";
+import UnlockIcon from "../../../assets/icons/unlock.svg";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ const ForgotPassword = () => {
       <div className="w-full max-w-sm  px-7 bg-white rounded-2xl md:max-w-md min-h-[380px] flex flex-col gap-10  pt-[52px] items-center">
         <div>
           <Image
-            src={"/unlock.svg"}
+            src={UnlockIcon}
             alt="forgot password main icon"
             className="w-10 h-10 mx-auto"
             height={10}

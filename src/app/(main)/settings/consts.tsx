@@ -3,36 +3,41 @@ import HelpAndSupport from "./HelpAndSupport/index";
 import TermsAndConditions from "./TermsAndConditions";
 import DeleteAccount from "./DeleteAccount";
 import SignOut from "./SignOut/index";
+import UserIcon from "../../../assets/icons/user.svg";
+import HelpIcon from "../../../assets/icons/help.svg";
+import DocumentIcon from "../../../assets/icons/document.svg";
+import TrashIcon from "../../../assets/icons/trash.svg";
+import LogOutIcon from "../../../assets/icons/log-out.svg";
 
 export const settingTabs = [
   {
     id: 1,
     label: "Account Info",
-    icon: "/user.svg",
+    icon: UserIcon,
     content: <AccountInfo />,
   },
   {
     id: 2,
     label: "Help & Support",
-    icon: "/help.svg",
+    icon: HelpIcon,
     content: <HelpAndSupport />,
   },
   {
     id: 3,
     label: "Terms & Conditions",
-    icon: "/document.svg",
+    icon: DocumentIcon,
     content: <TermsAndConditions />,
   },
   {
     id: 4,
     label: "Delete Account",
-    icon: "/trash.svg",
+    icon: TrashIcon,
     content: <DeleteAccount />,
   },
   {
     id: 5,
     label: "Sign Out",
-    icon: "/log-out.svg",
+    icon: LogOutIcon,
     content: <SignOut />,
   },
 ];

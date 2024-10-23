@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-
 import DeleteAccountConfirmationModal from "./components/DeleteAccountConfirmationModal";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
+import ReturnPurpleIcon from "../../../../assets/icons/return-purple.svg";
+import TrashPurpleIcon from "../../../../assets/icons/trash-purple.svg";
 
 const DeleteAccount = () => {
   return (
@@ -10,7 +11,7 @@ const DeleteAccount = () => {
       <div className="flex items-center gap-4 md:mb-4 text-purple">
         <a href="/settings" className="md:hidden">
           <Image
-            src={"/return-purple.svg"}
+            src={ReturnPurpleIcon}
             alt="info icon"
             width={7}
             height={7}
@@ -23,7 +24,7 @@ const DeleteAccount = () => {
             height={20}
             className="w-7 h-7 text-purple"
             alt="delete account icon"
-            src={"/trash-purple.svg"}
+            src={TrashPurpleIcon}
           />
           Delete account
         </div>

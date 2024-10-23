@@ -1,6 +1,7 @@
 import React from "react";
-
 import Image from "next/image";
+import ReturnPurpleIcon from "../../../assets/icons/return-purple.svg";
+import DocumentPurpleIcon from "../../../assets/icons/document-purple.svg";
 
 const TermsAndConditions = () => {
   return (
@@ -8,7 +9,7 @@ const TermsAndConditions = () => {
       <div className="flex items-center gap-4 md:mb-4 text-purple">
         <a href="/settings" className="md:hidden">
           <Image
-            src={"/return-purple.svg"}
+            src={ReturnPurpleIcon}
             alt="info icon"
             width={7}
             height={7}
@@ -21,7 +22,7 @@ const TermsAndConditions = () => {
             width={20}
             height={20}
             className="w-7 h-7 text-purple"
-            src={"/document-purple.svg"}
+            src={DocumentPurpleIcon}
           />
           Terms & Conditions
         </div>

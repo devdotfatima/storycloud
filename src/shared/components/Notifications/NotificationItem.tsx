@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { NotificationItemPropsT } from "./types";
+import ProfileImage from "../../../assets/images/profile_image.png";
 
 const NotificationItem = ({ notification }: NotificationItemPropsT) => {
   return (
@@ -8,7 +9,7 @@ const NotificationItem = ({ notification }: NotificationItemPropsT) => {
       <div className="flex items-center flex-1 space-x-3">
         {" "}
         <Image
-          src={"/profile_image.png"} // Replace with actual image path
+          src={ProfileImage} // Replace with actual image path
           alt="Profile"
           className="w-10 rounded-full"
           width={40}

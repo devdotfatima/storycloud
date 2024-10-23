@@ -1,7 +1,8 @@
-import RecordStoryModal from "@/shared/components/RecordStoryModal";
-import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import Image from "next/image";
 import React from "react";
+import RecordStoryModal from "@/shared/components/RecordStoryModal";
+import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
+import ProfileImage from "../../../../assets/images/profile_image.png";
 
 const QuestionCard = () => {
   return (
@@ -11,7 +12,7 @@ const QuestionCard = () => {
           <div className="flex items-center gap-4 font-medium">
             <Image
               className="rounded-full h-16 w-16"
-              src={"/profile_image.png"}
+              src={ProfileImage}
               alt="profile image"
               width={60}
               height={60}

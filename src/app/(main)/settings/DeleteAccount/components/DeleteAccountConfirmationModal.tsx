@@ -5,6 +5,7 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/shared/components/ui/dialog";
+import CloseIcon from "../../../../../assets/icons/close.svg";
 
 const DeleteAccountConfirmationModal = () => {
   return (
@@ -12,7 +13,7 @@ const DeleteAccountConfirmationModal = () => {
       <DialogClose className="absolute z-50 p-1.5 rounded-full outline-none cursor-pointer top-2.5 right-3 sm:top-5 sm:right-0 bg-purple-400 w-fit">
         <span className="sr-only">Close</span>
         <Image
-          src={"/close.svg"}
+          src={CloseIcon}
           alt="Close modal icon"
           className="w-2 h-2"
           width={8}

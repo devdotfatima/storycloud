@@ -6,13 +6,14 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/shared/components/ui/dialog";
+import CloseIcon from "../../../../assets/icons/close.svg";
 
 const SignOutConfirmationModal = () => {
   return (
     <DialogContent className="bg-transparent h-screen w-full     lg:max-w-[450px] max-h-[324px]  overflow-y-auto lg:overflow-hidden   border-0  pt-[20px] sm:pr-8 ">
       <DialogClose className="absolute z-50 p-1.5 rounded-full outline-none cursor-pointer top-2.5 right-3 sm:top-5 sm:right-0 bg-purple-400 w-fit">
         <Image
-          src={"/close.svg"}
+          src={CloseIcon}
           alt="Close button"
           className="w-2 h-2"
           width={8}

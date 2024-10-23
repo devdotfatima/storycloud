@@ -9,6 +9,9 @@ import {
 } from "@/shared/components/ui/dialog";
 import StorySentModal from "./StorySentModal";
 import { RequestStoryModalPropsT } from "./types";
+import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
+import SendPurpleIcon from "../../../../../assets/icons/send.svg";
+import SendGreyIcon from "../../../../../assets/icons/send-grey.svg";
 
 const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
   const [isRequestStoryModalOpen, setRequestStoryModalOpen] = useState(false);
@@ -41,7 +44,7 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
       <DialogContent className="bg-transparent w-full  h-[100svh] sm:h-[90svh]  lg:overflow-hidden sm:max-w-[600px] lg:max-h-[600px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
         <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white">
           <Image
-            src={"/close-purple.svg"}
+            src={ClosePurpleIcon}
             alt="Close modal"
             className="w-6 h-6"
             width={24}
@@ -64,7 +67,7 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
                   className="absolute top-0 end-0 p-2.5 h-full  font-medium text-white rounded-e-lg border-0   "
                 >
                   <Image
-                    src="/send-grey.svg"
+                    src={SendGreyIcon}
                     className="h-5 w-5 sm:h-6 sm:w-6"
                     width={25}
                     height={25}
@@ -90,7 +93,7 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
                 className="absolute top-0 end-2 p-2.5 h-full  font-medium text-white rounded-e-lg border-0  focus:ring-4 focus:outline-none  "
               >
                 <Image
-                  src="/send.svg"
+                  src={SendPurpleIcon}
                   width={25}
                   height={25}
                   alt="send"
@@ -107,7 +110,7 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
                 className="absolute top-0 end-2 p-2.5 h-full  font-medium text-white rounded-e-lg border-0  focus:ring-4 focus:outline-none  "
               >
                 <Image
-                  src="/send.svg"
+                  src={SendPurpleIcon}
                   width={25}
                   height={25}
                   alt="send"
@@ -125,7 +128,7 @@ const RequestStoryModal = ({ isFriend }: RequestStoryModalPropsT) => {
                 className="absolute top-0 end-2 p-2.5 h-full  font-medium text-white rounded-e-lg border-0  focus:ring-4 focus:outline-none  "
               >
                 <Image
-                  src="/send.svg"
+                  src={SendPurpleIcon}
                   width={25}
                   height={25}
                   alt="send"

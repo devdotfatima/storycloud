@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import ProfileImage from "../../../assets/images/profile_image.png";
+import StoryCoverImage from "../../../assets/images/story_cover.png";
 
 const StoryCard = () => {
   //  w-full
@@ -10,7 +12,7 @@ const StoryCard = () => {
         <Link href={"/"} className=" flex items-center gap-3">
           {" "}
           <Image
-            src={"/profile_image.png"}
+            src={ProfileImage}
             alt="profile"
             height={40}
             width={40}
@@ -26,7 +28,7 @@ const StoryCard = () => {
       </div>
       <div className="">
         <Image
-          src={"/story_cover.png"}
+          src={StoryCoverImage}
           alt="cover picture for  story"
           height={"100"}
           width={"100"}

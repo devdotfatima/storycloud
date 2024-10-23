@@ -5,6 +5,15 @@ import WaveSurfer from "wavesurfer.js";
 import { AnswerAndStatsPropsT } from "./types";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import RestartAudioModal from "../../AudioRecorder/RestartAudioModal";
+import ProfileImage from "../../../../assets/images/profile_image.png";
+import HeartIcon from "../../../../assets/icons/heart.svg";
+import MessageIcon from "../../../../assets/icons/message.svg";
+import BookmarkIcon from "../../../../assets/icons/bookmark.svg";
+import RestartIcon from "../../../../assets/icons/restart.svg";
+import PlayIcon from "../../../../assets/icons/play.svg";
+import PauseWhiteIcon from "../../../../assets/icons/pause-white.svg";
+import TrashIcon from "../../../../assets/icons/trash.svg";
+import UploadIcon from "../../../../assets/icons/image_file_input.svg";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -61,7 +70,7 @@ const AnswerAndStats = ({
         {/* Profile Section */}
         <div className="flex items-center gap-3">
           <Image
-            src={"/profile_image.png"}
+            src={ProfileImage}
             width={60}
             height={60}
             alt="Profile"
@@ -88,15 +97,15 @@ const AnswerAndStats = ({
         <p className="text-xl text-purple">sep 17 2024</p>
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-2">
-            <Image src={"/heart.svg"} alt="likes" height={24} width={24} />
+            <Image src={HeartIcon} alt="likes" height={24} width={24} />
             <span>00</span>
           </div>
           <div className="flex items-center gap-2">
-            <Image src={"/message.svg"} alt="comments" height={22} width={22} />
+            <Image src={MessageIcon} alt="comments" height={22} width={22} />
             <span>00</span>
           </div>
           <div className="flex items-center gap-2">
-            <Image src={"/bookmark.svg"} alt="saves" height={24} width={24} />
+            <Image src={BookmarkIcon} alt="saves" height={24} width={24} />
             <span>00</span>
           </div>
         </div>
@@ -104,12 +113,7 @@ const AnswerAndStats = ({
 
       {/* Upload Section */}
       <div className="w-full h-96 rounded-xl flex flex-col items-center justify-center bg-white">
-        <Image
-          src={"/image_file_input.svg"}
-          alt="attach photo"
-          width={50}
-          height={50}
-        />
+        <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
         <p className="text-grey text-base">upload</p>
       </div>
 
@@ -146,7 +150,7 @@ const AnswerAndStats = ({
                   className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
                   width={60}
                   height={60}
-                  src={`${"./restart.svg"}`}
+                  src={RestartIcon}
                 />
                 <span className={`text-base ${"text-black"} `}>restart</span>
               </button>
@@ -159,7 +163,7 @@ const AnswerAndStats = ({
             className={`w-20 h-20 md:w-24 md:h-24 lg:w-24 bg-purple-400 lg:h-24 rounded-full text-white flex justify-center items-center`}
           >
             <Image
-              src={`${isPlaying ? "/pause-white.svg" : "/play.svg"}`}
+              src={`${isPlaying ? PauseWhiteIcon : PlayIcon}`}
               alt="play recording"
               width={40}
               height={30}
@@ -173,7 +177,7 @@ const AnswerAndStats = ({
               className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
               width={60}
               height={60}
-              src={"/trash.svg"}
+              src={TrashIcon}
             />
             <span className="text-base">delete</span>
           </button>

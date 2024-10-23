@@ -14,6 +14,7 @@ import {
 } from "@/shared/components/ui/select";
 import { cn } from "@/lib/utils";
 import RequestStoryModal from "./RequestStoryModal";
+import LockGreyIcon from "../../../../../assets/icons/lock-grey.svg";
 
 const ProfileView = ({
   userId,
@@ -120,7 +121,7 @@ const ProfileView = ({
 
       {userId && !isFriend ? (
         <div className="bg-white max-w-[1100px] gap-5 w-full h-[400px] md:h-[550px] flex flex-col justify-center items-center rounded-2xl">
-          <Image src={"/lock-grey.svg"} alt="dsj" height={60} width={60} />
+          <Image src={LockGreyIcon} alt="dsj" height={60} width={60} />
           <h3 className="text-grey text-xl max-w-60 text-center">
             send me a friend request to view my stories!
           </h3>

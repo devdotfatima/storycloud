@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { DialogContent, DialogClose } from "../ui/dialog";
 import { steps } from "./consts";
+import ClosePurpleIcon from "../../../assets/icons/close-purple.svg";
 
 const RecordStoryModal = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -28,7 +29,7 @@ const RecordStoryModal = () => {
     >
       <DialogClose className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit">
         <Image
-          src={"/close-purple.svg"}
+          src={ClosePurpleIcon}
           alt="Close button"
           className="w-7 h-7 bg-white rounded-full p-0"
           width={30}

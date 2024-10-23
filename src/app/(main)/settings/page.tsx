@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { settingTabs } from "./consts";
+import SettingsPurpleIcon from "../../../assets/icons/settings-purple.svg";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -32,7 +33,7 @@ const Settings = () => {
           <li className="mt-8 mb-8 ">
             <Link href="/" className="flex items-center  text-purple">
               <Image
-                src={"/settings-purple.svg"}
+                src={SettingsPurpleIcon}
                 className="w-7 h-7 text-purple"
                 alt="Settings Icon"
                 width={20}
