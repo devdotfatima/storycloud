@@ -1,6 +1,12 @@
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
 
-export type LayoutPropsT = { children: React.ReactNode };
+export type MainLayoutPropsT = {
+  children: React.ReactNode;
+  modal: React.ReactNode;
+};
+export type LayoutPropsT = {
+  children: React.ReactNode;
+};
 
 export type MediaAudioTrackConstraintsT = Pick<
   MediaTrackConstraints,

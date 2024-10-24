@@ -9,7 +9,7 @@ const StoryCard = () => {
   return (
     <div className="flex flex-col sm:h-[610px] max-w-[400px] sm:max-w-[500px] w-full  p-4 sm:p-6 bg-white gap-3 sm:gap-6 rounded-2xl ">
       <div className=" flex items-center gap-2.5 sm:gap-3 text-sm sm:text-lg">
-        <Link href={"/"} className=" flex items-center gap-3">
+        <Link href={"/profile"} className=" flex items-center gap-3">
           {" "}
           <Image
             src={ProfileImage}
@@ -26,7 +26,7 @@ const StoryCard = () => {
           3d ago
         </time>
       </div>
-      <div className="">
+      <Link href={"/story/1"} passHref>
         <Image
           src={StoryCoverImage}
           alt="cover picture for  story"
@@ -34,10 +34,14 @@ const StoryCard = () => {
           width={"100"}
           className="rounded-2xl w-full h-60 sm:h-[339px] "
         />
-      </div>
-      <h3 className="font-crimson text-xl sm:text-3xl font-medium">
+      </Link>
+      <Link
+        href={"/story/1"}
+        passHref
+        className="font-crimson text-xl sm:text-3xl font-medium"
+      >
         What is your favorite travel destination?{" "}
-      </h3>
+      </Link>
       <time
         dateTime="2024-10-17"
         className=" text-sm sm:text-lg text-purple font-medium"
