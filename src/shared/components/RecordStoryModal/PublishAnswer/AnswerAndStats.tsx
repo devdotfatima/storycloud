@@ -81,7 +81,7 @@ const AnswerAndStats = ({
 
         {/* Publish Button */}
         <button className="px-4 py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple">
-          publish
+          {goToPreviousStep ? "publish" : "options"}
         </button>
       </div>
 
