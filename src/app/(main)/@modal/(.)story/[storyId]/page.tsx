@@ -4,7 +4,6 @@ import {
   DialogClose,
   DialogContent,
   DialogOverlay,
-  DialogTitle,
 } from "@/shared/components/ui/dialog";
 import Image from "next/image";
 import React from "react";
