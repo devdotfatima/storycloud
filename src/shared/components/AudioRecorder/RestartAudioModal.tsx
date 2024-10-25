@@ -25,7 +25,7 @@ const RestartAudioModal = ({
         >
           <Image
             alt="restart recording"
-            className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16"
+            className="w-10 h-10  lg:w-16 lg:h-16"
             width={60}
             height={60}
             src={recordingTime === 0 ? RestartGreyIcon : RestartIcon}
@@ -39,7 +39,7 @@ const RestartAudioModal = ({
           </span>
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-transparent h-screen w-full     lg:max-w-[450px] max-h-[256px]  overflow-y-auto lg:overflow-hidden   border-0  pt-[20px] sm:pr-8 ">
+      <DialogContent className="bg-transparent h-screen w-full lg:max-w-[450px] max-h-[256px]  overflow-y-auto lg:overflow-hidden border-0 pt-[20px] sm:pr-8 ">
         <div className="relative flex flex-col items-center h-full gap-4 p-8  bg-white rounded-2xl ">
           <DialogTitle className="flex items-center justify-center gap-3 mb-6 ">
             <h1 className=" font-normal">restart?</h1>

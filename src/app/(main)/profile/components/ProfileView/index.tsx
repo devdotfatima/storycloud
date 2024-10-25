@@ -28,7 +28,7 @@ const ProfileView = ({
 }: ProfileViewPropsT) => {
   const [hasSentRequest, setHasSentRequest] = useState(false);
   return (
-    <div className="flex flex-col items-center min-h-screen px-5 py-10 font-normal md:px-16 gap-5 md:gap-11 bg-lightBlue font-mukta overflow-y-auto h-full">
+    <div className="flex flex-col items-center  px-5 py-10 font-normal md:px-16 gap-5 md:gap-11 bg-lightBlue font-mukta overflow-y-auto h-full">
       <div className="flex flex-col gap-2 text-center items-center sm:gap-5 w-full">
         {/* ProfileView Image */}
         <Image
@@ -127,16 +127,18 @@ const ProfileView = ({
           </h3>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 md:gap-20   mx-auto  max-w-[1100px] w-full h-fit pb-32 lg:pb-0 lg:grid-cols-2">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((recipe, index) => (
-            <div className="mx-auto" key={index}>
-              {/* {index + 1} */}
-              <StoryCard
-                key={recipe}
-                // {...recipe}
-              />
-            </div>
-          ))}
+        <div className="grid grid-cols-1 gap-6 md:gap-20   mx-auto  max-w-[1100px] w-full h-fit lg:grid-cols-2">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(
+            (recipe, index) => (
+              <div className="mx-auto" key={index}>
+                {index + 1}
+                <StoryCard
+                  key={recipe}
+                  // {...recipe}
+                />
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

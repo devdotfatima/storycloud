@@ -24,7 +24,7 @@ const TranscriptAndComments = () => {
   }, [activeTabIndex]);
 
   return (
-    <div className="flex-1  flex flex-col p-12  w-full gap-5 h-full ">
+    <div className="flex-1   flex flex-col w-full gap-5   max-h-fit p-5 sm:p-12 lg:h-full ">
       <div className="relative flex w-full px-0.5 text-purple mx-auto bg-purple-100  h-12 flew-row rounded-xl backdrop-blur-sm">
         <span
           className="absolute flex overflow-hidden transition-all duration-300 top-0.5 rounded-lg -z-10"
