@@ -10,7 +10,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
 import { StoryDetailsProps } from "../type";
-import PublishAnswer from "@/shared/components/RecordStoryModal/PublishAnswer";
+import AnswerAndStats from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats";
+import TranscriptAndComments from "@/shared/components/RecordStoryModal/PublishAnswer/TranscriptAndComments";
 
 const Story = ({ params }: StoryDetailsProps) => {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -41,7 +42,12 @@ const Story = ({ params }: StoryDetailsProps) => {
               height={24}
             />
           </DialogClose>
-          <PublishAnswer />
+          <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
+            {/* Answer Section */}
+            <AnswerAndStats />
+            {/* Transcript Section */}
+            <TranscriptAndComments />
+          </div>
         </DialogContent>
       </DialogOverlay>
     </Dialog>

@@ -42,7 +42,6 @@ const RecordAnswer = ({
 
     goToNextStep();
   }, [stopRecording, goToNextStep]);
-  console.log(recordingTime);
 
   return (
     <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 md:gap-10">

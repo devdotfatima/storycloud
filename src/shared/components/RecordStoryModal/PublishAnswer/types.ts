@@ -6,6 +6,6 @@ export type AnswerAndStatsPropsT = {
 };
 
 export type PublishAnswerPropsT = {
-  recorderControls?: Controls;
-  goToPreviousStep?: () => void;
+  recorderControls: Controls;
+  goToPreviousStep: () => void;
 };
