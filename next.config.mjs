@@ -4,9 +4,22 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com", // if your website has no www, drop it
+        hostname: "images.unsplash.com",
       },
     ],
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.mp3$/,
+      use: {
+        loader: "file-loader",
+        options: {
+          name: "[name].[hash].[ext]",
+          outputPath: "static/media/",
+        },
+      },
+    });
+    return config;
   },
 };
 
