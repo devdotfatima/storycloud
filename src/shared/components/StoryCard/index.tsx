@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ProfileImage from "../../../assets/images/profile_image.png";
-import StoryCoverImage from "../../../assets/images/story_cover.png";
 import { mockStoryT } from "@/shared/types";
 
 const StoryCard = ({ story }: { story: mockStoryT }) => {

@@ -39,7 +39,7 @@ const Stories = () => {
       </form>
 
       <div className="flex flex-row flex-wrap gap-10  md:gap-y-8 md:gap-x-7 lg:gap-x-20 lg:gap-y-10  mx-auto max-w-[1100px] w-full justify-center items-center 2xl:justify-between">
-        {mockStories.map((story: mockStoryT, index) => (
+        {mockStories.map((story: mockStoryT) => (
           <StoryCard key={story.id} story={story} />
         ))}
       </div>
