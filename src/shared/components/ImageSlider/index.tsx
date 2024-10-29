@@ -14,8 +14,8 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <>
-      <div className="max-w-[500px] h-full">
+    <div className="h-full flex flex-col w-full gap-3">
+      <div className="max-w-[500px] h-full ">
         <Swiper
           cssMode={true}
           mousewheel={true}
@@ -38,7 +38,7 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
           ))}
         </Swiper>
       </div>
-      <div className="flex justify-center gap-2 mt-2">
+      <div className="flex justify-center gap-2 ">
         {images.map((_, index) => (
           <div
             key={index}
@@ -48,7 +48,7 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
           ></div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
