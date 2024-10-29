@@ -35,29 +35,48 @@ const AudioRecorder = ({
   );
   return (
     <div className="flex flex-col relative items-center  justify-center overflow-hidden  h-fit space-y-0 xl:space-y-6 max-w-[600px] mx-auto w-full">
-      <div className="relative   flex items-end flex-col justify-end w-full space-y-1 lg:space-y-3 ">
-        <div className=" flex w-full max-w-[600px] mx-auto  h-16 items-center gap-4  relative ">
-          <span className="text-purple font-medium">{remainingTime}</span>
-          <div className="relative w-full">
-            <hr className="border-b-1.5 z-[0]  absolute top-[29px] rounded-full border-grey w-full  " />
-            <VoiceVisualizer
-              controls={recorderControls}
-              mainBarColor="#6A6FD5"
-              secondaryBarColor="#B1B1B1"
-              fullscreen={true}
-              barWidth={5}
-              height={60}
-              isProgressIndicatorShown={false}
-              isControlPanelShown={false}
-              isDefaultUIShown={false}
-            />
-          </div>
-          <span className="text-red font-medium">
-            {formattedRecordingDuration}
-          </span>{" "}
+      {/* <div className=" flex w-full max-w-[600px] bg-green mx-auto h-16 items-center gap-4 relative ">
+        <span className="text-purple font-medium w-10">{remainingTime}</span>
+        <div className="relative w-full">
+          <hr className="border-b-1.5 z-[0]  absolute top-[29px] rounded-full border-grey w-full  " />
+          <VoiceVisualizer
+            controls={recorderControls}
+            mainBarColor="#6A6FD5"
+            secondaryBarColor="#B1B1B1"
+            fullscreen={true}
+            barWidth={5}
+            height={60}
+            isProgressIndicatorShown={false}
+            isControlPanelShown={false}
+            isDefaultUIShown={false}
+          />
         </div>
+        <span className="text-red font-medium w-20 bg-yellow-50">
+          {formattedRecordingDuration}
+        </span>
+      </div> */}
+      <div className="flex w-full max-w-[600px]  mx-auto h-16 items-center gap-2 sm:gap-4 relative">
+        <span className="text-purple font-medium w-10 flex-shrink-0">
+          {remainingTime}
+        </span>
+        <div className="relative w-full flex-grow">
+          <hr className="border-b-1.5 z-[0] absolute top-[29px] rounded-full border-grey w-full" />
+          <VoiceVisualizer
+            controls={recorderControls}
+            mainBarColor="#6A6FD5"
+            secondaryBarColor="#B1B1B1"
+            fullscreen={true}
+            barWidth={5}
+            height={60}
+            isProgressIndicatorShown={false}
+            isControlPanelShown={false}
+            isDefaultUIShown={false}
+          />
+        </div>
+        <span className="text-red font-medium w-fit  flex-shrink-0">
+          {formattedRecordingDuration}
+        </span>
       </div>
-
       <div className="flex justify-between w-full  h-fit ">
         <RestartAudioModal
           recordingTime={recordingTime}
@@ -66,7 +85,7 @@ const AudioRecorder = ({
 
         <button
           onClick={toggleRecording}
-          className={`w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full text-white  focus:outline-none bg-purple-100 flex justify-center items-center`}
+          className={`w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full text-white  focus:outline-none bg-purple-100 flex justify-center items-center`}
         >
           {isRecording && !isPaused ? (
             <Image
@@ -74,7 +93,7 @@ const AudioRecorder = ({
               alt="pause the recording"
               width={48}
               height={48}
-              className="w-12 h-12 text-blue-500"
+              className="w-10 h-10 lg:w-16 lg:h-16 text-blue-500"
             />
           ) : (
             <Image
@@ -82,7 +101,7 @@ const AudioRecorder = ({
               alt="start the recording"
               width={48}
               height={48}
-              className="w-12 h-12 text-blue-500"
+              className="w-10 h-10 lg:w-16 lg:h-16 text-blue-500"
             />
           )}
         </button>

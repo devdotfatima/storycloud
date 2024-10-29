@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
 
 export type MainLayoutPropsT = {
@@ -53,3 +54,23 @@ export interface Controls {
   _setIsProcessingAudioOnComplete: Dispatch<SetStateAction<boolean>>;
   _setIsProcessingOnResize: Dispatch<SetStateAction<boolean>>;
 }
+
+export type mockCommentT = {
+  id: number;
+  profileImage: StaticImageData;
+  user: string;
+  comment: string;
+  createdAt: string;
+};
+
+export type mockStoryT = {
+  id: number;
+  title: string;
+  audioClip: string;
+  totalLikes: number;
+  totalComments: number;
+  totalShares: number;
+  transcript: string;
+  comments: mockCommentT[];
+  storyImages: StaticImageData[];
+};

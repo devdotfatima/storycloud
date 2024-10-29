@@ -87,7 +87,7 @@ const RecordAnswer = ({
         </div>
       </div>
 
-      <div className="  w-full  h-fit min-h-40 lg:min-h-56   items-end overflow-y-auto flex self-end ">
+      <div className="  w-full  h-fit min-h-32 lg:min-h-44 items-end overflow-y-auto flex self-end ">
         <AudioRecorder
           recorderControls={recorderControls}
           toggleRecording={toggleRecording}

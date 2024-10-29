@@ -1,4 +1,6 @@
 import StoryCard from "@/shared/components/StoryCard";
+import { mockStories } from "@/shared/consts";
+import { mockStoryT } from "@/shared/types";
 import React from "react";
 
 const Stories = () => {
@@ -37,11 +39,8 @@ const Stories = () => {
       </form>
 
       <div className="flex flex-row flex-wrap gap-10  md:gap-y-8 md:gap-x-7 lg:gap-x-20 lg:gap-y-10  mx-auto max-w-[1100px] w-full justify-center items-center 2xl:justify-between">
-        {[2, 3, 4, 5, 9, 8, 0, 1].map((recipe) => (
-          <StoryCard
-            key={recipe}
-            //  {...recipe}
-          />
+        {mockStories.map((story: mockStoryT, index) => (
+          <StoryCard key={story.id} story={story} />
         ))}
       </div>
     </div>

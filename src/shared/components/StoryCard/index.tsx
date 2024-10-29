@@ -3,8 +3,9 @@ import Link from "next/link";
 import React from "react";
 import ProfileImage from "../../../assets/images/profile_image.png";
 import StoryCoverImage from "../../../assets/images/story_cover.png";
+import { mockStoryT } from "@/shared/types";
 
-const StoryCard = () => {
+const StoryCard = ({ story }: { story: mockStoryT }) => {
   //  w-full
   return (
     <div className="flex flex-col sm:h-[610px] max-w-[400px] sm:max-w-[500px] w-full  p-4 sm:p-6 bg-white gap-3 sm:gap-6 rounded-2xl ">
@@ -26,13 +27,13 @@ const StoryCard = () => {
           3d ago
         </time>
       </div>
-      <Link href={"/story/1"} passHref>
+      <Link href={`/story/${story.id}`} passHref>
         <Image
-          src={StoryCoverImage}
+          src={story.storyImages[0]}
           alt="cover picture for  story"
           height={"100"}
           width={"100"}
-          className="rounded-2xl w-full h-60 sm:h-[339px] "
+          className="rounded-2xl  h-60 w-full sm:h-[339px] object-cover"
         />
       </Link>
       <Link
@@ -40,7 +41,7 @@ const StoryCard = () => {
         passHref
         className="font-crimson text-xl sm:text-3xl font-medium"
       >
-        What is your favorite travel destination?{" "}
+        {story.title}
       </Link>
       <time
         dateTime="2024-10-17"

@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import RequestStoryModal from "./RequestStoryModal";
 import LockGreyIcon from "../../../../../assets/icons/lock-grey.svg";
+import { mockStories } from "@/shared/consts";
 
 const ProfileView = ({
   userId,
@@ -128,17 +129,11 @@ const ProfileView = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:gap-20   mx-auto  max-w-[1100px] w-full h-fit lg:grid-cols-2">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(
-            (recipe, index) => (
-              <div className="mx-auto" key={index}>
-                {index + 1}
-                <StoryCard
-                  key={recipe}
-                  // {...recipe}
-                />
-              </div>
-            )
-          )}
+          {mockStories.map((story, index) => (
+            <div className="mx-auto" key={index}>
+              <StoryCard key={story.id} story={story} />
+            </div>
+          ))}
         </div>
       )}
     </div>

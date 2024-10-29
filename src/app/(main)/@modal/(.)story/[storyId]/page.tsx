@@ -4,24 +4,23 @@ import {
   DialogClose,
   DialogContent,
   DialogOverlay,
+  DialogTitle,
 } from "@/shared/components/ui/dialog";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
-import { StoryDetailsProps } from "../type";
 import AnswerAndStats from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats";
 import TranscriptAndComments from "@/shared/components/RecordStoryModal/PublishAnswer/TranscriptAndComments";
 
-const Story = ({ params }: StoryDetailsProps) => {
+const Story = () => {
   const [isOpen, setIsOpen] = React.useState(true);
+
   const router = useRouter();
   const handleOnClose = () => {
     router.back();
     setIsOpen(false);
   };
-  const { storyId } = params;
-  console.log({ storyId });
 
   return (
     <Dialog open={isOpen}>
@@ -44,6 +43,7 @@ const Story = ({ params }: StoryDetailsProps) => {
           </DialogClose>
           <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
             {/* Answer Section */}
+            <DialogTitle className="hidden">Story</DialogTitle>
             <AnswerAndStats />
             {/* Transcript Section */}
             <TranscriptAndComments />
