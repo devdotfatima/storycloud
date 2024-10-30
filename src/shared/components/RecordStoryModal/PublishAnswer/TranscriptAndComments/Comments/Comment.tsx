@@ -3,6 +3,7 @@ import { Ellipsis } from "lucide-react";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { mockCommentT } from "@/shared/types";
+import { MY_STORY } from "@/shared/consts";
 
 const Comment = ({ comment }: { comment: mockCommentT }) => {
   const [showDelete, setShowDelete] = useState(false);
@@ -50,12 +51,14 @@ const Comment = ({ comment }: { comment: mockCommentT }) => {
           </p>
           <div className="flex items-center gap-2 text-grey">
             <span>3d ago</span>
-            <button>
-              <Ellipsis
-                className="cursor-pointer"
-                onClick={toggleDeleteButton}
-              />
-            </button>
+            {MY_STORY ? (
+              <button>
+                <Ellipsis
+                  className="cursor-pointer"
+                  onClick={toggleDeleteButton}
+                />
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

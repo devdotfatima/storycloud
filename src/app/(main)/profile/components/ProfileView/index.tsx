@@ -129,14 +129,16 @@ const ProfileView = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:gap-20 max-w-[1100px] w-full h-fit lg:grid-cols-2">
-          {mockStories.map((story, index) => (
-            <div
-              className="mx-auto justify-center items-center flex w-full"
-              key={index}
-            >
-              <StoryCard key={story.id} story={story} />
-            </div>
-          ))}
+          {mockStories
+            .filter((story) => story.isMyStory) // Filter stories that are the user's
+            .map((story, index) => (
+              <div
+                className="mx-auto justify-center items-center flex w-full"
+                key={index}
+              >
+                <StoryCard story={story} />
+              </div>
+            ))}
         </div>
       )}
     </div>

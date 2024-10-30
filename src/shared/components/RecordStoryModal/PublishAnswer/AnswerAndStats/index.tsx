@@ -32,6 +32,7 @@ const AnswerAndStats = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [title, setTitle] = useState(story?.title || "");
 
   const onReady = (ws: WaveSurfer) => {
     setWavesurfer(ws);
@@ -79,6 +80,10 @@ const AnswerAndStats = ({
     goToPreviousStep?.();
   };
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
+  };
+
   return (
     <div className="lg:flex-1 lg:h-full flex-col flex gap-4 sm:gap-6 xl:gap-10 sm:bg-purple-100 p-5 sm:p-12">
       {/* Header Section */}
@@ -111,15 +116,42 @@ const AnswerAndStats = ({
               publish
             </button>
           </div>
+        ) : story?.isMyStory ? (
+          <div className="flex h-6 sm:h-12 items-center ">
+            <Image
+              src={ArrowIcon}
+              alt="arrow pointing towards publish button"
+              height={100}
+              width={80}
+              className="h-12 sm:h-12 w-20 "
+            />{" "}
+            <button className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple">
+              save
+            </button>
+          </div>
         ) : (
           <OptionsModal />
         )}
       </div>
 
       {/* Question Section */}
-      <div className="text-center text-xl sm:text-3xl font-crimson font-medium bg-white w-full p-4 rounded-xl">
+      <div
+        className={`text-center text-xl sm:text-3xl font-crimson font-medium ${
+          story?.isMyStory
+            ? "bg-white border-purple border-2 sm:border-0 rounded-2xl"
+            : "sm:bg-purple-100"
+        } w-full p-4 rounded-xl`}
+      >
         {storyId ? (
-          <p>{story?.title}</p>
+          story?.isMyStory ? (
+            <textarea
+              className="border-0 outline-none overflow-y-auto h-full w-full resize-none text-center rounded"
+              value={title}
+              onChange={handleTitleChange} // Update state on change
+            />
+          ) : (
+            <p> {story?.title} </p>
+          )
         ) : (
           <p> What is your favorite travel destination?</p>
         )}
@@ -163,7 +195,7 @@ const AnswerAndStats = ({
       </div>
 
       {/* Upload Section */}
-      {storyId ? (
+      {!story?.isMyStory ? (
         <ImageSlider images={story?.storyImages || [UploadIcon]} />
       ) : (
         <div
