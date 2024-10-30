@@ -3,7 +3,6 @@ import { Ellipsis } from "lucide-react";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { mockCommentT } from "@/shared/types";
-import { MY_STORY } from "@/shared/consts";
 
 const Comment = ({
   comment,
