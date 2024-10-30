@@ -73,4 +73,5 @@ export type mockStoryT = {
   transcript: string;
   comments: mockCommentT[];
   storyImages: StaticImageData[];
+  isMyStory: boolean;
 };

@@ -96,6 +96,7 @@ export const mockStories: mockStoryT[] = [
       },
     ],
     storyImages: [StoryImage2, StoryImage3, StoryImage4, StoryImage5],
+    isMyStory: true,
   },
   {
     id: 2,
@@ -130,8 +131,10 @@ export const mockStories: mockStoryT[] = [
         createdAt: "1d ago",
       },
     ],
+    isMyStory: false,
   },
   {
+    isMyStory: true,
     id: 3,
     title: "Tell me about your high school experience!",
     audioClip: AudioSample1,
@@ -166,6 +169,7 @@ export const mockStories: mockStoryT[] = [
     totalComments: 70,
     totalShares: 50,
     storyImages: [StoryImage7],
+    isMyStory: true,
 
     transcript:
       "As a child, I dreamed of becoming an astronaut, exploring the stars, and discovering new worlds...",
@@ -194,3 +198,5 @@ export const mockStories: mockStoryT[] = [
     ],
   },
 ];
+
+export const MY_STORY = false;
