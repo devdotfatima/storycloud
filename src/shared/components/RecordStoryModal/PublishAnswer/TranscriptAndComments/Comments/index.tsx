@@ -24,7 +24,11 @@ const Comments = () => {
         <div className="flex justify-between flex-col h-full ">
           <div className="h-[90%] max-h-[350px] lg:max-h-[600px] space-y-3 overflow-y-auto">
             {story?.comments.map((comment, index) => (
-              <Comment key={comment.id || index} comment={comment} />
+              <Comment
+                myStory={story?.isMyStory}
+                key={comment.id || index}
+                comment={comment}
+              />
             ))}
           </div>
 

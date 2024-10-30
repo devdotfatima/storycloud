@@ -5,7 +5,13 @@ import { useState, useRef, useEffect } from "react";
 import { mockCommentT } from "@/shared/types";
 import { MY_STORY } from "@/shared/consts";
 
-const Comment = ({ comment }: { comment: mockCommentT }) => {
+const Comment = ({
+  comment,
+  myStory,
+}: {
+  comment: mockCommentT;
+  myStory: boolean;
+}) => {
   const [showDelete, setShowDelete] = useState(false);
   const commentRef = useRef<HTMLDivElement>(null);
 
@@ -51,7 +57,7 @@ const Comment = ({ comment }: { comment: mockCommentT }) => {
           </p>
           <div className="flex items-center gap-2 text-grey">
             <span>3d ago</span>
-            {MY_STORY ? (
+            {myStory ? (
               <button>
                 <Ellipsis
                   className="cursor-pointer"

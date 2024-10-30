@@ -145,7 +145,7 @@ const AnswerAndStats = ({
         {storyId ? (
           story?.isMyStory ? (
             <textarea
-              className="border-0 outline-none overflow-y-auto h-full w-full resize-none text-center rounded"
+              className="border-0 outline-none overflow-y-auto  w-full resize-none text-center rounded"
               value={title}
               onChange={handleTitleChange} // Update state on change
             />

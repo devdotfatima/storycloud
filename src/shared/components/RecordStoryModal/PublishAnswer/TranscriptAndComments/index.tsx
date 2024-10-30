@@ -27,7 +27,7 @@ const TranscriptAndComments = () => {
     <div className="flex-1   flex flex-col w-full gap-5   max-h-fit p-5 sm:p-12 lg:h-full ">
       <div className="relative flex w-full px-[3px] text-purple mx-auto bg-purple-100  h-[48px] flew-row rounded-xl backdrop-blur-sm">
         <span
-          className="absolute flex overflow-hidden transition-all duration-300 top-[4px] lg:top-[2px] rounded-lg -z-10 w-1/2"
+          className="absolute flex overflow-hidden transition-all duration-300 top-[2px] rounded-lg -z-10 w-1/2"
           style={{ left: tabUnderlineLeft, width: "49.5%" }}
         >
           <span
