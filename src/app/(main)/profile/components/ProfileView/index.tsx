@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { cn } from "@/lib/utils";
-import RequestStoryModal from "./RequestStoryModal";
+import StoryRequestModal from "./StoryRequestModal";
 import LockGreyIcon from "../../../../../assets/icons/lock-grey.svg";
 import { mockStories } from "@/shared/consts";
 
@@ -106,7 +106,7 @@ const ProfileView = ({
             )}
 
             {/*  */}
-            <RequestStoryModal isFriend={isFriend} />
+            <StoryRequestModal isFriend={isFriend} />
           </div>
         ) : (
           <Dialog>
@@ -128,9 +128,12 @@ const ProfileView = ({
           </h3>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 md:gap-20   mx-auto  max-w-[1100px] w-full h-fit lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:gap-20 max-w-[1100px] w-full h-fit lg:grid-cols-2">
           {mockStories.map((story, index) => (
-            <div className="mx-auto" key={index}>
+            <div
+              className="mx-auto justify-center items-center flex w-full"
+              key={index}
+            >
               <StoryCard key={story.id} story={story} />
             </div>
           ))}

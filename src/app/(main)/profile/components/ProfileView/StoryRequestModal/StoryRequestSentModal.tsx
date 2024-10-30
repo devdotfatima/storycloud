@@ -5,13 +5,20 @@ import {
   DialogClose,
   DialogTitle,
 } from "@/shared/components/ui/dialog";
-import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
-import StorySentIcon from "../../../../../assets/images/story_sent.png";
+import ClosePurpleIcon from "../../../../../../assets/icons/close-purple.svg";
+import StorySentIcon from "../../../../../../assets/images/story_sent.png";
+import { StoryRequestSentPropsT } from "./types";
 
-const StorySentModal = () => {
+const StoryRequestSentModal = ({
+  onClose,
+  storyRequest,
+}: StoryRequestSentPropsT) => {
   return (
     <DialogContent className="bg-transparent w-full  h-[100svh] sm:h-[90svh]  lg:overflow-hidden sm:max-w-[600px] lg:max-h-[600px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
-      <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white">
+      <DialogClose
+        onClick={onClose}
+        className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none  w-fit lg:top-5 lg:-right-0 bg-white"
+      >
         <Image
           src={ClosePurpleIcon}
           alt="Close modal"
@@ -26,7 +33,7 @@ const StorySentModal = () => {
         </DialogTitle>
 
         <p className="bg-purple-100 text-purple h-16 sm:min-h-20 px-5 rounded-xl flex items-center w-full justify-center ">
-          what is your favorite travel destination?
+          {storyRequest}
         </p>
 
         <h3 className="">
@@ -45,7 +52,10 @@ const StorySentModal = () => {
         {/* <section className="flex flex-col  items-center gap-7 w-full overflow-y-auto pr-1"> */}
         <footer className="flex   gap-6 sm:gap-10 w-full self-end  justify-between mt-auto ">
           <button className="bg-red-100 text-red w-full h-11">unsend</button>
-          <button className="bg-purple-100 text-purple w-full h-11">
+          <button
+            onClick={onClose}
+            className="bg-purple-100 text-purple w-full h-11"
+          >
             done
           </button>
         </footer>
@@ -54,4 +64,4 @@ const StorySentModal = () => {
   );
 };
 
-export default StorySentModal;
+export default StoryRequestSentModal;
