@@ -23,9 +23,9 @@ const RecordStoryModal = () => {
   return (
     <DialogContent
       aria-describedby="record your story to the question "
-      className={`max-h-[1000px] bg-transparent h-[100svh] w-full max-w-screen-sm ${
+      className={`max-h-[1000px]  bg-transparent h-[100svh] w-full max-w-screen-sm ${
         currentStep === 0 ? "lg:max-w-[860px]" : "lg:max-w-[1200px]"
-      } sm:h-[90svh] overflow-hidden lg:pr-12 pt-[20px]`}
+      } sm:h-[97svh] overflow-hidden lg:pr-12 pt-[20px]`}
     >
       <DialogClose className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit">
         <Image

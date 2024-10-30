@@ -23,14 +23,15 @@ import ImageSlider from "@/shared/components/ImageSlider";
 const AnswerAndStats = ({
   recorderControls,
   goToPreviousStep,
+  handleShowUploadImageScreen,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
   const { storyId } = useParams();
   const story = mockStories.find((story) => story.id.toString() === storyId);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0); // State to track current time
-  const [duration, setDuration] = useState(0); // State to track total duration
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const onReady = (ws: WaveSurfer) => {
     setWavesurfer(ws);
@@ -165,7 +166,10 @@ const AnswerAndStats = ({
       {storyId ? (
         <ImageSlider images={story?.storyImages || [UploadIcon]} />
       ) : (
-        <div className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white">
+        <div
+          onClick={handleShowUploadImageScreen}
+          className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
+        >
           <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
           <p className="text-grey text-base">upload</p>
         </div>
