@@ -32,12 +32,12 @@ const Comments = () => {
             ))}
           </div>
 
-          <div className="flex items-center justify-between w-[96%] h-10 gap-2 px-2 bg-white rounded-xl">
+          <div className="flex items-center justify-between w-[96%] h-11 gap-2 px-2 bg-white rounded-xl">
             <textarea
               // value={comment}
               // onChange={(e) => setComment(e.target.value)}
               placeholder="Add comment"
-              className="w-full h-8 pt-2 overflow-y-auto text-base font-light leading-tight outline-none resize-none caret-secondaryBlue placeholder:text-grey ring-0"
+              className="w-full h-10 pt-2.5 overflow-y-auto text-base font-light leading-tight outline-none resize-none caret-secondaryBlue placeholder:text-grey ring-0"
             />
             <button
               aria-label="Send Comment"
