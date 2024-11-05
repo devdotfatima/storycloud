@@ -2,8 +2,9 @@
 import { mockStories } from "@/shared/consts";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { TranscriptAndCommentsPropsT } from "../types";
 
-const Transcript = () => {
+const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
   const { storyId } = useParams();
   const story = mockStories.find((story) => story.id.toString() === storyId);
   const [transcript, setTranscript] = useState("");
@@ -19,16 +20,16 @@ const Transcript = () => {
     <div
       className={`min-h-[460px] h-full w-full bg-purple-100 rounded-2xl py-5 pl-5 pr-1 ${
         storyId
-          ? story?.isMyStory
+          ? isEditing
             ? "bg-white border-2 border-purple"
             : ""
-          : "text-center sm:px-24 flex justify-center items-center text-purple"
+          : "text-center sm:px-24 flex justify-center items-center text-purple "
       }`}
     >
       {!storyId ? (
-        <span>Your transcript will finish generating after you publish</span>
+        <span>your transcript will finish generating after you publish</span>
       ) : // Editable transcript area
-      story?.isMyStory ? (
+      isEditing ? (
         <textarea
           className="border-0 outline-none overflow-y-auto h-full w-full resize-none rounded"
           value={transcript}

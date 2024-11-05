@@ -12,9 +12,9 @@ import {
 import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
 import ReturnPurpleIcon from "../../../../../assets/icons/return-purple.svg";
 import CopyPurpleIcon from "../../../../../assets/icons/copy-purple.svg";
-import Link from "next/link";
+import { OptionsModalPropsT } from "../types";
 
-const OptionsModal = () => {
+const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
   const [showLink, setShowLink] = useState(false);
   const [deleteStory, setDeleteStory] = useState(false);
   const pathname = usePathname();
@@ -37,17 +37,22 @@ const OptionsModal = () => {
 
         {!showLink && !deleteStory ? (
           <div className="relative flex flex-col items-center justify-between  h-full gap-2 px-8 py-6 bg-white rounded-2xl ">
-            <DialogTitle className="flex items-center justify-center pt-4">
-              <h1 className=" font-normal">options</h1>
+            <DialogTitle className="flex items-center justify-center pt-4 ">
+              options
             </DialogTitle>
             {myStory ? (
-              <Link
-                href={"/profile/edit"}
+              // <DialogClose className="w-full">
+              <button
+                onClick={() => {
+                  console.log("sadmn");
+                  toggleEditMode();
+                }}
                 className="p-2 transition duration-150 ease-in mt-6 text-center text-purple bg-purple-100 w-full  "
               >
-                edit profile
-              </Link>
-            ) : null}
+                edit story
+              </button>
+            ) : // </DialogClose>
+            null}
             <button
               type="button"
               onClick={() => setShowLink(true)}

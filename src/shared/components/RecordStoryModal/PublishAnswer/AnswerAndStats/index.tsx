@@ -18,6 +18,8 @@ const AnswerAndStats = ({
   recorderControls,
   goToPreviousStep,
   handleShowUploadImageScreen,
+  isEditing,
+  toggleEditMode,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const { storyId } = useParams();
@@ -27,11 +29,6 @@ const AnswerAndStats = ({
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  console.log(
-    !goToPreviousStep || !story?.isMyStory,
-    !goToPreviousStep,
-    story?.isMyStory
-  );
 
   return (
     <div className="lg:w-1/2 lg:h-full flex-col flex gap-4 sm:gap-6 xl:gap-10 sm:bg-purple-100 p-5 sm:p-12">
@@ -65,7 +62,7 @@ const AnswerAndStats = ({
               publish
             </button>
           </div>
-        ) : story?.isMyStory ? (
+        ) : isEditing ? (
           <div className="flex h-6 sm:h-12 items-center ">
             <Image
               src={ArrowIcon}
@@ -74,27 +71,30 @@ const AnswerAndStats = ({
               width={80}
               className="h-12 sm:h-12 w-20 "
             />{" "}
-            <button className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple">
+            <button
+              onClick={toggleEditMode}
+              className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple"
+            >
               save
             </button>
           </div>
         ) : (
-          <OptionsModal />
+          <OptionsModal toggleEditMode={toggleEditMode} />
         )}
       </div>
 
       {/* Question Section */}
       <div
         className={`text-center text-xl sm:text-3xl font-crimson font-medium ${
-          story?.isMyStory
+          isEditing
             ? "bg-white border-purple border-2 sm:border-0 rounded-2xl"
             : "sm:bg-purple-100"
         } w-full p-4 rounded-xl`}
       >
         {storyId ? (
-          story?.isMyStory ? (
+          isEditing ? (
             <textarea
-              className="border-0 outline-none overflow-y-auto h-9 w-full resize-none text-center rounded"
+              className="border-0 outline-none overflow-y-auto h-16 w-full resize-none text-center rounded"
               value={title}
               onChange={handleTitleChange} // Update state on change
             />
@@ -144,9 +144,7 @@ const AnswerAndStats = ({
       </div>
 
       {/* Upload Section */}
-      {!goToPreviousStep || !story?.isMyStory ? (
-        <ImageSlider images={story?.storyImages || [UploadIcon]} />
-      ) : (
+      {goToPreviousStep || isEditing ? (
         <div
           onClick={
             handleShowUploadImageScreen
@@ -158,10 +156,13 @@ const AnswerAndStats = ({
           <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
           <p className="text-grey text-base">upload</p>
         </div>
+      ) : (
+        <ImageSlider images={story?.storyImages || [UploadIcon]} />
       )}
 
       {/* Audio Player Controls */}
       <MusicPlayer
+        isEditing={isEditing}
         goToPreviousStep={goToPreviousStep}
         clearCanvas={clearCanvas}
         stopRecording={stopRecording}

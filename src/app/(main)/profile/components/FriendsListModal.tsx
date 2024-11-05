@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { DialogContent, DialogClose } from "@/shared/components/ui/dialog";
+import {
+  DialogContent,
+  DialogClose,
+  DialogTitle,
+} from "@/shared/components/ui/dialog";
 import { profiles } from "@/shared/consts";
 import ClosePurpleIcon from "../../../../assets/icons/close-purple.svg";
 
@@ -12,7 +16,10 @@ const FriendsListModal = () => {
         <Image src={ClosePurpleIcon} alt="Close" className="w-6 h-6" />
       </DialogClose>
       <div className="flex flex-col items-center w-full h-full gap-2 py-6 pl-6 pr-1 mx-auto overflow-hidden text-xl  bg-white shadow-md rounded-t-2xl sm:rounded-2xl lg:gap-6 lg:py-10 lg:pl-10 ">
-        <h2>friends</h2>
+        <DialogTitle className="w-full text-center pr-6  lg:pr-10">
+          friends
+        </DialogTitle>
+
         <hr className="w-full border-spacing-1.5 border-purple-100 mr-4 lg:mr-10" />
         <div className="flex flex-col w-full h-full gap-4 overflow-y-auto xl:h-fit ">
           {profiles

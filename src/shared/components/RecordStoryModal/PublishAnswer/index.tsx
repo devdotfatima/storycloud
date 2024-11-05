@@ -9,6 +9,7 @@ const PublishAnswer = ({
   recorderControls,
   goToPreviousStep,
 }: PublishAnswerPropsT) => {
+  const [isEditing, setIsEditing] = useState(false);
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
     useState(false);
   const [images, setImages] = useState<(File | null)[]>([
@@ -30,6 +31,12 @@ const PublishAnswer = ({
     setUploadImageScreenVisibility((prevState) => !prevState);
   };
 
+  const toggleEditMode = () => {
+    console.log("clicked");
+
+    setIsEditing((prevState) => !prevState);
+  };
+
   return (
     <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
       {/* Answer Section */}
@@ -42,11 +49,13 @@ const PublishAnswer = ({
       ) : (
         <>
           <AnswerAndStats
+            isEditing={isEditing}
+            toggleEditMode={toggleEditMode}
             recorderControls={recorderControls}
             goToPreviousStep={goToPreviousStep}
             handleShowUploadImageScreen={toggleUploadImageScreen}
           />
-          <TranscriptAndComments />
+          <TranscriptAndComments isEditing={isEditing} />
         </>
       )}
     </div>

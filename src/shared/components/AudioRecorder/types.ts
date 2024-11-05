@@ -14,6 +14,7 @@ export type DeleteAudioModalT = {
   handleDelete: () => void;
   recordingTime: number;
 };
+
 export type RestartAudioModalT = {
   handleRestart: () => void;
   recordingTime: number;

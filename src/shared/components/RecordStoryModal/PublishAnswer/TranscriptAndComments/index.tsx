@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { transcriptAndCommentsTabs } from "../../consts";
+import { getTranscriptAndCommentsTabs } from "../../consts";
+import { TranscriptAndCommentsPropsT } from "../types";
 
 // Explicitly typing the ref to hold HTMLButtonElement or null
-const TranscriptAndComments = () => {
+const TranscriptAndComments = ({ isEditing }: TranscriptAndCommentsPropsT) => {
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-
+  const tabs = getTranscriptAndCommentsTabs(isEditing);
   useEffect(() => {
     if (activeTabIndex === null) {
       return;
@@ -37,7 +38,7 @@ const TranscriptAndComments = () => {
 
           <span className="w-full h-10 rounded-xl bg-purple-400" />
         </span>
-        {transcriptAndCommentsTabs.map((tab, index) => {
+        {tabs.map((tab, index) => {
           const isActive = activeTabIndex === index;
 
           return (
@@ -57,10 +58,7 @@ const TranscriptAndComments = () => {
         })}
       </div>
 
-      {
-        transcriptAndCommentsTabs.find((tab) => tab.id === activeTabIndex)
-          ?.content
-      }
+      {tabs.find((tab) => tab.id === activeTabIndex)?.content}
     </div>
   );
 };

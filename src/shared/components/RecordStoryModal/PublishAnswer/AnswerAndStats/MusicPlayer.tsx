@@ -8,18 +8,16 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import DeleteAudioModal from "@/shared/components/AudioRecorder/DeleteAudioModal";
 import RestartAudioModal from "@/shared/components/AudioRecorder/RestartAudioModal";
+import { MusicPlayerPropsT } from "../types";
+import RestartGreyIcon from "../../../../../assets/icons/restart-grey.svg";
 
 const MusicPlayer = ({
   soundURL,
   stopRecording,
   clearCanvas,
   goToPreviousStep,
-}: {
-  soundURL: string;
-  clearCanvas: (() => void) | undefined;
-  stopRecording: (() => void) | undefined;
-  goToPreviousStep: (() => void) | undefined;
-}) => {
+  isEditing,
+}: MusicPlayerPropsT) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -178,7 +176,7 @@ const MusicPlayer = ({
               className="w-10 h-10  lg:w-16 lg:h-16"
               width={60}
               height={60}
-              src={RestartIcon}
+              src={isEditing ? RestartGreyIcon : RestartIcon}
             />
             <span className={`text-base ${"text-black"}`}>restart</span>
           </button>

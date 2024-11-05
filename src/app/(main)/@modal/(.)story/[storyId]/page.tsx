@@ -15,6 +15,8 @@ import TranscriptAndComments from "@/shared/components/RecordStoryModal/PublishA
 import UploadStoryImages from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats/UploadStoryImages";
 
 const Story = () => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
     useState(false);
   const [images, setImages] = useState<(File | null)[]>([
@@ -43,6 +45,9 @@ const Story = () => {
     setIsOpen(false);
   };
 
+  const toggleEditMode = () => {
+    setIsEditing((prevState) => !prevState);
+  };
   return (
     <Dialog open={isOpen}>
       <DialogOverlay onClick={handleOnClose}>
@@ -75,10 +80,12 @@ const Story = () => {
               <>
                 {/* Answer Section */}
                 <AnswerAndStats
+                  isEditing={isEditing}
+                  toggleEditMode={toggleEditMode}
                   handleShowUploadImageScreen={toggleUploadImageScreen}
                 />
                 {/* Transcript Section */}
-                <TranscriptAndComments />
+                <TranscriptAndComments isEditing={isEditing} />
               </>
             )}
           </div>

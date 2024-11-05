@@ -9,11 +9,11 @@ export const steps = [
   { id: 2, component: PublishAnswer },
 ];
 
-export const transcriptAndCommentsTabs = [
+export const getTranscriptAndCommentsTabs = (isEditing: boolean) => [
   {
     id: 0,
     name: "transcript",
-    content: <Transcript />,
+    content: <Transcript isEditing={isEditing} />, // Pass isEditing prop to Transcript
   },
   {
     id: 1,
