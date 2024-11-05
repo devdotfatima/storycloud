@@ -34,33 +34,21 @@ const AudioRecorder = ({
     [remainingTimeInSeconds]
   );
   return (
-    <div className="flex flex-col relative items-center  justify-center overflow-hidden  h-fit space-y-0 xl:space-y-6 max-w-[600px] mx-auto w-full">
-      {/* <div className=" flex w-full max-w-[600px] bg-green mx-auto h-16 items-center gap-4 relative ">
-        <span className="text-purple font-medium w-10">{remainingTime}</span>
-        <div className="relative w-full">
-          <hr className="border-b-1.5 z-[0]  absolute top-[29px] rounded-full border-grey w-full  " />
-          <VoiceVisualizer
-            controls={recorderControls}
-            mainBarColor="#6A6FD5"
-            secondaryBarColor="#B1B1B1"
-            fullscreen={true}
-            barWidth={5}
-            height={60}
-            isProgressIndicatorShown={false}
-            isControlPanelShown={false}
-            isDefaultUIShown={false}
-          />
-        </div>
-        <span className="text-red font-medium w-20 bg-yellow-50">
-          {formattedRecordingDuration}
-        </span>
-      </div> */}
-      <div className="flex w-full max-w-[600px]  mx-auto h-16 items-center gap-2 sm:gap-4 relative">
-        <span className="text-purple font-medium w-10 flex-shrink-0">
+    <div className="flex flex-col relative items-center   justify-center overflow-hidden  h-fit space-y-0 xl:space-y-6 max-w-[600px] mx-auto w-full">
+      <div className="flex w-full max-w-[600px] mx-auto h-14 items-center relative">
+        <div className="text-purple block font-medium w-fit  ">
           {remainingTime}
-        </span>
-        <div className="relative w-full flex-grow">
-          <hr className="border-b-1.5 z-[0] absolute top-[29px] rounded-full border-grey w-full" />
+        </div>
+        <div
+          // className="relative w-[70%] sm:w-[78.5%] md:w-[77.5%] lg:w-[80%] "
+          style={{
+            width: `calc(100% - ${remainingTime ? "60px" : "0px"} - ${
+              formattedRecordingDuration ? "60px" : "0px"
+            })`,
+          }}
+          className="relative mx-auto"
+        >
+          <hr className="border-b-1.5 z-[0] absolute top-[29px] left-0 rounded-full border-grey w-full" />
           <VoiceVisualizer
             controls={recorderControls}
             mainBarColor="#6A6FD5"
@@ -73,11 +61,11 @@ const AudioRecorder = ({
             isDefaultUIShown={false}
           />
         </div>
-        <span className="text-red font-medium w-fit  flex-shrink-0">
+        <span className="text-red  font-medium w-fit ">
           {formattedRecordingDuration}
         </span>
       </div>
-      <div className="flex justify-between w-full  h-fit ">
+      <div className="flex justify-between w-full h-fit ">
         <RestartAudioModal
           recordingTime={recordingTime}
           handleRestart={handleRestart}

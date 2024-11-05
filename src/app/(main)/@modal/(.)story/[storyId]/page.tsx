@@ -7,13 +7,34 @@ import {
   DialogTitle,
 } from "@/shared/components/ui/dialog";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
 import AnswerAndStats from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats";
 import TranscriptAndComments from "@/shared/components/RecordStoryModal/PublishAnswer/TranscriptAndComments";
+import UploadStoryImages from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats/UploadStoryImages";
 
 const Story = () => {
+  const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
+    useState(false);
+  const [images, setImages] = useState<(File | null)[]>([
+    null,
+    null,
+    null,
+    null,
+  ]);
+
+  const handleImageSelect = (file: File | null, index: number) => {
+    setImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = file;
+      return updatedImages;
+    });
+  };
+
+  const toggleUploadImageScreen = () => {
+    setUploadImageScreenVisibility((prevState) => !prevState);
+  };
   const [isOpen, setIsOpen] = React.useState(true);
 
   const router = useRouter();
@@ -42,11 +63,24 @@ const Story = () => {
             />
           </DialogClose>
           <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
-            {/* Answer Section */}
             <DialogTitle className="hidden">Story</DialogTitle>
-            <AnswerAndStats />
-            {/* Transcript Section */}
-            <TranscriptAndComments />
+
+            {isUploadImageScreenVisible ? (
+              <UploadStoryImages
+                images={images}
+                handleImageSelect={handleImageSelect}
+                onToggleUploadImageScreen={toggleUploadImageScreen}
+              />
+            ) : (
+              <>
+                {/* Answer Section */}
+                <AnswerAndStats
+                  handleShowUploadImageScreen={toggleUploadImageScreen}
+                />
+                {/* Transcript Section */}
+                <TranscriptAndComments />
+              </>
+            )}
           </div>
         </DialogContent>
       </DialogOverlay>

@@ -44,7 +44,7 @@ const RecordAnswer = ({
   }, [stopRecording, goToNextStep]);
 
   return (
-    <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 md:gap-10">
+    <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 lg:gap-10">
       <button
         className={`${
           recordingTime > 0
@@ -59,7 +59,7 @@ const RecordAnswer = ({
         What is your favorite travel destination?
       </DialogTitle>
       <div className=" pr-1  bg-purple-100 w-full  max-w-[600px]  mx-auto rounded-2xl lg:max-h-[450px] overflow-hidden min-h-[220px] h-full py-2 ">
-        <div className="overflow-y-auto    text-center   h-full">
+        <div className="overflow-y-auto text-center   h-full">
           <h2 className="text-purple pt-4 lg:pt-8">some advice</h2>
           <ul className="text-left px-6 lg:px-10 py-4 lg:py-8  flex flex-col  gap-4">
             <li>
@@ -87,7 +87,7 @@ const RecordAnswer = ({
         </div>
       </div>
 
-      <div className="  w-full  h-fit min-h-32 lg:min-h-44 items-end overflow-y-auto flex self-end ">
+      <div className="  w-full h-fit min-h-32 lg:min-h-40 items-end overflow-y-auto flex self-end ">
         <AudioRecorder
           recorderControls={recorderControls}
           toggleRecording={toggleRecording}
