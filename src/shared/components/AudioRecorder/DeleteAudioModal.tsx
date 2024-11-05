@@ -14,7 +14,6 @@ import TrashGreyIcon from "../../../assets/icons/trash-grey.svg";
 const DeleteAudioModal = ({
   handleDelete,
   recordingTime,
-  isEditing,
 }: DeleteAudioModalT) => {
   return (
     <Dialog>
@@ -22,14 +21,14 @@ const DeleteAudioModal = ({
         <button
           className="flex flex-col items-center justify-center gap-1.5"
           aria-label="delete recording"
-          disabled={recordingTime === 0 || isEditing}
+          disabled={recordingTime === 0}
         >
           <Image
             alt="delete recording"
             width={60}
             height={60}
             className="w-10 h-10  lg:w-16 lg:h-16"
-            src={recordingTime === 0 || isEditing ? TrashGreyIcon : TrashIcon}
+            src={recordingTime === 0 ? TrashGreyIcon : TrashIcon}
           />
           <span
             className={`text-base ${
