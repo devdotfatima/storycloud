@@ -30,11 +30,15 @@ const MusicPlayer = ({
   const { storyId } = useParams();
 
   const togglePlayPause = useCallback(() => {
-    if (!audioRef.current) return;
-    isPlaying ? audioRef.current.pause() : audioRef.current.play();
-    setIsPlaying(!isPlaying);
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
   }, [isPlaying]);
-
   const updateProgress = useCallback(() => {
     if (isDragging || !audioRef.current) return;
     const { currentTime, duration } = audioRef.current;
@@ -129,7 +133,7 @@ const MusicPlayer = ({
       audioElement?.removeEventListener("loadedmetadata", setAudioDuration);
       audioElement?.removeEventListener("timeupdate", updateProgress);
     };
-  }, []);
+  }, [updateProgress]);
 
   return (
     <div className="flex flex-col items-center w-full">

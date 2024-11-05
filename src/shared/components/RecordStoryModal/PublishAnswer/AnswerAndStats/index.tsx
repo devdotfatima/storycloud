@@ -143,9 +143,11 @@ const AnswerAndStats = ({
         <ImageSlider images={story?.storyImages || [UploadIcon]} />
       ) : (
         <div
-          onClick={() => {
-            handleShowUploadImageScreen && handleShowUploadImageScreen();
-          }}
+          onClick={
+            handleShowUploadImageScreen
+              ? handleShowUploadImageScreen
+              : undefined
+          }
           className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
         >
           <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
