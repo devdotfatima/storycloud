@@ -8,7 +8,7 @@ const QuestionCard = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex flex-col p-5 gap-10 bg-white min-w-80 md:w-2/4 rounded-xl h-[320px] cursor-pointer hover:scale-95 transition-all ease-in duration-300">
+        <div className="flex flex-col p-5 gap-10 bg-white hover:shadow-md min-w-80 md:w-2/4 rounded-xl h-[320px] cursor-pointer  transition-all ease-in duration-300">
           <div className="flex items-center gap-4 font-medium">
             <Image
               className="rounded-full h-16 w-16"
