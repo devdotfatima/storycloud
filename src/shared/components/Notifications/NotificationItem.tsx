@@ -5,7 +5,7 @@ import ProfileImage from "../../../assets/images/profile_image.png";
 
 const NotificationItem = ({ notification }: NotificationItemPropsT) => {
   return (
-    <div className="flex flex-row items-start justify-center py-2 space-x-3 font-normal sm:items-center f">
+    <div className="flex flex-row text-lg items-start justify-center py-2 space-x-3 font-normal sm:items-center f">
       <div className="flex items-center flex-1 space-x-3">
         {" "}
         <Image
@@ -16,20 +16,20 @@ const NotificationItem = ({ notification }: NotificationItemPropsT) => {
           height={40}
         />
         <p className="flex-1 font-medium">
-          <span className="text-sm font-medium text-purple">
+          <span className=" font-medium text-purple">
             {notification.userName}
             {notification.action === "started following you" ? <br /> : null}
           </span>
-          <span className="text-sm  "> {notification.action}</span>
+          <span className="  "> {notification.action}</span>
 
           {notification.story && (
-            <span className="mx-1 text-sm font-medium font-crimson ">
+            <span className="mx-1 font-medium font-crimson ">
               <br />
               {notification.story}
             </span>
           )}
           <br />
-          <span className="mx-1 text-xs text-grey">
+          <span className="mx-1 text-base text-grey">
             {" "}
             {notification.timeAgo}
           </span>
