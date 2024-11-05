@@ -14,8 +14,8 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="h-full flex flex-col w-full gap-3">
-      <div className="max-w-[500px] h-full ">
+    <div className="h-full flex flex-col w-full gap-3 ">
+      <div className="max-w-[600px] h-full ">
         <Swiper
           cssMode={true}
           mousewheel={true}

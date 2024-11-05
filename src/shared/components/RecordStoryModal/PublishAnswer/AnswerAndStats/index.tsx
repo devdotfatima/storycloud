@@ -27,9 +27,14 @@ const AnswerAndStats = ({
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
+  console.log(
+    !goToPreviousStep || !story?.isMyStory,
+    !goToPreviousStep,
+    story?.isMyStory
+  );
 
   return (
-    <div className="lg:flex-1 lg:h-full flex-col flex gap-4 sm:gap-6 xl:gap-10 sm:bg-purple-100 p-5 sm:p-12">
+    <div className="lg:w-1/2 lg:h-full flex-col flex gap-4 sm:gap-6 xl:gap-10 sm:bg-purple-100 p-5 sm:p-12">
       {/* Header Section */}
       <div className="flex justify-between items-center ">
         {/* Profile Section */}
@@ -89,7 +94,7 @@ const AnswerAndStats = ({
         {storyId ? (
           story?.isMyStory ? (
             <textarea
-              className="border-0 outline-none overflow-y-auto  w-full resize-none text-center rounded"
+              className="border-0 outline-none overflow-y-auto h-9 w-full resize-none text-center rounded"
               value={title}
               onChange={handleTitleChange} // Update state on change
             />
@@ -139,7 +144,7 @@ const AnswerAndStats = ({
       </div>
 
       {/* Upload Section */}
-      {!goToPreviousStep && !story?.isMyStory ? (
+      {!goToPreviousStep || !story?.isMyStory ? (
         <ImageSlider images={story?.storyImages || [UploadIcon]} />
       ) : (
         <div
