@@ -17,12 +17,14 @@ const RestartAudioModal = ({
 }: RestartAudioModalT) => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <button
-          className="flex flex-col items-center justify-center gap-1.5"
-          aria-label="restart recording"
-          disabled={recordingTime === 0}
-        >
+      <DialogTrigger
+        asChild
+        className="flex flex-col items-center justify-center gap-1.5"
+        aria-label="restart recording"
+        disabled={recordingTime === 0}
+      >
+        {/* <button> */}
+        <div>
           <Image
             alt="restart recording"
             className="w-10 h-10  lg:w-16 lg:h-16"
@@ -37,12 +39,14 @@ const RestartAudioModal = ({
           >
             restart
           </span>
-        </button>
+        </div>
+
+        {/* </button> */}
       </DialogTrigger>
       <DialogContent className="bg-transparent h-screen w-full lg:max-w-[450px] max-h-[256px]  overflow-y-auto lg:overflow-hidden border-0 pt-[20px] sm:pr-8 ">
         <div className="relative flex flex-col items-center h-full gap-4 p-8  bg-white rounded-2xl ">
           <DialogTitle className="flex items-center justify-center gap-3 mb-6 ">
-            <h1 className=" font-normal">restart?</h1>
+            restart?
           </DialogTitle>
 
           <DialogClose className="w-full">

@@ -37,13 +37,19 @@ const MusicPlayer = ({
       setIsPlaying(!isPlaying);
     }
   }, [isPlaying]);
+  // const updateProgress = () => {
+  //   if (!audioRef.current) return;
+  //   const { currentTime, duration } = audioRef.current;
+  //   setProgress((currentTime / duration) * 100);
+  //   setCurrentTime(currentTime);
+  // };
   const updateProgress = useCallback(() => {
-    if (isDragging || !audioRef.current) return;
-    const { currentTime, duration } = audioRef.current;
-    setProgress((currentTime / duration) * 100);
-    setCurrentTime(currentTime);
-  }, [isDragging]);
-
+    if (audioRef.current && duration) {
+      const { currentTime } = audioRef.current;
+      setProgress((currentTime / duration) * 100);
+      setCurrentTime(currentTime);
+    }
+  }, [duration]);
   const seekAudio = (event: React.MouseEvent<HTMLDivElement>) => {
     const progressBar = progressBarRef.current;
     if (progressBar && audioRef.current) {
@@ -67,6 +73,7 @@ const MusicPlayer = ({
   const stopDrag = (event: MouseEvent) => {
     if (isDragging) {
       seekAudio(event as unknown as React.MouseEvent<HTMLDivElement>);
+
       setIsDragging(false);
       window.removeEventListener("mousemove", dragThumb);
       window.removeEventListener("mouseup", stopDrag);
@@ -78,11 +85,13 @@ const MusicPlayer = ({
       const clickX = event.clientX - rect.left;
       const width = rect.width;
       const dragProgress = Math.max(0, Math.min((clickX / width) * 100, 100));
-      setProgress(dragProgress);
 
+      setProgress(dragProgress);
       if (audioRef.current) {
         audioRef.current.currentTime =
           (dragProgress / 100) * audioRef.current.duration;
+        formatTime(audioRef.current.currentTime);
+
         setCurrentTime(audioRef.current.currentTime);
       }
     }
@@ -101,7 +110,6 @@ const MusicPlayer = ({
       audioRef.current.currentTime = 0;
       setCurrentTime(0);
       setProgress(0);
-      return;
     }
     stopRecording?.();
     clearCanvas?.();
@@ -120,19 +128,44 @@ const MusicPlayer = ({
 
   useEffect(() => {
     const audioElement = audioRef.current;
-    const setAudioDuration = () => setDuration(audioElement?.duration || 0);
+    const fetchActualDuration = (event: Event) => {
+      const target = event.target as HTMLAudioElement;
+      if (target) {
+        setCurrentTime(0);
+        setDuration(target.duration); // Set the actual duration
+        target.removeEventListener("timeupdate", fetchActualDuration); // Clean up
+      }
+    };
+
+    const setAudioDuration = () => {
+      if (
+        audioElement &&
+        (audioElement.duration === Infinity || isNaN(audioElement.duration))
+      ) {
+        audioElement.currentTime = 1e101; // Set to a very large number to force duration calculation
+        audioElement.addEventListener("timeupdate", fetchActualDuration);
+      } else {
+        setDuration(audioElement?.duration || 0);
+      }
+    };
 
     setAudioDuration();
-    audioElement?.addEventListener("loadedmetadata", setAudioDuration);
-    audioElement?.addEventListener("timeupdate", updateProgress);
-    audioElement?.addEventListener("ended", () => setIsPlaying(false));
 
+    if (audioElement) {
+      audioElement.addEventListener("loadedmetadata", setAudioDuration);
+      audioElement.addEventListener("timeupdate", updateProgress);
+      audioElement.addEventListener("ended", () => setIsPlaying(false));
+    }
+
+    // Cleanup event listeners on unmount
     return () => {
-      audioElement?.removeEventListener("loadedmetadata", setAudioDuration);
-      audioElement?.removeEventListener("timeupdate", updateProgress);
+      if (audioElement) {
+        audioElement.removeEventListener("loadedmetadata", setAudioDuration);
+        audioElement.removeEventListener("timeupdate", updateProgress);
+        audioElement.removeEventListener("timeupdate", fetchActualDuration);
+      }
     };
   }, [updateProgress]);
-
   return (
     <div className="flex flex-col items-center w-full">
       <div className="flex justify-between gap-4 w-full items-center">
@@ -153,7 +186,7 @@ const MusicPlayer = ({
             ></div>
           </div>
 
-          <audio ref={audioRef} src={soundURL} />
+          <audio ref={audioRef} src={soundURL} preload="true" />
         </div>
 
         <span>{formatTime(duration)}</span>

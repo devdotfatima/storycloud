@@ -38,8 +38,6 @@ const RecordAnswer = ({
 
   const onNext = useCallback(() => {
     stopRecording();
-    console.log("stooped");
-
     goToNextStep();
   }, [stopRecording, goToNextStep]);
 

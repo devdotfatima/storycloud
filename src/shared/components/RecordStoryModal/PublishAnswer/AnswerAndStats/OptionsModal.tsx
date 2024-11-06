@@ -44,7 +44,6 @@ const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
               // <DialogClose className="w-full">
               <button
                 onClick={() => {
-                  console.log("sadmn");
                   toggleEditMode();
                 }}
                 className="p-2 transition duration-150 ease-in mt-6 text-center text-purple bg-purple-100 w-full  "

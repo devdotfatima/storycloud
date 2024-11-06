@@ -32,8 +32,6 @@ const PublishAnswer = ({
   };
 
   const toggleEditMode = () => {
-    console.log("clicked");
-
     setIsEditing((prevState) => !prevState);
   };
 
