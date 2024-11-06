@@ -73,7 +73,6 @@ const MusicPlayer = ({
   const stopDrag = (event: MouseEvent) => {
     if (isDragging) {
       seekAudio(event as unknown as React.MouseEvent<HTMLDivElement>);
-
       setIsDragging(false);
       window.removeEventListener("mousemove", dragThumb);
       window.removeEventListener("mouseup", stopDrag);
@@ -130,8 +129,11 @@ const MusicPlayer = ({
     const audioElement = audioRef.current;
     const fetchActualDuration = (event: Event) => {
       const target = event.target as HTMLAudioElement;
+      setCurrentTime(0);
+
       if (target) {
         setCurrentTime(0);
+
         setDuration(target.duration); // Set the actual duration
         target.removeEventListener("timeupdate", fetchActualDuration); // Clean up
       }
@@ -146,6 +148,7 @@ const MusicPlayer = ({
         audioElement.addEventListener("timeupdate", fetchActualDuration);
       } else {
         setDuration(audioElement?.duration || 0);
+        setCurrentTime(0);
       }
     };
 
