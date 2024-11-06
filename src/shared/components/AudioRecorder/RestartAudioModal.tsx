@@ -27,7 +27,7 @@ const RestartAudioModal = ({
         <div>
           <Image
             alt="restart recording"
-            className="w-10 h-10  lg:w-16 lg:h-16"
+            className="w-10 h-10 lg:w-14 lg:h-14 2xl:w-16 2xl:h-16"
             width={60}
             height={60}
             src={recordingTime === 0 ? RestartGreyIcon : RestartIcon}

@@ -37,12 +37,7 @@ const MusicPlayer = ({
       setIsPlaying(!isPlaying);
     }
   }, [isPlaying]);
-  // const updateProgress = () => {
-  //   if (!audioRef.current) return;
-  //   const { currentTime, duration } = audioRef.current;
-  //   setProgress((currentTime / duration) * 100);
-  //   setCurrentTime(currentTime);
-  // };
+
   const updateProgress = useCallback(() => {
     if (audioRef.current && duration) {
       const { currentTime } = audioRef.current;
@@ -209,7 +204,7 @@ const MusicPlayer = ({
           >
             <Image
               alt="restart recording"
-              className="w-10 h-10  lg:w-16 lg:h-16"
+              className="w-10 h-10 lg:w-14 lg:h-14 2xl:w-16 2xl:h-16"
               width={60}
               height={60}
               src={isEditing ? RestartGreyIcon : RestartIcon}
@@ -220,7 +215,7 @@ const MusicPlayer = ({
 
         <button
           onClick={togglePlayPause}
-          className={`w-14 h-14  lg:w-24 lg:h-24  bg-purple-400  rounded-full text-white flex justify-center items-center`}
+          className={`w-14 h-14  lg:w-20 lg:h-20 2xl:w-24 2xl:h-24  bg-purple-400  rounded-full text-white flex justify-center items-center`}
         >
           <Image
             src={isPlaying ? PauseWhiteIcon : PlayIcon}
@@ -249,7 +244,7 @@ const MusicPlayer = ({
                 alt="forward audio by 30 seconds"
                 width={60}
                 height={60}
-                className="w-10 h-10  lg:w-16 lg:h-16"
+                className="w-10 h-10 lg:w-14 lg:h-14 2xl:w-16 2xl:h-16"
                 src={NextIcon}
               />
               <span className={`text-base ${"text-black"}`}>next</span>

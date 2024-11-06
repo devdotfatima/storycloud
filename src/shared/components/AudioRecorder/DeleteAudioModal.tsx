@@ -27,7 +27,7 @@ const DeleteAudioModal = ({
             alt="delete recording"
             width={60}
             height={60}
-            className="w-10 h-10  lg:w-16 lg:h-16"
+            className="w-10 h-10 lg:w-14 lg:h-14 2xl:w-16 2xl:h-16"
             src={recordingTime === 0 ? TrashGreyIcon : TrashIcon}
           />
           <span

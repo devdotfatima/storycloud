@@ -32,7 +32,7 @@ const AnswerAndStats = ({
   };
 
   return (
-    <div className="lg:w-1/2 lg:h-full flex-col flex gap-4 sm:gap-6 xl:gap-10 sm:bg-purple-100 p-5 sm:p-12">
+    <div className="lg:w-1/2 lg:h-full flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 sm:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12">
       {/* Header Section */}
       <div className="flex justify-between items-center ">
         {/* Profile Section */}
@@ -101,7 +101,7 @@ const AnswerAndStats = ({
             <p> {story?.title} </p>
           )
         ) : (
-          <p> What is your favorite travel destination?</p>
+          <p className=""> What is your favorite travel destination?</p>
         )}
       </div>
 
