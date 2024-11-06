@@ -81,7 +81,7 @@ const AudioRecorder = ({
               alt="pause the recording"
               width={48}
               height={48}
-              className="w-10 h-10 lg:w-16 lg:h-16 text-blue-500"
+              className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500"
             />
           ) : (
             <Image
@@ -89,7 +89,7 @@ const AudioRecorder = ({
               alt="start the recording"
               width={48}
               height={48}
-              className="w-10 h-10 lg:w-16 lg:h-16 text-blue-500"
+              className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500"
             />
           )}
         </button>

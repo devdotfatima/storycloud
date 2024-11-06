@@ -13,6 +13,7 @@ import OptionsModal from "./OptionsModal";
 import { mockStories } from "@/shared/consts";
 import ImageSlider from "@/shared/components/ImageSlider";
 import MusicPlayer from "./MusicPlayer";
+import PublishModal from "./PublishModal";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -58,15 +59,13 @@ const AnswerAndStats = ({
               width={80}
               className="h-12 sm:h-12 w-20 "
             />{" "}
-            <button className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple">
-              publish
-            </button>
+            <PublishModal />
           </div>
         ) : isEditing ? (
           <div className="flex h-6 sm:h-12 items-center ">
             <Image
               src={ArrowIcon}
-              alt="arrow pointing towards publish button"
+              alt="arrow pointing towards save button"
               height={100}
               width={80}
               className="h-12 sm:h-12 w-20 "
@@ -151,7 +150,7 @@ const AnswerAndStats = ({
               ? handleShowUploadImageScreen
               : undefined
           }
-          className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
+          className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
         >
           <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
           <p className="text-grey text-base">upload</p>
