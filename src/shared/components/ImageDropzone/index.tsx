@@ -26,7 +26,7 @@ const index = ({
       <label
         htmlFor={`dropzone-file-${index}`}
         className={`flex flex-col items-center justify-center w-full h-full rounded-lg overflow-hidden cursor-pointer ${
-          selectedImage ? " pointer-events-none" : "bg-purple-100"
+          selectedImage ? " pointer-events-none object-cover" : "bg-purple-100"
         }  `}
       >
         {selectedImage ? (
@@ -35,6 +35,7 @@ const index = ({
             alt="upload image"
             width={576}
             height={384}
+            objectFit="cover"
             className="h-96 max-w-xl w-full"
           />
         ) : (

@@ -39,13 +39,13 @@ const Story = () => {
         />
       ) : (
         <div
-          className={`lg:max-h-[1000px] bg-transparent w-full max-w-screen-sm  lg:max-w-[1200px]  overflow-hidden   mx-auto h-full overflow-y-auto lg:overflow-hidden bg-white sm:rounded-2xl  flex flex-col lg:flex-row `}
+          className={`h-fit lg:max-h-[940px] bg-transparent w-full max-w-screen-sm  lg:max-w-[1200px]  overflow-hidden  mx-auto lg:h-full overflow-y-auto lg:overflow-hidden bg-white sm:rounded-2xl  flex flex-col lg:flex-row  custom-h760-w1024:overflow-y-auto `}
         >
           <AnswerAndStats
             isEditing={isEditing}
             toggleEditMode={toggleEditMode}
+            handleShowUploadImageScreen={toggleUploadImageScreen}
           />
-
           <TranscriptAndComments isEditing={isEditing} />
         </div>
       )}

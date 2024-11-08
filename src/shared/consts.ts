@@ -78,7 +78,7 @@ export const mockStories: mockStoryT[] = [
     totalComments: 52,
     totalShares: 37,
     transcript:
-      "I have always loved visiting the mountains. The fresh air, the serene environment...",
+      "I have always loved visiting the mountains. The fresh air, the serene environment... I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...",
     comments: [
       {
         id: 1,

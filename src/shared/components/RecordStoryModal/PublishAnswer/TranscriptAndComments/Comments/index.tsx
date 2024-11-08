@@ -12,7 +12,7 @@ const Comments = () => {
   const story = mockStories.find((story) => story.id.toString() === storyId);
   return (
     <div
-      className={` min-h-[460px]  h-full w-full bg-purple-100 rounded-2xl  py-5 pl-5 pr-1  ${
+      className={` min-h-[460px] lg:min-h-[26vh] overflow-auto  h-full w-full bg-purple-100 rounded-2xl  py-5 pl-5 pr-1  ${
         !storyId
           ? "text-center sm:px-24 flex justify-center items-center text-purple"
           : " "

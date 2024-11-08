@@ -53,7 +53,7 @@ const Story = () => {
       <DialogOverlay onClick={handleOnClose}>
         <DialogContent
           onClick={(e) => e.stopPropagation()}
-          className={`max-h-[1000px] bg-transparent h-[100svh] w-full max-w-screen-sm  lg:max-w-[1200px] sm:h-[90svh] overflow-hidden lg:pr-12 pt-[20px]`}
+          className={`max-h-[940px] bg-transparent h-[100svh] w-full max-w-screen-sm lg:max-w-[1200px] sm:h-[90svh] overflow-hidden lg:pr-12 pt-[20px]`}
         >
           <DialogClose
             onClick={handleOnClose}
@@ -67,7 +67,7 @@ const Story = () => {
               height={24}
             />
           </DialogClose>
-          <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
+          <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden custom-h760-w1024:overflow-y-auto">
             <DialogTitle className="hidden">Story</DialogTitle>
 
             {isUploadImageScreenVisible ? (
@@ -78,13 +78,12 @@ const Story = () => {
               />
             ) : (
               <>
-                {/* Answer Section */}
                 <AnswerAndStats
                   isEditing={isEditing}
                   toggleEditMode={toggleEditMode}
                   handleShowUploadImageScreen={toggleUploadImageScreen}
                 />
-                {/* Transcript Section */}
+
                 <TranscriptAndComments isEditing={isEditing} />
               </>
             )}

@@ -18,7 +18,7 @@ const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
 
   return (
     <div
-      className={`min-h-[460px] h-full w-full bg-purple-100 rounded-2xl py-5 pl-5 pr-1 ${
+      className={`min-h-[460px] h-full custom-h760-w1024:min-h-[60svh] w-full bg-purple-100 rounded-2xl py-5 pl-5 pr-1 ${
         storyId
           ? isEditing
             ? "bg-white border-2 border-purple"
@@ -36,7 +36,7 @@ const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
           onChange={(e) => setTranscript(e.target.value)} // Update state on change
         />
       ) : (
-        <p className="pr-3 overflow-y-auto h-full">{story?.transcript}</p>
+        <p className="pr-3 overflow-y-auto h-full ">{story?.transcript}</p>
       )}
     </div>
   );

@@ -29,7 +29,7 @@ const Notifications = ({ onClose }: NotificationsPropsT) => {
   return (
     <div
       ref={notificationsRef}
-      className="fixed z-50 top-36 md:top-0   w-[90%] sm:w-[95%]  left-[5%] sm:left-[2.4%] md:left-20 xl:left-64 bg-white  rounded-2xl border-l-2 border-lightBlue h-[70svh] md:pt-10  pr-1 md:h-full md:w-[480px] max-h-full overflow-hidden md:rounded-none"
+      className="fixed z-50 top-36 md:top-0 w-[90%] sm:w-[95%] left-[5%] sm:left-[2.4%] md:left-20 xl:left-64 bg-white rounded-2xl border-l-2 border-lightBlue h-[70svh] md:pt-10  pr-1 md:h-full md:w-[480px] max-h-full overflow-hidden md:rounded-none"
     >
       {/* Header section with notification bell */}
       <div className="items-center hidden gap-4 px-6  md:flex">

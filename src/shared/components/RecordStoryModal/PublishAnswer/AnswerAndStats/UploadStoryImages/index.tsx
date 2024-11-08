@@ -11,7 +11,7 @@ const UploadStoryImages = ({
   handleImageSelect,
 }: UploadStoryImagesPropsT) => {
   return (
-    <div className="w-full flex flex-col gap-6  h-full bg-white pr-1  sm:py-6 py-4">
+    <div className="w-full flex flex-col gap-6  h-full bg-white pr-1 rounded-2xl  sm:py-6 py-4">
       <div className=" flex w-full justify-between items-center px-4 sm:px-14">
         <button className=" w-8 h-8 " onClick={onToggleUploadImageScreen}>
           <Image
@@ -29,11 +29,11 @@ const UploadStoryImages = ({
           save
         </button>
       </div>
-      <div className="grid lg:grid-cols-2 gap-8 pl-4 px-3 sm:px-14 overflow-y-auto h-[90%] ">
+      <div className="grid lg:grid-cols-2 gap-8  pl-4 px-3 sm:px-14 max-w-fit mx-auto overflow-y-auto h-[90%] ">
         {images.map((selectedImage, index) => (
           <div
             key={index}
-            className=" min-h-[340px] md:h-full lg:min-h-full max-w-xl w-full bg-purple-100 rounded-2xl flex items-center justify-center relative"
+            className=" min-h-[340px] md:h-full lg:min-h-full max-w-xl mx-auto w-full bg-purple-100 rounded-2xl flex items-center justify-center relative"
           >
             <ImageDropzone
               index={index}

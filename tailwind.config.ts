@@ -29,6 +29,11 @@ const config: Config = {
           DEFAULT: "#E65151",
         },
       },
+      screens: {
+        "custom-h760-w1024": {
+          raw: "(max-height: 760px) and (min-width: 1024px)",
+        },
+      },
       fontFamily: {
         crimson: ["var(--font-crimson-pro)", "serif"],
         mukta: ["var(--font-mukta)", "sans-serif"],

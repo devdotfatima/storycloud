@@ -36,7 +36,7 @@ const PublishAnswer = ({
   };
 
   return (
-    <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
+    <div className="w-full h-full overflow-hidden bg-white rounded-2xl  flex flex-col lg:flex-row lg:overflow-hidden ">
       {/* Answer Section */}
       {isUploadImageScreenVisible ? (
         <UploadStoryImages

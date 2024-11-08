@@ -42,7 +42,7 @@ const RecordAnswer = ({
   }, [stopRecording, goToNextStep]);
 
   return (
-    <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 lg:gap-10">
+    <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 lg:gap-10 [@media(max-height:760px)]:overflow-y-auto">
       <button
         className={`${
           recordingTime > 0

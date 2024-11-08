@@ -32,7 +32,7 @@ const AnswerAndStats = ({
   };
 
   return (
-    <div className="lg:w-1/2 lg:h-full flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 sm:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12">
+    <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 sm:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
       {/* Header Section */}
       <div className="flex justify-between items-center ">
         {/* Profile Section */}
@@ -98,7 +98,7 @@ const AnswerAndStats = ({
               onChange={handleTitleChange} // Update state on change
             />
           ) : (
-            <p> {story?.title} </p>
+            <p className="h-16"> {story?.title} </p>
           )
         ) : (
           <p className=""> What is your favorite travel destination?</p>
@@ -144,16 +144,19 @@ const AnswerAndStats = ({
 
       {/* Upload Section */}
       {goToPreviousStep || isEditing ? (
-        <div
-          onClick={
-            handleShowUploadImageScreen
-              ? handleShowUploadImageScreen
-              : undefined
-          }
-          className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-36 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
-        >
-          <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
-          <p className="text-grey text-base">upload</p>
+        <div className=" flex flex-col gap-3 items-center ">
+          <div
+            onClick={
+              handleShowUploadImageScreen
+                ? handleShowUploadImageScreen
+                : undefined
+            }
+            className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-56 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
+          >
+            <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
+            <p className="text-grey text-base">upload</p>
+          </div>
+          <div className={`rounded-full p-1 h-2 w-2  ${"bg-purple-400"}`}></div>
         </div>
       ) : (
         <ImageSlider images={story?.storyImages || [UploadIcon]} />
