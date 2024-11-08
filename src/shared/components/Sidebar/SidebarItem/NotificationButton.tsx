@@ -20,7 +20,7 @@ const NotificationButton = ({
         showNotifications
           ? "bg-purple bg-opacity-15"
           : "hover:bg-purple hover:bg-opacity-15"
-      } flex flex-col md:flex-row items-center  justify-center md:py-2 px-2 xl:px-5 drop-shadow   sm:px-0 sm:w-14 md:w-full h-[2.85rem] rounded-xl md:rounded-2xl cursor-pointer w-16 `}
+      } flex flex-col md:flex-row items-center  justify-center md:py-2 px-2 xl:px-5 sm:px-0 sm:w-14 md:w-full h-[2.85rem] rounded-xl md:rounded-2xl cursor-pointer w-16 `}
     >
       <Image
         src={item?.icon || ""}
