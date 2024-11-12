@@ -64,7 +64,7 @@ const EditProfile = () => {
               full name
             </label>
             <input
-              className="w-full px-3 py-2 leading-tight text-grey border border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0   "
+              className="w-full px-3 py-1.5 leading-tight   border border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0   "
               id="full name"
               placeholder="Full Name"
               type="text"
@@ -80,7 +80,7 @@ const EditProfile = () => {
 
             <div className="relative">
               <input
-                className="w-full px-3 py-2 leading-tight  text-grey border  border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0 "
+                className="w-full px-3 py-1.5 leading-tight    border  border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0 "
                 id="username"
                 type="text"
                 placeholder="username"
@@ -120,8 +120,8 @@ const EditProfile = () => {
               <textarea
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                placeholder="Enter your bio!"
-                className="w-full px-3 py-1 leading-tight  border appearance-none text-grey border-purple-400  focus:outline-none h-28 resize-none rounded-xl sm:rounded-2xl ring-purple focus:ring-2 focus:border-0"
+                placeholder="Enter your bio"
+                className="w-full px-3 py-1 leading-tight  border appearance-none   border-purple-400  focus:outline-none h-28 resize-none rounded-xl sm:rounded-2xl ring-purple focus:ring-2 focus:border-0"
                 id="bio"
               />
             </div>
@@ -132,7 +132,7 @@ const EditProfile = () => {
               href={"/"}
               className={`w-full px-4 py-2 font-medium text-center  focus:outline-none ${
                 isDisabled
-                  ? "opacity-50 cursor-not-allowed bg-grey-100 text-grey"
+                  ? "opacity-50 cursor-not-allowed bg-grey-100  "
                   : "bg-purple-100 text-purple"
               }`}
               type="button"

@@ -20,7 +20,7 @@ const RequestStoryForm = ({
     >
       <input
         type="text"
-        className="block px-5 h-16 sm:h-20 w-full z-20 placeholder:text-grey  rounded-xl  border border-purple focus:border-[1px] pr-10"
+        className="block px-5 h-16 sm:h-20 w-full z-20    rounded-xl  border border-purple focus:border-[1px] pr-10"
         placeholder="type your question"
         required
         maxLength={100}

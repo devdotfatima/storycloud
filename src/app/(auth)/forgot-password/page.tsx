@@ -27,19 +27,19 @@ const ForgotPassword = () => {
             width={10}
           />
 
-          <h2 className="mt-3    text-center text-purple">Forgot password?</h2>
+          <h2 className="mt-3 text-center text-purple">Forgot password?</h2>
         </div>
 
         {!emailSent ? (
           <div className="mb-10 ">
-            <p className="mb-10   text-center">
+            <p className="mb-10 text-center">
               Enter your email and we’ll send you a link to get back into your
               account.
             </p>
             <form className="w-full" onSubmit={handleSubmit}>
               <div className="mb-6">
                 <input
-                  className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+                  className="w-full border-purple-400 border-2 focus:outline-none ring-purple focus:ring-2 focus:border-0  "
                   id="email"
                   type="email"
                   placeholder="user@gmail.com"
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
               <div className="flex items-center justify-between mb-6">
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 text-center  outline-none border-0 ring-0   text-purple bg-purple-100 focus:outline-none"
+                  className="w-full px-4 py-2 text-center  outline-none border-0 ring-0 text-purple bg-purple-100 focus:outline-none"
                 >
                   send link
                 </button>

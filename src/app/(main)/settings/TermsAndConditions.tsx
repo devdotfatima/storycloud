@@ -6,8 +6,11 @@ import DocumentPurpleIcon from "../../../assets/icons/document-purple.svg";
 const TermsAndConditions = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-8 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
-      <div className="flex items-center gap-4 md:mb-4 text-purple">
-        <a href="/settings" className="md:hidden">
+      <div className="flex items-center justify-center relative gap-4 md:mb-4 text-purple">
+        <a
+          href="/settings"
+          className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"
+        >
           <Image
             src={ReturnPurpleIcon}
             alt="info icon"
@@ -16,7 +19,8 @@ const TermsAndConditions = () => {
             className="w-4 h-4 text-purple"
           />
         </a>
-        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+
+        <div className="flex items-end mx-auto md:mx-0 w-fit gap-2">
           <Image
             alt="terms icon"
             width={20}
@@ -28,7 +32,7 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-      <div className="pr-1  rounded-2xl  bg-white h-[75svh] xl:h-[80svh] sm:mr-6 lg:mr-20 overflow-y-hidden ">
+      <div className="pr-1  rounded-2xl  bg-white h-full md:h-[78svh] lg:h-[77svh] xl:h-[80svh] sm:mr-6 lg:mr-20 overflow-y-hidden ">
         <div className="p-4 text-base  w-full flex flex-col gap-4 overflow-y-auto h-full">
           {" "}
           <section>

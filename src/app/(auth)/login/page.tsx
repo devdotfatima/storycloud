@@ -20,7 +20,7 @@ const Login = () => {
               Email
             </label>
             <input
-              className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+              className="w-full border-2 px-5 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
               id="email"
               type="email"
               placeholder="user@gmail.com"
@@ -29,7 +29,7 @@ const Login = () => {
 
           <div className="relative mb-6">
             <div className="flex items-center justify-between mb-2">
-              <label className="block  " htmlFor="password">
+              <label className="block " htmlFor="password">
                 Password
               </label>
               <Link
@@ -41,7 +41,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+                className="w-full border-2 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="*****"

@@ -18,7 +18,7 @@ const SignUp = () => {
               Email
             </label>
             <input
-              className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+              className="w-full border-2 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
               id="email"
               type="email"
               placeholder="user@gmail.com"
@@ -36,7 +36,7 @@ const SignUp = () => {
             </div>
 
             <input
-              className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+              className="w-full border-2 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
               id="birthday"
               type="date"
             />
@@ -48,7 +48,7 @@ const SignUp = () => {
             </label>
             <div className="relative">
               <input
-                className="w-full  py-1.5 leading-tight text-grey border-2 appearance-none px-4 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
+                className="w-full border-2 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="*****"

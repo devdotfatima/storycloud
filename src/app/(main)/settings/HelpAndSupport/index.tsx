@@ -7,8 +7,11 @@ import HelpPurpleIcon from "../../../../assets/icons/help-purple.svg";
 const HelpAndSupport = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100 ">
-      <div className="flex items-center gap-4 md:mb-4 text-purple">
-        <a href="/settings" className="md:hidden">
+      <div className="flex items-center justify-center relative gap-4 md:mb-4 text-purple">
+        <a
+          href="/settings"
+          className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"
+        >
           <Image
             src={ReturnPurpleIcon}
             alt="info icon"
@@ -17,7 +20,7 @@ const HelpAndSupport = () => {
             className="w-4 h-4 text-purple"
           />
         </a>
-        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+        <div className="flex items-end mx-auto md:mx-0 w-fit gap-2">
           <Image
             src={HelpPurpleIcon}
             alt="help and support icon"
@@ -28,7 +31,6 @@ const HelpAndSupport = () => {
           Help & Support
         </div>
       </div>
-
       <form className="flex flex-col gap-4  sm:mr-6 lg:mr-20">
         <div className="flex flex-col  gap-2">
           <label htmlFor="subject">topic</label>

@@ -7,8 +7,11 @@ import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
 const AccountInfo = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen  gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
-      <div className="flex items-center gap-4 md:mb-4 text-purple">
-        <a href="/settings" className="md:hidden">
+      <div className="flex items-center justify-center relative gap-4 md:mb-4 text-purple">
+        <a
+          href="/settings"
+          className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"
+        >
           <Image
             src={ReturnPurpleIcon}
             alt="info icon"
@@ -17,7 +20,7 @@ const AccountInfo = () => {
             className="w-4 h-4 text-purple"
           />
         </a>
-        <div className="flex items-center mx-auto md:mx-0 w-fit gap-2">
+        <div className="flex items-end mx-auto md:mx-0 w-fit gap-2">
           {" "}
           <Image
             src={UserPurpleIcon}
@@ -38,7 +41,7 @@ const AccountInfo = () => {
             placeholder="user@gmail.com"
             id="email"
             readOnly
-            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full placeholder:text-grey"
+            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full  "
           />
         </div>
 
@@ -63,7 +66,7 @@ const AccountInfo = () => {
             id="password"
             readOnly
             placeholder="******"
-            className="py-1   sm:max-w-sm lg:max-w-lg w-full placeholder:text-grey"
+            className="py-1   sm:max-w-sm lg:max-w-lg w-full  "
           />
         </div>
         <Link href={"/"} className=" text-purple underline">

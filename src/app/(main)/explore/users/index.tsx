@@ -14,7 +14,7 @@ const Users = () => {
           <input
             type="text"
             id="default-search"
-            className="block w-full h-full p-3 pr-9 outline-none ps-4 placeholder:text-grey rounded-2xl"
+            className="block w-full h-full p-3 pr-9 outline-none ps-4   rounded-2xl"
             placeholder={"search for users"}
             required
           />
