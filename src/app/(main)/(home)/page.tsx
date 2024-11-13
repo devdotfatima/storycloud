@@ -6,7 +6,7 @@ import CatOnWallImage from "../../../assets/images/cat_on_wall.png";
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 py-10  sm:mb-0 overflow-y-auto h-full ">
+    <div className="flex flex-col gap-10 pl-8 md:pl-16 xl:pl-28 md:py-10  sm:mb-0 overflow-y-auto h-full ">
       <div className="flex flex-col md:flex-row gap-8 pr-8 md:pr-16 xl:pr-28 ">
         <div className="flex flex-col gap-3 lg:gap-6 md:w-1/2">
           <h2 className="text-purple">freestyle</h2>
@@ -38,7 +38,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6  h-fit  ">
+      <div className="flex flex-col gap-6 h-fit">
         <h3 className="text-purple">questions from your friends</h3>
         <div className="flex gap-10 pr-8 md:pr-16 pb-4 xl:pr-28 overflow-x-auto">
           {Array.from({ length: 20 }, (_, index) => (

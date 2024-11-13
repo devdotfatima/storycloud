@@ -24,12 +24,12 @@ const UploadStoryImages = ({
         </button>
         <button
           onClick={onToggleUploadImageScreen}
-          className="w-32 h-12 bg-purple-400 hover:bg-purple text-white"
+          className="w-36 h-11 bg-purple-400 hover:bg-purple text-white"
         >
           save
         </button>
       </div>
-      <div className="grid lg:grid-cols-2 gap-8  pl-4 px-3 sm:px-14 max-w-fit mx-auto overflow-y-auto h-[90%] ">
+      <div className="grid lg:grid-cols-2 gap-8  pl-4 px-3 sm:px-14 overflow-y-auto h-[90%] ">
         {images.map((selectedImage, index) => (
           <div
             key={index}

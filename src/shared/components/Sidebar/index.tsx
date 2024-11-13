@@ -114,7 +114,8 @@ const Sidebar = () => {
         className="fixed z-40 w-full h-[9.56rem] top-0 md:hidden bg-lightBlue"
         aria-label="Navbar"
       >
-        <div className="flex flex-col h-full px-5 py-5 gap-y-5">
+        <div className="flex flex-col h-full w-[92%] sm:w-[95%]  mx-auto py-5 gap-y-5">
+          {/* <div className="flex flex-col h-full px-5 py-5 gap-y-5"> */}
           <div className="flex items-center justify-between h-10">
             <Link href="/" className="flex items-center rounded-lg">
               <h2 className="text-2xl text-center font-crimson font-medium">

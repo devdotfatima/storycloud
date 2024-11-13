@@ -25,7 +25,7 @@ const TranscriptAndComments = ({ isEditing }: TranscriptAndCommentsPropsT) => {
   }, [activeTabIndex]);
 
   return (
-    <div className=" h-full max-h-fit flex-1  p-5 gap-5 flex flex-col sm:p-12 sticky top-0">
+    <div className=" h-full max-h-fit flex-1 p-5 gap-5 flex flex-col sm:p-12 md:sticky md:top-0">
       <div className="relative flex w-full px-[3px] text-purple mx-auto bg-purple-100 h-[48px] flew-row rounded-xl backdrop-blur-sm ">
         <span
           className="absolute flex overflow-hidden transition-all duration-300 top-[3px] rounded-lg -z-10 w-1/2"

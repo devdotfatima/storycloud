@@ -30,7 +30,7 @@ const Story = () => {
     setIsEditing((prevState) => !prevState);
   };
   return (
-    <div className="mb-0  bg-purple-400 pb-36 sm:pb-40 md:pb-10 sm:p-10 w-full min-h-screen h-full overflow-hidden ">
+    <div className="bg-purple-400 pb-36 sm:pb-[140px] md:pb-10 md:p-10 w-full min-h-screen h-full overflow-hidden ">
       {isUploadImageScreenVisible ? (
         <UploadStoryImages
           images={images}
@@ -38,9 +38,10 @@ const Story = () => {
           onToggleUploadImageScreen={toggleUploadImageScreen}
         />
       ) : (
-        <div
-          className={`h-fit lg:max-h-[940px] bg-transparent w-full max-w-screen-sm  lg:max-w-[1200px]  overflow-hidden  mx-auto lg:h-full overflow-y-auto lg:overflow-hidden bg-white sm:rounded-2xl  flex flex-col lg:flex-row  custom-h760-w1024:overflow-y-auto `}
-        >
+        // <div
+        //   className={`h-screen max-h-fit lg:max-h-[940px] bg-transparent w-full max-w-screen-sm  lg:max-w-[1200px]  overflow-hidden  mx-auto lg:h-full overflow-y-auto lg:overflow-hidden bg-white sm:rounded-2xl  flex flex-col lg:flex-row  custom-h760-w1024:overflow-y-auto `}
+        // >
+        <div className="w-full h-full overflow-hidden bg-white flex flex-col lg:flex-row md:rounded-2xl overflow-y-auto lg:overflow-hidden custom-h760-w1024:overflow-y-auto">
           <AnswerAndStats
             isEditing={isEditing}
             toggleEditMode={toggleEditMode}

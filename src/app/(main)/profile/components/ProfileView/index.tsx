@@ -47,11 +47,15 @@ const ProfileView = ({
         {/* Bio */}
         <p className=" text-base md:text-xl max-w-96">{userBio}</p>
         {/* Stats */}
-        <div className="flex justify-between text-purple text-xl max-w-64 w-full">
-          <p>{postCount} posts</p>
+        <div className="flex justify-between text-purple text-xl max-w-44 sm:max-w-64 w-full">
+          <p className="text-base sm:text-lg lg:text-xl xl:text-2xl font-medium">
+            {postCount} posts
+          </p>
           <Dialog>
             <DialogTrigger asChild>
-              <button className="font-normal">{friendCount} friends</button>
+              <button className=" text-base sm:text-lg lg:text-xl xl:text-2xl">
+                {friendCount} friends
+              </button>
             </DialogTrigger>
             <FriendsListModal />
           </Dialog>

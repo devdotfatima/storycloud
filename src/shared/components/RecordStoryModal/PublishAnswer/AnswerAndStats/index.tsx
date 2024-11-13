@@ -32,7 +32,7 @@ const AnswerAndStats = ({
   };
 
   return (
-    <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 sm:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
+    <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 md:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
       {/* Header Section */}
       <div className="flex justify-between items-center ">
         {/* Profile Section */}
@@ -84,7 +84,7 @@ const AnswerAndStats = ({
 
       {/* Question Section */}
       <div
-        className={`text-center text-xl sm:text-3xl font-crimson font-medium ${
+        className={`text-center text-2xl sm:text-3xl font-crimson font-medium ${
           isEditing
             ? "bg-white border-purple border-2 sm:border-0 rounded-2xl"
             : "sm:bg-purple-100"

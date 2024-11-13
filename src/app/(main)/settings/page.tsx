@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { settingTabs } from "./consts";
 import SettingsPurpleIcon from "../../../assets/icons/settings-purple.svg";
+import ReturnPurpleIcon from "../../../assets/icons/return-purple.svg";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -30,8 +31,20 @@ const Settings = () => {
         aria-label="settings tabs"
       >
         <ul className="flex flex-col justify-start h-full gap-2 px-10 py-4 bg-white border-l-2 border-purple-100">
-          <li className="mt-8 mb-8 ">
-            <Link href="/" className="flex items-center  text-purple">
+          <li className="my-8 flex items-center justify-center md:justify-start relative gap-4 text-purple">
+            <a
+              href="/"
+              className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"
+            >
+              <Image
+                src={ReturnPurpleIcon}
+                alt="info icon"
+                width={7}
+                height={7}
+                className="w-4 h-4 text-purple"
+              />
+            </a>
+            <div className="flex items-center gap-0 text-purple">
               <Image
                 src={SettingsPurpleIcon}
                 className="w-7 h-7 text-purple"
@@ -39,9 +52,10 @@ const Settings = () => {
                 width={20}
                 height={20}
               />
-              <h2 className=" text-xl  ml-4 text-center  ">settings</h2>
-            </Link>
+              <h2 className=" text-xl  ml-2 md:ml-4 text-center  ">settings</h2>
+            </div>
           </li>
+
           {settingTabs.map((tab) => (
             <li key={tab.id} className="">
               <button

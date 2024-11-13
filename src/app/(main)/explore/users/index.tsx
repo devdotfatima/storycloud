@@ -5,8 +5,8 @@ import React from "react";
 
 const Users = () => {
   return (
-    <div className="flex flex-col gap-5  px-5  md:gap-10 xl:gap-16 md:px-16">
-      <form className="w-full mx-auto   h-11  md:mb-0 max-w-[800px]">
+    <div className="flex flex-col gap-5 sm:gap-7 md:gap-10 xl:gap-16 md:px-16">
+      <form className="w-full mx-auto lg:h-11 max-w-[800px]">
         <label htmlFor="default-search" className=" sr-only dark:text-white">
           Search
         </label>
@@ -14,7 +14,7 @@ const Users = () => {
           <input
             type="text"
             id="default-search"
-            className="block w-full h-full p-3 pr-9 outline-none ps-4   rounded-2xl"
+            className="block w-full h-full sm:py-2.5 pr-9 outline-none ps-4   rounded-2xl"
             placeholder={"search for users"}
             required
           />

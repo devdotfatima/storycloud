@@ -18,16 +18,16 @@ const PublishModal = () => {
           publish
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-transparent h-screen w-full lg:max-w-[450px] max-h-[260px]  overflow-y-auto lg:overflow-hidden border-0 ">
-        <div className="relative flex flex-col items-center justify-end gap-10  h-full px-8 py-6 bg-white rounded-2xl ">
-          <DialogTitle className="flex items-center pt-4 w-1/2 text-center leading-6 ">
+      <DialogContent className="bg-transparent md:h-full w-[90svw] lg:max-w-[450px] md:max-h-[260px] h-[200px] sm:h-[220px]  overflow-y-auto lg:overflow-hidden border-0 ">
+        <div className="relative flex flex-col items-center justify-end gap-6 md:gap-10 h-full px-4 sm:px-8 py-6 bg-white rounded-2xl ">
+          <DialogTitle className="flex items-center md:pt-4 md:w-1/2 text-center leading-6 ">
             your story has been published successfully!
           </DialogTitle>
 
           <DialogClose className=" w-full">
             <button
               type="button"
-              className="p-2 transition duration-150 mb-6 ease-in  text-purple bg-purple-100 w-full  "
+              className="p-2 transition duration-150 mb-3 sm:mb-6 ease-in  text-purple bg-purple-100 w-full  "
             >
               done
             </button>

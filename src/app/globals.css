@@ -99,3 +99,14 @@ input {
   border-radius: 50%;
   cursor: pointer;
 }
+
+.notificationsContainer {
+  height: 100svh;
+}
+
+/* Adjusted height for screens 768px and above */
+@media (max-width: 768px) {
+  .notificationsContainer {
+    height: calc(100svh - 10rem);
+  }
+}
