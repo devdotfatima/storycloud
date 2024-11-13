@@ -7,7 +7,7 @@ import HelpPurpleIcon from "../../../../assets/icons/help-purple.svg";
 const HelpAndSupport = () => {
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100 ">
-      <div className="flex items-center justify-center relative gap-4 md:mb-4 text-purple">
+      <div className="flex items-center justify-center md:justify-start relative gap-4 md:mb-4 text-purple">
         <a
           href="/settings"
           className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"

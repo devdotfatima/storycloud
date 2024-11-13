@@ -1,3 +1,4 @@
+import SearchBar from "@/shared/components/SearchBar";
 import { profiles } from "@/shared/consts";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,37 +7,8 @@ import React from "react";
 const Users = () => {
   return (
     <div className="flex flex-col gap-5 sm:gap-7 md:gap-10 xl:gap-16 md:px-16">
-      <form className="w-full mx-auto lg:h-11 max-w-[800px]">
-        <label htmlFor="default-search" className=" sr-only dark:text-white">
-          Search
-        </label>
-        <div className="relative">
-          <input
-            type="text"
-            id="default-search"
-            className="block w-full h-full sm:py-2.5 pr-9 outline-none ps-4   rounded-2xl"
-            placeholder={"search for users"}
-            required
-          />
-          <div className="absolute inset-y-0 flex items-center px-3 pointer-events-none end-0">
-            <svg
-              className="w-5 h-5 text-grey "
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-          </div>
-        </div>
-      </form>
+      <SearchBar placeholder="users" />
+
       <div
         className=" xl:gap-[180px] xl:gap-y-[60px] mx-auto w-fit
     grid grid-cols-1 gap-5  md:gap-x-36 md:grid-cols-2 2xl:grid-cols-3

@@ -37,7 +37,7 @@ const Comments = () => {
               // value={comment}
               // onChange={(e) => setComment(e.target.value)}
               placeholder="Add comment"
-              className="w-full h-10 pt-2.5 overflow-y-auto text-base font-light leading-tight outline-none resize-none caret-secondaryBlue   ring-0"
+              className="w-full h-7 mt-1 overflow-y-auto leading-tight outline-none resize-none caret-secondaryBlue ring-0"
             />
             <button
               aria-label="Send Comment"
