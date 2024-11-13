@@ -11,12 +11,16 @@ const Notifications = ({ onClose }: NotificationsPropsT) => {
   const notificationsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const notificationButton = document.getElementById("notification-btn");
+
     function handleClickOutside(event: MouseEvent) {
       if (
         notificationsRef.current &&
-        !notificationsRef.current.contains(event.target as Node)
+        !notificationsRef.current.contains(event.target as Node) &&
+        notificationButton &&
+        !notificationButton.contains(event.target as Node)
       ) {
-        onClose(); // Call the close function when clicked outside
+        onClose();
       }
     }
 

@@ -15,7 +15,10 @@ const NotificationButton = ({
 
   return (
     <div
-      onClick={toggleNotifications}
+      id="notification-btn"
+      onClick={(e) => {
+        toggleNotifications();
+      }}
       className={`${
         showNotifications
           ? "bg-purple bg-opacity-15"
