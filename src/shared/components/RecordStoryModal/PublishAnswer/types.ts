@@ -33,3 +33,7 @@ export type MusicPlayerPropsT = {
 export type PublishModalPropsT = {
   onClose: () => void;
 };
+
+export type CancelEditChangesModalPropsT = {
+  onClose: () => void;
+};
