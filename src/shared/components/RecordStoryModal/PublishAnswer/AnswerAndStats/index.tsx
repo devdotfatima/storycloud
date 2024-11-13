@@ -88,7 +88,7 @@ const AnswerAndStats = ({
         className={`text-center text-2xl sm:text-3xl font-crimson font-medium ${
           isEditing
             ? "bg-white border-purple border-2 sm:border-0 rounded-2xl"
-            : "sm:bg-purple-100"
+            : "md:bg-purple-100"
         } w-full p-4 rounded-xl`}
       >
         {storyId ? (

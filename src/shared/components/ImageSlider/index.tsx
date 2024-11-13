@@ -15,7 +15,7 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
 
   return (
     <div className="h-full flex flex-col w-full gap-3 ">
-      <div className="max-w-[600px] h-full ">
+      <div className="md:max-w-[600px] h-full ">
         <Swiper
           cssMode={true}
           mousewheel={true}
@@ -25,7 +25,7 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
         >
           {images.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="w-full max-h-64 min-h-64 sm:max-h-96 md:min-h-64 lg:min-h-56 rounded-xl object-fill">
+              <div className="w-full max-h-64 min-h-64 sm:min-h-96 lg:min-h-56 rounded-xl object-fill">
                 <Image
                   src={image}
                   alt={`Slide ${index + 1}`}

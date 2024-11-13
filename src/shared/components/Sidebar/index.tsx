@@ -111,7 +111,7 @@ const Sidebar = () => {
       </aside>
 
       <nav
-        className="fixed z-40 w-full h-[9.56rem] top-0 md:hidden bg-lightBlue"
+        className="fixed z-40 w-full h-[10rem] top-0 md:hidden bg-lightBlue"
         aria-label="Navbar"
       >
         <div className="flex flex-col h-full w-[92%] sm:w-[95%]  mx-auto py-5 gap-y-5">
@@ -134,7 +134,7 @@ const Sidebar = () => {
             </NavLink>
           </div>
 
-          <ul className="flex justify-between items-center p-1 bg-white rounded-2xl h-[3.25rem] text-sm sm:text-base ">
+          <ul className="flex justify-between items-center p-1 bg-white rounded-2xl h-[3.6rem] text-sm sm:text-base ">
             {memoizedMenuItems.map((item) => (
               <SidebarItem
                 key={item.name}

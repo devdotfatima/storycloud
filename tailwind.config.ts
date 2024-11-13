@@ -33,7 +33,13 @@ const config: Config = {
         "custom-h760-w1024": {
           raw: "(max-height: 760px) and (min-width: 1024px)",
         },
+        // sm: "640px",
+        // md: "768px",
+        // lg: "1024px",
+        // xl: "1280px",
+        // "2xl": "1536px",
       },
+
       fontFamily: {
         crimson: ["var(--font-crimson-pro)", "serif"],
         mukta: ["var(--font-mukta)", "sans-serif"],
