@@ -7,11 +7,13 @@ export type AnswerAndStatsPropsT = {
   handleShowUploadImageScreen?: () => void;
   isEditing: boolean;
   toggleEditMode: () => void;
+  onClose?: () => void;
 };
 
 export type PublishAnswerPropsT = {
   recorderControls: Controls;
   goToPreviousStep: () => void;
+  onClose: () => void;
 };
 
 export type TranscriptAndCommentsPropsT = { isEditing: boolean };
@@ -26,4 +28,8 @@ export type MusicPlayerPropsT = {
   stopRecording: (() => void) | undefined;
   isEditing: boolean;
   goToPreviousStep: (() => void) | undefined;
+};
+
+export type PublishModalPropsT = {
+  onClose: () => void;
 };

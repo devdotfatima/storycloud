@@ -5,8 +5,9 @@ import React, { useState } from "react";
 import { DialogContent, DialogClose } from "../ui/dialog";
 import { steps } from "./consts";
 import ClosePurpleIcon from "../../../assets/icons/close-purple.svg";
+import { RecordStoryModalPropsT } from "./types";
 
-const RecordStoryModal = () => {
+const RecordStoryModal = ({ onClose }: RecordStoryModalPropsT) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const recorderControls = useVoiceVisualizer();
@@ -27,7 +28,10 @@ const RecordStoryModal = () => {
         currentStep === 0 ? "lg:max-w-[850px]" : "lg:max-w-[1200px]"
       } sm:h-[90svh] overflow-hidden lg:pr-12 pt-[15px]`}
     >
-      <DialogClose className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit">
+      <DialogClose
+        onClick={onClose}
+        className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit"
+      >
         <Image
           src={ClosePurpleIcon}
           alt="Close button"
@@ -41,6 +45,7 @@ const RecordStoryModal = () => {
         goToPreviousStep={goToPreviousStep}
         recorderControls={recorderControls}
         goToNextStep={goToNextStep}
+        onClose={onClose}
       />
     </DialogContent>
   );

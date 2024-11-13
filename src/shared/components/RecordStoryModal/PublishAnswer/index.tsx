@@ -8,6 +8,7 @@ import UploadStoryImages from "./AnswerAndStats/UploadStoryImages";
 const PublishAnswer = ({
   recorderControls,
   goToPreviousStep,
+  onClose,
 }: PublishAnswerPropsT) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
@@ -47,6 +48,7 @@ const PublishAnswer = ({
       ) : (
         <>
           <AnswerAndStats
+            onClose={onClose}
             isEditing={isEditing}
             toggleEditMode={toggleEditMode}
             recorderControls={recorderControls}

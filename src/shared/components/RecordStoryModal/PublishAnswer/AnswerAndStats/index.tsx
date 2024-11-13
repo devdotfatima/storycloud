@@ -21,6 +21,7 @@ const AnswerAndStats = ({
   handleShowUploadImageScreen,
   isEditing,
   toggleEditMode,
+  onClose,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const { storyId } = useParams();
@@ -59,7 +60,7 @@ const AnswerAndStats = ({
               width={80}
               className="h-12 sm:h-12 w-20 "
             />{" "}
-            <PublishModal />
+            {onClose ? <PublishModal onClose={onClose} /> : null}
           </div>
         ) : isEditing ? (
           <div className="flex h-6 sm:h-12 items-center ">

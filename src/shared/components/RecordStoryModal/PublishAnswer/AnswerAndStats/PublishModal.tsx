@@ -6,11 +6,9 @@ import {
   DialogTrigger,
   Dialog,
 } from "@/shared/components/ui/dialog";
+import { PublishModalPropsT } from "../types";
 
-// type Props = {};
-
-// const PublishModal = (props: Props) => {
-const PublishModal = () => {
+const PublishModal = ({ onClose }: PublishModalPropsT) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,6 +25,7 @@ const PublishModal = () => {
           <DialogClose className=" w-full">
             <button
               type="button"
+              onClick={onClose}
               className="p-2 transition duration-150 mb-3 sm:mb-6 ease-in  text-purple bg-purple-100 w-full  "
             >
               done
