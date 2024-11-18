@@ -32,7 +32,7 @@ const Settings = () => {
       >
         <ul className="flex flex-col justify-start h-full gap-2 px-10 py-4 bg-white border-l-2 border-purple-100">
           <li className="my-8 flex items-center justify-center md:justify-start relative gap-4 text-purple">
-            <a
+            <Link
               href="/"
               className=" absolute top-1/2 transform -translate-y-1/2 left-0 md:hidden"
             >
@@ -43,7 +43,7 @@ const Settings = () => {
                 height={7}
                 className="w-4 h-4 text-purple"
               />
-            </a>
+            </Link>
             <div className="flex items-center gap-0 text-purple">
               <Image
                 src={SettingsPurpleIcon}

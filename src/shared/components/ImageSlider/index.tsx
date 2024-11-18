@@ -8,10 +8,10 @@ import { ImageSliderPropsT } from "./types";
 import "swiper/css";
 
 // Initialize Swiper modules
-SwiperCore.use([Mousewheel, Keyboard]);
 
 const ImageSlider = ({ images }: ImageSliderPropsT) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  SwiperCore.use([Mousewheel, Keyboard]);
 
   return (
     <div className="h-full flex flex-col w-full gap-3 ">
