@@ -41,7 +41,7 @@ const AccountInfo = () => {
             placeholder="user@gmail.com"
             id="email"
             readOnly
-            className="p-1 px-3   sm:max-w-sm lg:max-w-lg w-full  "
+            className="p-1 px-3 sm:max-w-sm lg:max-w-lg w-full h-10 "
           />
         </div>
 
@@ -54,7 +54,7 @@ const AccountInfo = () => {
             readOnly
             placeholder="mm/dd/yyyy"
             id="dob"
-            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full text-grey"
+            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full text-grey h-10"
           />
         </div>
 
@@ -66,7 +66,7 @@ const AccountInfo = () => {
             id="password"
             readOnly
             placeholder="******"
-            className="py-1   sm:max-w-sm lg:max-w-lg w-full  "
+            className="py-1   sm:max-w-sm lg:max-w-lg w-full  h-10 "
           />
         </div>
         <Link href={"/"} className=" text-purple underline">

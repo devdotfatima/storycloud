@@ -22,7 +22,7 @@ const SignOutConfirmationModal = () => {
       </DialogClose>
       <div className="relative flex flex-col items-center h-full gap-6 p-8 md:p-10 bg-white rounded-2xl ">
         <DialogTitle className="flex items-center justify-center gap-3  mb-6 md:mb-8 lg:mb-10  ">
-          <h1 className=" font-normal">sign out?</h1>
+          sign out?
         </DialogTitle>
 
         <Link

@@ -3,17 +3,12 @@
 @tailwind utilities;
 
 /* Apply to all elements for Firefox */
-html,
-body,
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #aaadf4 transparent;
-}
 
 /* WebKit-specific scrollbars (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
+  max-width: 4px;
 }
 
 ::-webkit-scrollbar-track {
