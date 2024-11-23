@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mukta, Crimson_Pro } from "next/font/google";
 import "./globals.css";
+import ReactQueryProvider from "@/Providers/ReactQueryProvider";
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
@@ -29,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${crimsonPro.variable} ${mukta.variable} bg-purple-100 font-mukta font-normal text-base sm:text-xl antialiased`}
       >
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );
