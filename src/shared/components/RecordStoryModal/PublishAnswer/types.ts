@@ -23,7 +23,7 @@ export type OptionsModalPropsT = {
 };
 
 export type MusicPlayerPropsT = {
-  soundURL: string;
+  soundURL: string | undefined;
   clearCanvas: (() => void) | undefined;
   stopRecording: (() => void) | undefined;
   isEditing: boolean;

@@ -3,7 +3,7 @@ import React from "react";
 export type menuItem = {
   name: string;
   path: string;
-  icon?: string;
+  icon: string;
 };
 
 export type sidebarItemProps = {

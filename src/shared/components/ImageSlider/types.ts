@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type ImageSliderPropsT = {
-  images: string[];
+  images: string[] | StaticImageData[];
 };

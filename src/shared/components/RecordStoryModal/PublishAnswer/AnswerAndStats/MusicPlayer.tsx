@@ -183,8 +183,9 @@ const MusicPlayer = ({
               onClick={startDrag}
             ></div>
           </div>
-
-          <audio ref={audioRef} src={soundURL} preload="true" />
+          {soundURL ? (
+            <audio ref={audioRef} src={soundURL} preload="true" />
+          ) : null}
         </div>
 
         <span>{formatTime(duration)}</span>

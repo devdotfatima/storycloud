@@ -54,7 +54,7 @@ const Sidebar = () => {
                 width={28}
                 height={28}
                 alt="settings icon"
-                src={menuItems[menuItems.length - 1]?.icon || ""}
+                src={menuItems[menuItems.length - 1].icon}
                 className="h-[1.75rem] w-[1.75rem]"
               />
               <p className="flex-1 ml-5 whitespace-nowrap ">settings</p>
@@ -101,7 +101,7 @@ const Sidebar = () => {
                   alt="settings icon"
                   width={28}
                   height={28}
-                  src={menuItems[menuItems.length - 1]?.icon || ""}
+                  src={menuItems[menuItems.length - 1]?.icon}
                   className="h-[1.75rem] w-[1.75rem]"
                 />
               </NavLink>
@@ -128,7 +128,7 @@ const Sidebar = () => {
                 alt="settings icon"
                 width={28}
                 height={28}
-                src={menuItems[menuItems.length - 1]?.icon || ""}
+                src={menuItems[menuItems.length - 1]?.icon}
                 className="h-[1.75rem] w-[1.75rem]"
               />
             </NavLink>

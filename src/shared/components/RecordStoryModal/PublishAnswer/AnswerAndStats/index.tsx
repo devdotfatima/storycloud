@@ -25,7 +25,9 @@ const AnswerAndStats = ({
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const { storyId } = useParams();
-  const story = mockStories.find((story) => story.id.toString() === storyId);
+  const story =
+    mockStories.find((story) => story.id.toString() === storyId) ||
+    mockStories[0];
   const [title, setTitle] = useState(story?.title || "");
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -157,10 +159,10 @@ const AnswerAndStats = ({
             <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
             <p className="text-grey text-base">upload</p>
           </div>
-          <div className={`rounded-full p-1 h-2 w-2  ${"bg-purple-400"}`}></div>
+          <div className={`rounded-full p-1 h-2 w-2 bg-purple-400`}></div>
         </div>
       ) : (
-        <ImageSlider images={story?.storyImages || [UploadIcon]} />
+        <ImageSlider images={story.storyImages} />
       )}
 
       {/* Audio Player Controls */}
@@ -169,7 +171,7 @@ const AnswerAndStats = ({
         goToPreviousStep={goToPreviousStep}
         clearCanvas={clearCanvas}
         stopRecording={stopRecording}
-        soundURL={storyId ? story?.audioClip ?? "" : audioSrc ?? ""}
+        soundURL={storyId ? story.audioClip : audioSrc}
       />
     </div>
   );
