@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import Image from "next/image";
 import { signUpSchema, SignUpT } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -14,6 +15,8 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
+import ValidationFailIcon from "../../../assets/icons/validation-fail.svg";
+import ValidationPassIcon from "../../../assets/icons/validation-pass.svg";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,15 +29,46 @@ const SignUpForm = () => {
       birthday: undefined, // Ensure `undefined` to prevent errors
     },
   });
+  const onSubmit = async (data: SignUpT) => {
+    try {
+      // Prepare the payload
+      const payload = {
+        user_email: data.email,
+        user_handle: data.username,
+        password: data.password,
+        birthday: data.birthday
+          ? new Date(data.birthday).toLocaleDateString("en-CA") // Convert to YYYY-MM-DD
+          : "2000-01-01", // Default birthday if not provided
+      };
 
-  const onSubmit = (data: SignUpT) => {
-    console.log({ data });
+      const response = await fetch(
+        "https://storycloudapi.com/users/create-user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload), // Send as JSON in the request body
+        }
+      );
 
-    // Store user data in localStorage
-    localStorage.setItem("userSignUpData", JSON.stringify(data));
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("API Error:", errorData);
+        alert("Failed to create user. Please try again.");
+        return;
+      }
 
-    // Redirect to the edit profile page
-    window.location.href = "/profile/edit";
+      const responseData = await response.json();
+      console.log("User created successfully:", responseData);
+      alert("User created successfully!");
+
+      // Redirect to the edit profile page
+      window.location.href = "/profile/edit";
+    } catch (error) {
+      console.error("Network Error:", error);
+      alert("An error occurred while creating your account. Please try again.");
+    }
   };
 
   return (
@@ -59,6 +93,46 @@ const SignUpForm = () => {
           )}
         />
 
+        {/* username */}
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>username</FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <Input
+                    className="w-full border-2 px-5 border-purple-400 focus:outline-none ring-purple focus:ring-2 focus:border-0"
+                    {...field}
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    {false ? (
+                      <Image
+                        width={24}
+                        height={24}
+                        src={ValidationPassIcon}
+                        alt="validation pass"
+                        className="w-6 h-6 rounded-full"
+                      />
+                    ) : (
+                      <Image
+                        width={24}
+                        height={24}
+                        src={ValidationFailIcon}
+                        alt="validation fail"
+                        className="w-6 h-6 rounded-full"
+                      />
+                    )}
+                  </span>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* birthday */}
         <FormField
           control={form.control}
           name="birthday"
@@ -97,6 +171,7 @@ const SignUpForm = () => {
             </FormItem>
           )}
         />
+
         {/* Password Field */}
         <FormField
           control={form.control}

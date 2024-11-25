@@ -4,7 +4,9 @@ const requiredString = z.string().trim().min(1, "Required");
 
 export const signUpSchema = z.object({
   email: requiredString.email("Invalid email address"),
-
+  username: requiredString
+    .regex(/^[a-zA-Z0-9_-]+$/, "Only letters, numbers, - and _ allowed")
+    .min(3, "Username must be at least 3 characters"),
   birthday: z
     .date()
     .refine((value) => {
@@ -19,9 +21,6 @@ export const signUpSchema = z.object({
 
 export const editProfileSchema = z.object({
   fullName: requiredString.min(1, "Full name is required"),
-  username: requiredString
-    .regex(/^[a-zA-Z0-9_-]+$/, "Only letters, numbers, - and _ allowed")
-    .min(3, "Username must be at least 3 characters"),
   bio: z.string().optional(),
   profileImage: z.instanceof(File).optional(),
 });

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import {
   Form,
   FormControl,
@@ -14,16 +15,13 @@ import {
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
 import GoogleImage from "../../../assets/images/google.png";
-import { login } from "./actions";
 import { loginSchema, LoginT } from "@/lib/validations";
-import Link from "next/link";
+import { login } from "./actions";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
-  const [error, setError] = useState<string>();
-
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string>();
 
   const form = useForm<LoginT>({
     resolver: zodResolver(loginSchema),
@@ -33,13 +31,19 @@ const LoginForm = () => {
     },
   });
 
-  async function onSubmit(values: LoginT) {
-    setError(undefined);
-    startTransition(async () => {
-      const { error } = await login(values);
-      if (error) setError(error);
-    });
-  }
+  const onSubmit = async (data: LoginT) => {
+    try {
+      setError(undefined);
+      startTransition(async () => {
+        const { error } = await login(data);
+        if (error) setError(error);
+      });
+    } catch (error) {
+      console.error("Network Error:", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <Form {...form}>
       {error && <p className="text-center text-red">{error}</p>}
@@ -49,11 +53,11 @@ const LoginForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
                   className="w-full border-2 px-5 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
-                  placeholder="user@gmail.com"
+                  placeholder=""
                   {...field}
                 />
               </FormControl>
@@ -100,8 +104,6 @@ const LoginForm = () => {
         />
 
         <div className="flex items-center justify-between mb-4">
-          {/* <Link
-              href={"/"} */}
           <button
             disabled={isPending}
             type="submit"
@@ -109,7 +111,6 @@ const LoginForm = () => {
           >
             Log In
           </button>
-          {/* </Link> */}
         </div>
 
         <div className="flex items-center my-4">
