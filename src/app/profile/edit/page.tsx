@@ -4,12 +4,9 @@ import Link from "next/link";
 import React, { useState } from "react";
 import EditWhiteIcon from "../../../assets/icons/edit-white.svg";
 import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
-import ValidationFailIcon from "../../../assets/icons/validation-fail.svg";
-import ValidationPassIcon from "../../../assets/icons/validation-pass.svg";
 
 const EditProfile = () => {
   const [fullName, setFullName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
   const [bio, setBio] = useState<string>("");
 
   const [selectedProfileImage, setSelectedProfileImage] = useState<
@@ -21,7 +18,7 @@ const EditProfile = () => {
       setSelectedProfileImage(URL.createObjectURL(files[0]));
     }
   };
-  const isDisabled = !fullName || !username;
+
   return (
     <>
       <div className="w-full mx-6 max-w-sm sm:max-w-lg p-6 sm:p-8 bg-white rounded-lg md:max-w-screen-sm">
@@ -73,45 +70,6 @@ const EditProfile = () => {
             />
           </div>
 
-          <div className="mb-6">
-            <label className="block mb-2 text-purple" htmlFor="username">
-              username
-            </label>
-
-            <div className="relative">
-              <input
-                className="w-full px-3 py-1.5 leading-tight    border  border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0 "
-                id="username"
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center pr-3"
-              >
-                {false ? (
-                  <Image
-                    width={24}
-                    height={24}
-                    src={ValidationPassIcon}
-                    alt="validation pass"
-                    className="w-6 h-6 rounded-full"
-                  />
-                ) : (
-                  <Image
-                    width={24}
-                    height={24}
-                    src={ValidationFailIcon}
-                    alt="validation fail"
-                    className="w-6 h-6 rounded-full"
-                  />
-                )}
-              </button>
-            </div>
-          </div>
-
           <div className="relative mb-6">
             <label className="block mb-2 text-purple" htmlFor="bio">
               bio
@@ -131,12 +89,12 @@ const EditProfile = () => {
             <Link
               href={"/"}
               className={`w-full px-4 py-2 font-medium text-center  focus:outline-none ${
-                isDisabled
+                true
                   ? "opacity-50 cursor-not-allowed bg-grey-100  "
                   : "bg-purple-100 text-purple"
               }`}
               type="button"
-              onClick={(e) => isDisabled && e.preventDefault()}
+              onClick={(e) => true && e.preventDefault()}
             >
               done
             </Link>
