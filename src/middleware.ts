@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtDecode } from "jwt-decode"; // Fix import if using a specific jwt-decode library
 
-const protectedRoutes = ["/", "/explore"];
-const publicRoutes = ["/login", "/signup"];
+const protectedRoutes = ["/", "/explore", "/profile/edit"];
+const publicRoutes = ["/login", "/signup", "/forgot-password", "/terms"];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
@@ -11,13 +11,16 @@ export default async function middleware(req: NextRequest) {
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
+  const headers = new Headers(req.headers);
+  headers.set("x-current-path", req.nextUrl.pathname);
+
   // Handle public routes
   if (isPublicRoute) {
     if (token?.value) {
       console.log("User already authenticated, redirecting to home");
       return NextResponse.redirect(new URL("/", req.nextUrl));
     }
-    return NextResponse.next();
+    return NextResponse.next({ headers });
   }
 
   // Handle protected routes
@@ -28,7 +31,6 @@ export default async function middleware(req: NextRequest) {
     }
 
     try {
-      console.log({ token: token.value });
       const decoded = jwtDecode<{ exp?: number }>(token.value);
 
       // Check if the token has expired
@@ -45,7 +47,7 @@ export default async function middleware(req: NextRequest) {
         return response;
       }
 
-      return NextResponse.next();
+      return NextResponse.next({ headers });
     } catch (error) {
       console.error("Invalid token:", error);
 
@@ -60,5 +62,18 @@ export default async function middleware(req: NextRequest) {
   }
 
   // Allow all other routes
-  return NextResponse.next();
+  return NextResponse.next({ headers });
 }
+
+export const config = {
+  matcher: [
+    {
+      source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "next-action" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+  ],
+};
