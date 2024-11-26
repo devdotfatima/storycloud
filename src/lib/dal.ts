@@ -47,7 +47,7 @@ export const validateUser = cache(
       const userFromApi: UserT = await response.json();
 
       // Use API data as the source of truth, falling back to JWT data if API fails
-      return { user: userFromApi };
+      return { user: { ...userFromApi, jwt_token: token.value } };
     } catch (error) {
       console.error("Error during user revalidation:", error);
       return { user: null };
