@@ -35,7 +35,7 @@
 
 button,
 a {
-  @apply font-medium;
+  @apply font-medium lowercase;
 }
 
 input,
