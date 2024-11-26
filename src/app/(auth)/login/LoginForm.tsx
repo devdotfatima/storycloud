@@ -31,18 +31,16 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = async (data: LoginT) => {
-    try {
-      setError(undefined);
-      startTransition(async () => {
-        const { error } = await login(data);
-        if (error) setError(error);
-      });
-    } catch (error) {
-      console.error("Network Error:", error);
-      setError("Something went wrong. Please try again.");
-    }
-  };
+  async function onSubmit(values: LoginT) {
+    setError(undefined);
+    startTransition(async () => {
+      const response = await login(values);
+
+      if (response?.error) {
+        setError(response.error); // Set the error state
+      }
+    });
+  }
 
   return (
     <Form {...form}>
@@ -53,7 +51,7 @@ const LoginForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>email</FormLabel>
               <FormControl>
                 <Input
                   className="w-full border-2 px-5 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
@@ -107,7 +105,7 @@ const LoginForm = () => {
           <button
             disabled={isPending}
             type="submit"
-            className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none"
+            className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none disabled:cursor-not-allowed enabled:cursor-default"
           >
             Log In
           </button>

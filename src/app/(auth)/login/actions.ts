@@ -7,13 +7,13 @@ import { redirect } from "next/navigation";
 
 export const login = async (
   credentials: LoginT
-): Promise<{ error: string }> => {
+): Promise<{ error?: string }> => {
   try {
     const { email, password } = loginSchema.parse(credentials);
 
     const payload = new URLSearchParams({
       username: email,
-      password: password,
+      password,
     }).toString();
 
     const response = await fetch("https://storycloudapi.com/auth/login", {
@@ -24,10 +24,8 @@ export const login = async (
       body: payload,
     });
 
+    // Check for response status
     if (!response.ok) {
-      const errorData = await response.json();
-      console.log(errorData);
-      // setError(errorData.detail || "Invalid credentials.");
       return { error: "Invalid credentials." };
     }
 
@@ -38,8 +36,7 @@ export const login = async (
       return { error: "Invalid server response." };
     }
 
-    console.log(data.access_token);
-
+    // Set the cookie if successful
     const cookieStore = await cookies();
     cookieStore.set("access_token", data.access_token, {
       httpOnly: true,
@@ -47,10 +44,12 @@ export const login = async (
       path: "/",
       sameSite: "lax",
     });
+
+    // Redirect upon successful login
     return redirect("/");
   } catch (error) {
-    if (isRedirectError(error)) throw error;
-    console.error(error);
-    return { error: "Something went wrong. try again." };
+    if (isRedirectError(error)) throw error; // Pass redirect errors
+    console.error("Unexpected error:", error);
+    return { error: "Something went wrong. Please try again." };
   }
 };
