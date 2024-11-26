@@ -55,7 +55,7 @@ const LoginForm = () => {
               <FormControl>
                 <Input
                   className="w-full border-2 px-5 border-purple-400  focus:outline-none ring-purple focus:ring-2 focus:border-0  "
-                  placeholder=""
+                  placeholder="user@gmail.com"
                   {...field}
                 />
               </FormControl>
