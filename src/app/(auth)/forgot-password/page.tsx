@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
-import { forgotPasswordSchema, forgotPasswordT } from "@/lib/validations";
+import { forgotPasswordSchema, ForgotPasswordT } from "@/lib/validations";
 import { forgotPassword } from "./actions";
 
 const ForgotPassword = () => {
@@ -22,14 +22,14 @@ const ForgotPassword = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string>();
 
-  const form = useForm<forgotPasswordT>({
+  const form = useForm<ForgotPasswordT>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  async function onSubmit(data: forgotPasswordT) {
+  async function onSubmit(data: ForgotPasswordT) {
     setError(undefined);
     startTransition(async () => {
       const response = await forgotPassword(data);

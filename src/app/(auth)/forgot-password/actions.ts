@@ -1,9 +1,9 @@
 "use server";
 
-import { forgotPasswordSchema, forgotPasswordT } from "@/lib/validations";
+import { forgotPasswordSchema, ForgotPasswordT } from "@/lib/validations";
 
 export const forgotPassword = async (
-  credentials: forgotPasswordT
+  credentials: ForgotPasswordT
 ): Promise<{ error?: string }> => {
   try {
     const { email } = forgotPasswordSchema.parse(credentials);
