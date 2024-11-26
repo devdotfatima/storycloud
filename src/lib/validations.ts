@@ -4,7 +4,19 @@ const requiredString = z.string().trim().min(1, "Required");
 
 export const signUpSchema = z.object({
   email: requiredString.email("Invalid email address"),
-  username: requiredString.min(3, "Username must be at least 3 characters"),
+  username: requiredString
+    .max(30, "Username must be 30 characters or fewer.")
+    .regex(
+      /^[a-zA-Z0-9._]+$/,
+      "Username can only contain letters, numbers, dots, and underscores."
+    )
+    .regex(
+      /^(?!.*[_.]{2})/,
+      "Username cannot contain consecutive dots or underscores."
+    )
+    .regex(/^(?![_.])/, "Username cannot start with a dot or underscore.")
+    .regex(/(?<![_.])$/, "Username cannot end with a dot or underscore.")
+    .min(3, "Username must be at least 3 characters"),
   birthday: z
     .date()
     .refine((value) => {
@@ -29,12 +41,6 @@ export const signUpSchema = z.object({
     .min(8, "Must be at least 8 characters"),
 });
 
-export const editProfileSchema = z.object({
-  fullName: requiredString.min(1, "Full name is required"),
-  bio: z.string().optional(),
-  profileImage: z.instanceof(File).optional(),
-});
-
 export const loginSchema = z.object({
   email: requiredString.email("Invalid email address"),
   password: requiredString,
@@ -44,10 +50,23 @@ export const forgotPasswordSchema = z.object({
   email: requiredString.email("Invalid email address"),
 });
 
+export const editProfileSchema = z.object({
+  user_name: requiredString
+    .min(1, "Full Name is required")
+    .max(50, "Full Name must be less than 50 characters"),
+  user_bio: z
+    .string()
+    .max(101, "Bio must be 100 characters or fewer.")
+    .optional(),
+  user_image: z.instanceof(File).or(z.undefined()).optional(),
+});
+
 export type EditProfileT = z.infer<typeof editProfileSchema>;
 
 export type SignUpT = z.infer<typeof signUpSchema>;
 
 export type LoginT = z.infer<typeof loginSchema>;
 
-export type forgotPasswordT = z.infer<typeof forgotPasswordSchema>;
+export type ForgotPasswordT = z.infer<typeof forgotPasswordSchema>;
+
+export type EditProfileSchema = z.infer<typeof editProfileSchema>;
