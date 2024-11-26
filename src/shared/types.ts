@@ -75,3 +75,20 @@ export type mockStoryT = {
   storyImages: StaticImageData[];
   isMyStory: boolean;
 };
+
+export type UserT = {
+  user_name: string;
+  user_email: string;
+  user_handle: string;
+  formatted_username_and_handle: string;
+  user_id: string;
+  phone_number: string | null;
+  birthday: string | null;
+  user_password: string | null;
+  creation_time: string;
+  user_bio: string;
+  user_profile_image: string | null;
+  num_friends: number;
+  num_stories_posted: number;
+  jwt_token: string | null;
+};
