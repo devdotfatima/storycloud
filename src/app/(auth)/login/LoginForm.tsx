@@ -37,7 +37,7 @@ const LoginForm = () => {
       const response = await login(values);
 
       if (response?.error) {
-        setError(response.error); // Set the error state
+        setError(response.error);
       }
     });
   }
