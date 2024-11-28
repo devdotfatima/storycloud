@@ -14,7 +14,7 @@ const SignOutConfirmationModal = () => {
     });
 
     if (response.ok) {
-      window.location.href = "/login"; // Redirect to the home page or login page
+      window.location.href = "/login";
     } else {
       console.error("Logout failed");
     }
