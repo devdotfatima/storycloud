@@ -3,8 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import ReturnPurpleIcon from "../../../assets/icons/return-purple.svg";
 import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
+import { useSessionContext } from "@/app/providers/SessionProvider";
 
 const AccountInfo = () => {
+  const user = useSessionContext();
+
   return (
     <div className="absolute top-0 left-0 z-50 flex flex-col w-screen h-screen  gap-6 p-10 lowercase md:p-0 md:w-full md:h-full md:relative bg-purple-100">
       <div className="flex items-center justify-center md:justify-start relative gap-4 md:mb-4 text-purple">
@@ -21,7 +24,6 @@ const AccountInfo = () => {
           />
         </a>
         <div className="flex items-end mx-auto md:mx-0 w-fit gap-2">
-          {" "}
           <Image
             src={UserPurpleIcon}
             alt="info icon"
@@ -38,6 +40,7 @@ const AccountInfo = () => {
           <input
             type="email"
             name=""
+            value={user.user_email}
             placeholder="user@gmail.com"
             id="email"
             readOnly
@@ -50,11 +53,11 @@ const AccountInfo = () => {
           <input
             type="date"
             name=""
-            value="2013-10-02"
+            value={user.birthday || "2013-10-02"}
             readOnly
             placeholder="mm/dd/yyyy"
             id="dob"
-            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full text-grey h-10"
+            className="p-1 px-3  sm:max-w-sm lg:max-w-lg w-full text-black h-10"
           />
         </div>
 
@@ -64,9 +67,10 @@ const AccountInfo = () => {
             type="email"
             name=""
             id="password"
+            value={user.user_password || ""}
             readOnly
             placeholder="******"
-            className="py-1   sm:max-w-sm lg:max-w-lg w-full  h-10 "
+            className="py-1 sm:max-w-sm lg:max-w-lg w-full h-10 "
           />
         </div>
         <Link href={"/"} className=" text-purple underline">
