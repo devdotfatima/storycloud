@@ -6,6 +6,7 @@ import {
   DialogClose,
 } from "@/shared/components/ui/dialog";
 import CloseIcon from "../../../../../assets/icons/close.svg";
+import { deleteAccount } from "./actions";
 
 const DeleteAccountConfirmationModal = () => {
   return (
@@ -28,15 +29,14 @@ const DeleteAccountConfirmationModal = () => {
         <button
           type="button"
           className="p-2 transition duration-150 ease-in text-red w-full bg-red-100  hover:bg-red hover:text-white "
+          onClick={deleteAccount}
         >
           delete account
         </button>
-        <button
-          type="button"
-          className="p-2 transition duration-150 ease-in text-purple w-full  bg-purple-100 hover:bg-purple-400 hover:text-white"
-        >
-          <DialogClose> cancel</DialogClose>
-        </button>
+
+        <DialogClose className="p-2 transition duration-150 ease-in text-purple w-full  bg-purple-100 hover:bg-purple-400 hover:text-white">
+          cancel
+        </DialogClose>
       </div>
     </DialogContent>
   );
