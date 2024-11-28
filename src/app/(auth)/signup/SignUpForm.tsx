@@ -3,7 +3,6 @@ import React, { useState, useTransition } from "react";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-// import Image from "next/image";
 import { signUpSchema, SignUpT } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
