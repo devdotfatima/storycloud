@@ -1,17 +1,22 @@
 import React from "react";
 import ProfileView from "./components/ProfileView";
-import ProfileImage from "../../../assets/images/profile_image.png";
+import ProfileImage from "../../../assets/icons/user-purple.svg";
+import { validateUser } from "@/lib/dal";
+import { redirect } from "next/navigation";
 
-const Profile = () => {
+const Profile = async () => {
+  const { user } = await validateUser();
+  if (!user) redirect("/login");
+
   return (
     <ProfileView
       userId={null}
-      userName="Lauren Li"
-      userHandle="lauren_li"
-      userBio="Foodie, wine lover, and world traveler. Join me on a culinary adventure as we dive into different flavors across the world!"
-      postCount={15}
-      friendCount={15}
-      profileImage={ProfileImage}
+      userName={user.user_name}
+      userHandle={user.user_handle}
+      userBio={user.user_bio}
+      postCount={user.num_stories_posted}
+      friendCount={user.num_stories_posted}
+      profileImage={user.user_profile_image || ProfileImage}
     />
   );
 };

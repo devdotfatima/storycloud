@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "storycloud-us-east-1-bucket.s3.amazonaws.com",
+      },
     ],
   },
   webpack(config) {
