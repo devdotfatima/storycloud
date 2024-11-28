@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mukta, Crimson_Pro } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
+import { Toaster } from "@/shared/components/ui/toaster";
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${crimsonPro.variable} ${mukta.variable} bg-purple-100 font-mukta font-normal text-base sm:text-xl antialiased`}
       >
         <ReactQueryProvider>{children}</ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
