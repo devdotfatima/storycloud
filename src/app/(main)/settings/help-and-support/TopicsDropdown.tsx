@@ -7,14 +7,26 @@ import {
 } from "@/shared/components/ui/select";
 import { topics } from "./consts";
 import { cn } from "@/lib/utils";
+import { TopicsDropdownPropsT } from "./types";
 
-const TopicsDropdown = () => {
+const TopicsDropdown = ({ field }: TopicsDropdownPropsT) => {
   return (
-    <Select>
-      <SelectTrigger className="flex  items-center ext-base sm:text-xl justify-between w-full max-w-sm p-6 pl-5 text-left text-grey bg-white  sm:max-w-sm lg:max-w-lg rounded-2xl">
+    <Select
+      value={field.value}
+      onValueChange={field.onChange}
+      onOpenChange={field.onBlur}
+    >
+      <SelectTrigger
+        className={`flex  items-center ext-base sm:text-xl justify-between w-full max-w-sm p-6 pl-5 text-left ${
+          field.value ? "text-black" : "text-grey"
+        }   bg-white  sm:max-w-sm lg:max-w-lg rounded-2xl`}
+      >
         <SelectValue placeholder="select topic" />
       </SelectTrigger>
-      <SelectContent className=" w-full py-1 mt-1 overflow-auto  bg-white border shadow-lg    rounded-xl border-purple max-h-60 ring-1 ring-black/5 focus:outline-none ">
+      <SelectContent
+        onBlur={field.onBlur}
+        className=" w-full py-1 mt-1 overflow-auto  bg-white border shadow-lg    rounded-xl border-purple max-h-60 ring-1 ring-black/5 focus:outline-none "
+      >
         {topics.map((option) => (
           <SelectItem
             key={option.id}

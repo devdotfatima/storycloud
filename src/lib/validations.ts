@@ -61,6 +61,14 @@ export const editProfileSchema = z.object({
   user_image: z.instanceof(File).or(z.undefined()).optional(),
 });
 
+export const helpRequestSchema = z.object({
+  topic: requiredString,
+  subject: requiredString,
+  text: requiredString,
+});
+
+export type helpRequestT = z.infer<typeof helpRequestSchema>;
+
 export type EditProfileT = z.infer<typeof editProfileSchema>;
 
 export type SignUpT = z.infer<typeof signUpSchema>;
