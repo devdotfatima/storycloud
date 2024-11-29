@@ -1,8 +1,9 @@
 import Image from "next/image";
-import React from "react";
-import QuestionCard from "./components/QuestionCard";
+import React, { Suspense } from "react";
 import BookImage from "../../../assets/images/book.png";
 import CatOnWallImage from "../../../assets/images/cat_on_wall.png";
+import QuestionsFromFriends from "./components/QuestionsFromFriends";
+import { Loader } from "lucide-react";
 
 const Page = () => {
   return (
@@ -38,13 +39,13 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 h-fit">
+      <div className="flex flex-col gap-6 h-full">
         <h3 className="text-purple">questions from your friends</h3>
-        <div className="flex gap-10 pr-8 md:pr-16 pb-4 xl:pr-28 overflow-x-auto">
-          {Array.from({ length: 20 }, (_, index) => (
-            <QuestionCard key={index} />
-          ))}
-        </div>
+        <Suspense
+          fallback={<Loader className="mx-auto my-auto animate-spin" />}
+        >
+          <QuestionsFromFriends />
+        </Suspense>
       </div>
     </div>
   );
