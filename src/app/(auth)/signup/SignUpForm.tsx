@@ -157,10 +157,7 @@ const SignUpForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-1">
-                Password
-                <FormMessage />
-              </FormLabel>
+              <FormLabel className="flex gap-1">Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
@@ -178,6 +175,7 @@ const SignUpForm = () => {
                   </button>
                 </div>
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
