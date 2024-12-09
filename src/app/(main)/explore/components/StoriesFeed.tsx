@@ -13,16 +13,13 @@ export const getFeedStories = async (
     if (!user) {
       return { error: "Unauthorized" };
     }
-    const response = await fetch(
-      "https://storycloudapi.com/bookmarks/get-bookmarked-stories",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.jwt_token}`,
-        },
-      }
-    );
+    const response = await fetch("https://storycloudapi.com/get-story-feed", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.jwt_token}`,
+      },
+    });
 
     if (!response.ok) {
       console.error(
