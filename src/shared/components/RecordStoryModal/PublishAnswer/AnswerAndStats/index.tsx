@@ -11,7 +11,7 @@ import UploadIcon from "../../../../../assets/icons/image_file_input.svg";
 import ArrowIcon from "../../../../../assets/icons/arrow-red.svg";
 import OptionsModal from "./OptionsModal";
 import { mockStories } from "@/shared/consts";
-import ImageSlider from "@/shared/components/ImageSlider";
+// import ImageSlider from "@/shared/components/ImageSlider";
 import MusicPlayer from "./MusicPlayer";
 import PublishModal from "./PublishModal";
 
@@ -26,9 +26,9 @@ const AnswerAndStats = ({
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const { storyId } = useParams();
   const story =
-    mockStories.find((story) => story.id.toString() === storyId) ||
+    mockStories.find((story) => story.story_id.toString() === storyId) ||
     mockStories[0];
-  const [title, setTitle] = useState(story?.title || "");
+  const [title, setTitle] = useState(story?.story_title || "");
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -101,7 +101,7 @@ const AnswerAndStats = ({
               onChange={handleTitleChange} // Update state on change
             />
           ) : (
-            <p className="h-16"> {story?.title} </p>
+            <p className="h-16"> {story?.story_title} </p>
           )
         ) : (
           <p className=""> What is your favorite travel destination?</p>
@@ -120,7 +120,7 @@ const AnswerAndStats = ({
               width={24}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{story?.totalLikes}</span>
+            <span className="text-sm sm:text-xl">{10}</span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
@@ -130,7 +130,7 @@ const AnswerAndStats = ({
               width={22}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{story?.totalComments}</span>
+            <span className="text-sm sm:text-xl">{20}</span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
@@ -140,7 +140,7 @@ const AnswerAndStats = ({
               width={24}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{story?.totalShares}</span>
+            <span className="text-sm sm:text-xl">{30}</span>
           </div>
         </div>
       </div>
@@ -162,7 +162,8 @@ const AnswerAndStats = ({
           <div className={`rounded-full p-1 h-2 w-2 bg-purple-400`}></div>
         </div>
       ) : (
-        <ImageSlider images={story.storyImages} />
+        // <ImageSlider images={story.story_images} />
+        <p></p>
       )}
 
       {/* Audio Player Controls */}
@@ -171,7 +172,7 @@ const AnswerAndStats = ({
         goToPreviousStep={goToPreviousStep}
         clearCanvas={clearCanvas}
         stopRecording={stopRecording}
-        soundURL={storyId ? story.audioClip : audioSrc}
+        soundURL={storyId ? story.story_audio : audioSrc}
       />
     </div>
   );

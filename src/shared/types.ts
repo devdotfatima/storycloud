@@ -64,15 +64,15 @@ export type mockCommentT = {
 };
 
 export type mockStoryT = {
-  id: number;
-  title: string;
+  request_id: number;
+  request_text: string;
   audioClip: string;
-  totalLikes: number;
-  totalComments: number;
-  totalShares: number;
-  transcript: string;
-  comments: mockCommentT[];
-  storyImages: StaticImageData[];
+  // totalLikes: number;
+  // totalComments: number;
+  // totalShares: number;
+  // transcript: string;
+  // comments: mockCommentT[];
+  // storyImages: StaticImageData[];
   isMyStory: boolean;
 };
 
@@ -91,4 +91,35 @@ export type UserT = {
   num_friends: number;
   num_stories_posted: number;
   jwt_token: string | null;
+};
+
+export type StoryAnswerStoryRequestT = {
+  request_id: string;
+  receiver_id: string;
+  requestor_id: string;
+  request_text: string;
+  creation_time: string;
+};
+
+export type StoryAnswerT = {
+  user_id?: string; // UUID of the user who owns the story
+  creation_time?: string; // ISO 8601 date string
+  story_id: string; // UUID
+  story_title: string;
+  formatted_story_title: string;
+  story_audio?: string; // Optional, URL for audio
+  story_images?: Record<string, string>; // Optional, key-value pairs of image URLs
+  story_synopsis?: string; // Optional, synopsis text
+  story_transcript?: string; // Optional, transcript text
+  is_published: boolean;
+  audience: "all_friends" | "private" | "public";
+};
+
+export type StoryRequestT = {
+  receiver_id: string;
+  requestor_id: string;
+  story_id: string;
+  request_id: string;
+  creation_time?: string;
+  request_text: string;
 };

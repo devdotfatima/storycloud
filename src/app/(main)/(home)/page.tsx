@@ -42,7 +42,9 @@ const Page = () => {
       <div className="flex flex-col gap-6 h-full">
         <h3 className="text-purple">questions from your friends</h3>
         <Suspense
-          fallback={<Loader className="mx-auto my-auto animate-spin" />}
+          fallback={
+            <Loader fill="#6A6FD5" className="mx-auto my-auto animate-spin" />
+          }
         >
           <QuestionsFromFriends />
         </Suspense>

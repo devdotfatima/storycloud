@@ -1,10 +1,11 @@
 import React from "react";
-import QuestionCard from "./QuestionCard";
+import StoryCard from "@/shared/components/StoryCard";
+import { bookmarkedStoriesResponseT } from "../types";
+import { StoryAnswerT } from "@/shared/types";
 import { validateUser } from "@/lib/dal";
-import { StoryRequestsResponseT } from "../types";
 
-export const getStoryRequestsFromFriends = async (): Promise<
-  StoryRequestsResponseT | { error: string }
+export const getBookmarkedStories = async (): Promise<
+  bookmarkedStoriesResponseT | { error: string }
 > => {
   try {
     const { user } = await validateUser();
@@ -12,7 +13,7 @@ export const getStoryRequestsFromFriends = async (): Promise<
       return { error: "Unauthorized" };
     }
     const response = await fetch(
-      "https://storycloudapi.com/requests/list-story-requests",
+      "https://storycloudapi.com/bookmarks/get-bookmarked-stories",
       {
         method: "GET",
         headers: {
@@ -31,8 +32,7 @@ export const getStoryRequestsFromFriends = async (): Promise<
       return { error: "Something went wrong." };
     }
 
-    const data: StoryRequestsResponseT = await response.json();
-    console.log("Story requests data:", data);
+    const data: bookmarkedStoriesResponseT = await response.json();
 
     return data;
   } catch (error) {
@@ -40,22 +40,21 @@ export const getStoryRequestsFromFriends = async (): Promise<
     return { error: "Something went wrong. Please try again." };
   }
 };
+const BookmarkedStories = async () => {
+  const result = await getBookmarkedStories();
 
-const QuestionsFromFriends = async () => {
-  const result = await getStoryRequestsFromFriends();
   if ("error" in result) {
     return <div className="text-red-500">Error: {result.error}</div>;
   }
 
-  const { items: questions } = result;
-
+  const { items: bookmarkedStories = [] } = result;
   return (
-    <div className="flex gap-10 pr-8 md:pr-16 pb-4 xl:pr-28 overflow-x-auto">
-      {questions.map((request) => (
-        <QuestionCard key={request.request_id} />
+    <div className="flex flex-row flex-wrap gap-10  md:gap-y-8 md:gap-x-7 lg:gap-x-20 lg:gap-y-10  mx-auto max-w-[1100px] w-full justify-center items-center 2xl:justify-between">
+      {bookmarkedStories.map((stroyAnswer: StoryAnswerT) => (
+        <StoryCard key={stroyAnswer.story_id} story={stroyAnswer} />
       ))}
     </div>
   );
 };
 
-export default QuestionsFromFriends;
+export default BookmarkedStories;

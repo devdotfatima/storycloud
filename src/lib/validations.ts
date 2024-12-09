@@ -25,20 +25,12 @@ export const signUpSchema = z.object({
       return age >= 13;
     }, "You must be 13 years or older to sign up.")
     .transform((value) => new Date(value)),
-
-  password: requiredString
-    .min(8, "Must be at least 8 characters")
-    .regex(/[A-Z]/, {
-      message: " must contain at least one uppercase letter.",
-    })
-    .regex(/[a-z]/, {
-      message: " must contain at least one lowercase letter.",
-    })
-    .regex(/[0-9]/, { message: " must contain at least one number." })
-    .regex(/[^A-Za-z0-9]/, {
-      message: " must contain at least one special character.",
-    })
-    .min(8, "Must be at least 8 characters"),
+  password: z
+    .string()
+    .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
+      message:
+        "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    }),
 });
 
 export const loginSchema = z.object({

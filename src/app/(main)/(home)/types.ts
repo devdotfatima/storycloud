@@ -1,10 +1,4 @@
-export type StoryRequestT = {
-  request_id: string;
-  receiver_id: string;
-  requestor_id: string;
-  request_text: string;
-  creation_time: string;
-};
+import { StoryRequestT } from "@/shared/types";
 
 export type StoryRequestsResponseT = {
   items: StoryRequestT[];

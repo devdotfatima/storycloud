@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ProfileImage from "../../../assets/images/profile_image.png";
-import { mockStoryT } from "@/shared/types";
+import { StoryCardPropsT } from "./types";
 
-const StoryCard = ({ story }: { story: mockStoryT }) => {
+const StoryCard = ({ story }: StoryCardPropsT) => {
   //  w-full
   return (
     <div className="flex flex-col sm:h-[610px] max-w-[400px] sm:max-w-[500px] w-full  p-4 sm:p-6 bg-white gap-3 sm:gap-6 rounded-2xl ">
@@ -26,9 +26,9 @@ const StoryCard = ({ story }: { story: mockStoryT }) => {
           3d ago
         </time>
       </div>
-      <Link href={`/story/${story.id}`} passHref>
+      <Link href={`/story/${story.story_id}`} passHref>
         <Image
-          src={story.storyImages[0]}
+          src={story.story_images ? story.story_images.additionalProp1 : ""}
           alt="cover picture for  story"
           height={"100"}
           width={"100"}
@@ -40,7 +40,7 @@ const StoryCard = ({ story }: { story: mockStoryT }) => {
         passHref
         className="font-crimson text-xl sm:text-3xl font-medium"
       >
-        {story.title}
+        {story.story_title}
       </Link>
       <time
         dateTime="2024-10-17"

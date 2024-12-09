@@ -9,7 +9,7 @@ import { topics } from "./consts";
 import { cn } from "@/lib/utils";
 import { TopicsDropdownPropsT } from "./types";
 
-const TopicsDropdown = ({ field }: TopicsDropdownPropsT) => {
+const TopicsDropdown = ({ field, disabled = false }: TopicsDropdownPropsT) => {
   return (
     <Select
       value={field.value}
@@ -17,6 +17,7 @@ const TopicsDropdown = ({ field }: TopicsDropdownPropsT) => {
       onOpenChange={field.onBlur}
     >
       <SelectTrigger
+        disabled={disabled}
         className={`flex  items-center ext-base sm:text-xl justify-between w-full max-w-sm p-6 pl-5 text-left ${
           field.value ? "text-black" : "text-grey"
         }   bg-white  sm:max-w-sm lg:max-w-lg rounded-2xl`}

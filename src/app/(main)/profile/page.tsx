@@ -10,7 +10,8 @@ const Profile = async () => {
 
   return (
     <ProfileView
-      userId={null}
+      loggedInUser={true}
+      userId={user.user_id}
       userName={user.user_name}
       userHandle={user.user_handle}
       userBio={user.user_bio}

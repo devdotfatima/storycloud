@@ -2,14 +2,14 @@ import React from "react";
 import SendGreyIcon from "../../../../../../assets/icons/send-grey.svg";
 // import SendPurpleIcon from "../../../../../../assets/icons/send.svg";
 
-import Comment from "./Comment";
+// import Comment from "./Comment";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { mockStories } from "@/shared/consts";
+// import { mockStories } from "@/shared/consts";
 
 const Comments = () => {
   const { storyId } = useParams();
-  const story = mockStories.find((story) => story.id.toString() === storyId);
+  // const story = mockStories.find((story) => story.story_id.toString() === storyId);
   return (
     <div
       className={` min-h-[460px] lg:min-h-[26vh] overflow-auto  h-full w-full bg-purple-100 rounded-2xl  py-5 pl-5 pr-1  ${
@@ -23,13 +23,13 @@ const Comments = () => {
       ) : (
         <div className="flex justify-between flex-col h-full ">
           <div className="h-[90%] max-h-[350px] lg:max-h-[600px] space-y-3 overflow-y-auto">
-            {story?.comments.map((comment, index) => (
+            {/* {story?.comments.map((comment, index) => (
               <Comment
                 myStory={story?.isMyStory}
                 key={comment.id || index}
                 comment={comment}
               />
-            ))}
+            ))} */}
           </div>
 
           <div className="flex items-center justify-between w-[96%] h-11 gap-2 px-2 bg-white rounded-xl">

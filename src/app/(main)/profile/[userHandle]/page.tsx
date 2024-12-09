@@ -1,28 +1,41 @@
-"use client";
-import { useParams } from "next/navigation";
 import React from "react";
 import ProfileView from "../components/ProfileView";
-import { profiles } from "@/shared/consts";
+import { getUser } from "./actions";
+import UserProfile from "../../../../assets/icons/user-purple.svg";
+import { validateUser } from "@/lib/dal";
 
-const Profile = () => {
-  const { userHandle } = useParams();
-  const profile = profiles.find((profile) => profile.userHandle === userHandle);
+const Profile = async ({
+  params,
+}: {
+  params: Promise<{ userHandle: string }>;
+}) => {
+  const userHandle = (await params).userHandle;
+  const { user: loggedInUser } = await validateUser();
 
-  // If no profile is found, you can display a fallback or 404 message
-  if (!profile) {
-    return <p>Profile not found!</p>;
+  const result = await getUser(userHandle);
+
+  // Check for an error response
+  if ("error" in result) {
+    console.error("Error fetching user:", result.error);
+    return <p>Error: {result.error}</p>;
   }
 
+  // Extract the user object
+  const { user } = result;
+  if (!user) {
+    return <p>User not found.</p>;
+  }
   return (
     <ProfileView
-      userId={profile.userId.toString()}
-      userName={profile.userName}
-      userHandle={profile.userHandle}
-      userBio={profile.userBio}
-      postCount={profile.postCount}
-      friendCount={profile.friendCount}
-      isFriend={profile.isFriend}
-      profileImage={profile.profileImage} // Assuming ProfileView supports image rendering
+      loggedInUser={loggedInUser?.user_id === user.user_id}
+      userId={user.user_id}
+      userName={user.user_name}
+      userHandle={user.user_handle}
+      userBio={user.user_bio}
+      postCount={user.num_stories_posted}
+      friendCount={user.num_friends}
+      isFriend={false}
+      profileImage={user.user_profile_image || UserProfile} // Assuming ProfileView supports image rendering
     />
   );
 };

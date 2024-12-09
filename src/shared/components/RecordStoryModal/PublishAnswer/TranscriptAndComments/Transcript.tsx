@@ -1,20 +1,20 @@
 "use client";
-import { mockStories } from "@/shared/consts";
+// import { mockStories } from "@/shared/consts";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TranscriptAndCommentsPropsT } from "../types";
 
 const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
   const { storyId } = useParams();
-  const story = mockStories.find((story) => story.id.toString() === storyId);
+  // const story = mockStories.find((story) => story.id.toString() === storyId);
   const [transcript, setTranscript] = useState("");
 
   // Set initial transcript from story if it exists
-  useEffect(() => {
-    if (story) {
-      setTranscript(story.transcript);
-    }
-  }, [story]);
+  // useEffect(() => {
+  //   if (story) {
+  //     setTranscript(story.transcript);
+  //   }
+  // }, [story]);
 
   return (
     <div
@@ -36,7 +36,7 @@ const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
           onChange={(e) => setTranscript(e.target.value)} // Update state on change
         />
       ) : (
-        <p className="pr-3 overflow-y-auto h-full ">{story?.transcript}</p>
+        <p className="pr-3 overflow-y-auto h-full ">{"story?.transcript"}</p>
       )}
     </div>
   );
