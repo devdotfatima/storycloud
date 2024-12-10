@@ -38,6 +38,26 @@ export const loginSchema = z.object({
   password: requiredString,
 });
 
+export const updatePasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
+        message:
+          "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+      }),
+    confirmPassword: z
+      .string()
+      .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
+        message:
+          "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+      }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"], // Error will be shown on confirmPassword field
+  });
+
 export const forgotPasswordSchema = z.object({
   email: requiredString.email("Invalid email address"),
 });
@@ -68,5 +88,7 @@ export type SignUpT = z.infer<typeof signUpSchema>;
 export type LoginT = z.infer<typeof loginSchema>;
 
 export type ForgotPasswordT = z.infer<typeof forgotPasswordSchema>;
+
+export type UpdatePasswordT = z.infer<typeof updatePasswordSchema>;
 
 export type EditProfileSchema = z.infer<typeof editProfileSchema>;

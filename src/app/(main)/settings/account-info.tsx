@@ -61,19 +61,7 @@ const AccountInfo = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password">Password</label>
-          <input
-            type="email"
-            name=""
-            id="password"
-            value={user.user_password || ""}
-            readOnly
-            placeholder="******"
-            className="py-1 sm:max-w-sm lg:max-w-lg w-full h-10 "
-          />
-        </div>
-        <Link href={"/"} className=" text-purple underline">
+        <Link href={"/update-password"} className=" text-purple underline">
           Change password
         </Link>
       </div>
