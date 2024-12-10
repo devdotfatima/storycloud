@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchBarPropsT } from "./types";
 
-const SearchBar = ({ placeholder }: SearchBarPropsT) => {
+const SearchBar = ({ placeholder, onSearch }: SearchBarPropsT) => {
   return (
     <form className="w-full mx-auto mb-2  h-11  md:mb-0 max-w-[800px]">
       <label htmlFor="default-search" className=" sr-only dark:text-white">
@@ -13,7 +13,7 @@ const SearchBar = ({ placeholder }: SearchBarPropsT) => {
           id="default-search"
           className="block w-full h-full sm:py-2 pr-9 outline-none ps-4 rounded-2xl"
           placeholder={`search for ${placeholder}`}
-          required
+          onChange={onSearch}
         />
         <div className="absolute inset-y-0 flex items-center px-3 pointer-events-none end-0">
           <svg
