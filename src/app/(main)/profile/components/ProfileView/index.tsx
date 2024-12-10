@@ -8,6 +8,7 @@ import LockGreyIcon from "../../../../../assets/icons/lock-grey.svg";
 import FriendRequestButton from "./FriendRequestButton";
 import UserStories from "./UserStories";
 import { Loader } from "lucide-react";
+import Link from "next/link";
 
 type ViewerType = "self" | "friend" | "stranger";
 const ProfileView = ({
@@ -64,9 +65,12 @@ const ProfileView = ({
         {viewerType === "self" ? (
           <Dialog>
             <DialogTrigger asChild>
-              <button className="px-6  max-w-96 py-2 mt-2 font-medium bg-white rounded-2xl text-purple w-full">
+              <Link
+                href="/profile/edit"
+                className="px-6  max-w-96 py-2 mt-2 font-medium bg-white rounded-2xl text-purple w-full"
+              >
                 edit profile
-              </button>
+              </Link>
             </DialogTrigger>
             {/* <UserProfileModal /> */}
           </Dialog>

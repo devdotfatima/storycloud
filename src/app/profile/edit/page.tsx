@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -17,10 +17,12 @@ import { editProfileSchema, EditProfileT } from "@/lib/validations";
 import EditWhiteIcon from "../../../assets/icons/edit-white.svg";
 import UserPurpleIcon from "../../../assets/icons/user-purple.svg";
 import { updateProfile } from "./actions";
+import { useSessionContext } from "@/app/providers/SessionProvider";
 
 const EditProfile = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string>();
+  const user = useSessionContext();
 
   const form = useForm<EditProfileT>({
     resolver: zodResolver(editProfileSchema),
@@ -32,7 +34,6 @@ const EditProfile = () => {
   });
   const onSubmit = async (data: EditProfileT) => {
     setError(undefined);
-    console.log(data);
 
     startTransition(async () => {
       const response = await updateProfile(data);
@@ -54,6 +55,14 @@ const EditProfile = () => {
     }
   };
 
+  useEffect(() => {
+    form.reset({
+      user_name: user.user_name,
+      // user_image: user.user_profile_image,
+      user_bio: user.user_bio,
+    });
+    setSelectedProfileImage(user.user_profile_image);
+  }, [user]);
   return (
     <>
       <div className="w-full mx-6 max-w-sm sm:max-w-lg p-6 sm:p-8 bg-white rounded-lg md:max-w-screen-sm">

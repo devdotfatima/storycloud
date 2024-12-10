@@ -17,7 +17,7 @@ export const updateProfile = async (
     formData.append("user_name", user_name);
     if (user_bio) formData.append("user_bio", user_bio);
     if (user_image) formData.append("user_image", user_image);
-    console.log({ user });
+    console.log({ formData });
 
     const response = await fetch(
       "https://storycloudapi.com/users/update-user",
