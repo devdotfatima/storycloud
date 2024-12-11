@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./MusicPlayer.css";
-import PlayIcon from "../../../../../assets/icons/play.svg";
-import PauseWhiteIcon from "../../../../../assets/icons/pause-white.svg";
-import NextIcon from "../../../../../assets/icons/next-black.svg";
-import RestartIcon from "../../../../../assets/icons/restart.svg";
+import PlayIcon from "@/assets/icons/play.svg";
+import PauseWhiteIcon from "@/assets/icons/pause-white.svg";
+import NextIcon from "@/assets/icons/next-black.svg";
+import RestartIcon from "@/assets/icons/restart.svg";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import DeleteAudioModal from "@/shared/components/AudioRecorder/DeleteAudioModal";
 import RestartAudioModal from "@/shared/components/AudioRecorder/RestartAudioModal";
 import { MusicPlayerPropsT } from "../types";
-import RestartGreyIcon from "../../../../../assets/icons/restart-grey.svg";
+import RestartGreyIcon from "@/assets/icons/restart-grey.svg";
 
 const MusicPlayer = ({
   soundURL,

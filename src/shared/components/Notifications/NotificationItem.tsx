@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { NotificationItemPropsT } from "./types";
-import ProfileImage from "../../../assets/images/profile_image.png";
+import ProfileImage from "@/assets/images/profile_image.png";
 
 const NotificationItem = ({ notification }: NotificationItemPropsT) => {
   return (

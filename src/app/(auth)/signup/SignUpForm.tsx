@@ -14,8 +14,8 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
-// import ValidationFailIcon from "../../../assets/icons/validation-fail.svg";
-// import ValidationPassIcon from "../../../assets/icons/validation-pass.svg";
+// import ValidationFailIcon from "@/assets/icons/validation-fail.svg";
+// import ValidationPassIcon from "@/assets/icons/validation-pass.svg";
 import { signUp } from "./actions";
 
 const SignUpForm = () => {

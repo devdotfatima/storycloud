@@ -8,8 +8,8 @@ import {
   Dialog,
 } from "@/shared/components/ui/dialog";
 import { RestartAudioModalT } from "./types";
-import RestartIcon from "../../../assets/icons/restart.svg";
-import RestartGreyIcon from "../../../assets/icons/restart-grey.svg";
+import RestartIcon from "@/assets/icons/restart.svg";
+import RestartGreyIcon from "@/assets/icons/restart-grey.svg";
 
 const RestartAudioModal = ({
   handleRestart,

@@ -1,9 +1,9 @@
-import MicrophoneIcon from "../../../assets/icons/microphone.svg";
-import SearchIcon from "../../../assets/icons/search.svg";
-import BookmarkIcon from "../../../assets/icons/bookmark.svg";
-import BellIcon from "../../../assets/icons/bell.svg";
-import UserIcon from "../../../assets/icons/user.svg";
-import SettingsIcon from "../../../assets/icons/settings.svg";
+import MicrophoneIcon from "@/assets/icons/microphone.svg";
+import SearchIcon from "@/assets/icons/search.svg";
+import BookmarkIcon from "@/assets/icons/bookmark.svg";
+import BellIcon from "@/assets/icons/bell.svg";
+import UserIcon from "@/assets/icons/user.svg";
+import SettingsIcon from "@/assets/icons/settings.svg";
 import { menuItem } from "./types";
 
 export const menuItems: menuItem[] = [

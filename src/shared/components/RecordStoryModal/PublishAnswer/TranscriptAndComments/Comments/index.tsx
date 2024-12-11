@@ -1,6 +1,5 @@
 import React from "react";
-import SendGreyIcon from "../../../../../../assets/icons/send-grey.svg";
-// import SendPurpleIcon from "../../../../../../assets/icons/send.svg";
+import SendGreyIcon from "@/assets/icons/send-grey.svg";
 
 // import Comment from "./Comment";
 import Image from "next/image";

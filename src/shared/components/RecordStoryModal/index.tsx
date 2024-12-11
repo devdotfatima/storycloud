@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { DialogContent, DialogClose } from "../ui/dialog";
 import { steps } from "./consts";
-import ClosePurpleIcon from "../../../assets/icons/close-purple.svg";
+import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
 import { RecordStoryModalPropsT } from "./types";
 
 const RecordStoryModal = ({ onClose }: RecordStoryModalPropsT) => {

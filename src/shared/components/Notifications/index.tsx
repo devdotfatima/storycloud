@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from "react";
 import { NotificationsPropsT } from "./types";
 import { notifications } from "./consts";
 import NotificationItem from "./NotificationItem";
-import BellIcon from "../../../assets/icons/bell.svg";
+import BellIcon from "@/assets/icons/bell.svg";
 
 const Notifications = ({ onClose }: NotificationsPropsT) => {
   const notificationsRef = useRef<HTMLDivElement | null>(null);

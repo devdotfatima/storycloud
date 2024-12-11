@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ProfileImage from "../../../assets/images/profile_image.png";
+import ProfileImage from "@/assets/images/profile_image.png";
 import { StoryCardPropsT } from "./types";
 
 const StoryCard = ({ story }: StoryCardPropsT) => {

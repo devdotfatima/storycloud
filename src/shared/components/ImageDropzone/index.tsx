@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import UploadImagePurpleIcon from "../../../assets/icons/image_file_input-purple.svg";
-import TrashPurpleIcon from "../../../assets/icons/trash-purple.svg";
+import UploadImagePurpleIcon from "@/assets/icons/image_file_input-purple.svg";
+import TrashPurpleIcon from "@/assets/icons/trash-purple.svg";
 import { ImageDropzonePropsT } from "./types";
 
 const index = ({

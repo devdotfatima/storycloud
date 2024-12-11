@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import UnlockIcon from "../../../assets/icons/unlock.svg";
+import UnlockIcon from "@/assets/icons/unlock.svg";
 import {
   Form,
   FormField,

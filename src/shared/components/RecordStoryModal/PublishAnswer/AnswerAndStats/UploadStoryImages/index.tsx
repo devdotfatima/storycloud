@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import ReturnPurpleIcon from "../../../../../../assets/icons/return-purple.svg";
+import ReturnPurpleIcon from "@/assets/icons/return-purple.svg";
 import { UploadStoryImagesPropsT } from "./types";
 import ImageDropzone from "../../../../ImageDropzone";
 

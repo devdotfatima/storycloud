@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
-import GoogleImage from "../../../assets/images/google.png";
+import GoogleImage from "@/assets/images/google.png";
 import { loginSchema, LoginT } from "@/lib/validations";
 import { login } from "./actions";
 

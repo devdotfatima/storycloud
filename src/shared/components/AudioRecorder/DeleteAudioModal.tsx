@@ -8,8 +8,8 @@ import {
   Dialog,
 } from "@/shared/components/ui/dialog";
 import { DeleteAudioModalT } from "./types";
-import TrashIcon from "../../../assets/icons/trash.svg";
-import TrashGreyIcon from "../../../assets/icons/trash-grey.svg";
+import TrashIcon from "@/assets/icons/trash.svg";
+import TrashGreyIcon from "@/assets/icons/trash-grey.svg";
 
 const DeleteAudioModal = ({
   handleDelete,

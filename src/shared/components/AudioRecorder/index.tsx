@@ -5,8 +5,8 @@ import React, { useMemo } from "react";
 import { AudioRecorderT } from "./types";
 import DeleteAudioModal from "./DeleteAudioModal";
 import RestartAudioModal from "./RestartAudioModal";
-import PauseIcon from "../../../assets/icons/pause.svg";
-import MicrophonePurpleIcon from "../../../assets/icons/microphone-purple.svg";
+import PauseIcon from "@/assets/icons/pause.svg";
+import MicrophonePurpleIcon from "@/assets/icons/microphone-purple.svg";
 import { convertTimeToSeconds, formatTime, TotalRecordingTime } from "./utils";
 
 const AudioRecorder = ({

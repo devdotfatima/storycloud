@@ -3,9 +3,6 @@ import { Mukta, Crimson_Pro } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
 import { Toaster } from "@/shared/components/ui/toaster";
-import SessionProvider from "./providers/SessionProvider";
-import { validateUser } from "@/lib/dal";
-import { redirect } from "next/navigation";
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
@@ -29,16 +26,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user } = await validateUser();
-  if (!user) redirect("/login");
   return (
     <html lang="en">
       <body
         className={`${crimsonPro.variable} ${mukta.variable} bg-purple-100 font-mukta font-normal text-base sm:text-xl antialiased`}
       >
-        <SessionProvider value={user}>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-        </SessionProvider>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+
         <Toaster />
       </body>
     </html>

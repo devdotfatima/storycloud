@@ -9,9 +9,9 @@ import {
   DialogTrigger,
   Dialog,
 } from "@/shared/components/ui/dialog";
-import ClosePurpleIcon from "../../../../../assets/icons/close-purple.svg";
-import ReturnPurpleIcon from "../../../../../assets/icons/return-purple.svg";
-import CopyPurpleIcon from "../../../../../assets/icons/copy-purple.svg";
+import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
+import ReturnPurpleIcon from "@/assets/icons/return-purple.svg";
+import CopyPurpleIcon from "@/assets/icons/copy-purple.svg";
 import { OptionsModalPropsT } from "../types";
 
 const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
