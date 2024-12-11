@@ -28,6 +28,7 @@
     "react": "^19.0.0-rc-b01722d5-20241114",
     "react-dom": "^19.0.0-rc-b01722d5-20241114",
     "react-hook-form": "^7.53.2",
+    "react-intersection-observer": "^9.13.1",
     "react-voice-visualizer": "^2.0.4",
     "swiper": "^11.1.14",
     "tailwind-merge": "^2.5.2",
