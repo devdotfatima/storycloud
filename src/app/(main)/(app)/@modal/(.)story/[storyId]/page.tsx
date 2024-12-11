@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import ClosePurpleIcon from "../../@/assets/icons/close-purple.svg";
+import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
 import AnswerAndStats from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats";
 import TranscriptAndComments from "@/shared/components/RecordStoryModal/PublishAnswer/TranscriptAndComments";
 import UploadStoryImages from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats/UploadStoryImages";

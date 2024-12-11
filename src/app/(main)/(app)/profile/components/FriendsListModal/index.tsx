@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { Loader } from "lucide-react";
@@ -7,8 +8,10 @@ import {
   DialogContent,
   DialogClose,
   DialogTitle,
+  DialogDescription,
 } from "@/shared/components/ui/dialog";
 import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
+import UserPurpleIcon from "@/assets/icons/user-purple.svg";
 import { useInView } from "react-intersection-observer";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { useFetchFriends } from "./mutations";
@@ -17,6 +20,8 @@ import { FriendsListT, FriendT } from "./types";
 const FriendsListModal: React.FC = () => {
   const { ref, inView } = useInView();
   const user = useSessionContext();
+  const pathname = usePathname();
+  const userId = pathname?.split("/").pop();
 
   const {
     data,
@@ -25,7 +30,11 @@ const FriendsListModal: React.FC = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useFetchFriends(user);
+  } = useFetchFriends(
+    user,
+    true,
+    user.user_id === userId || userId === undefined ? "" : userId
+  );
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -41,6 +50,8 @@ const FriendsListModal: React.FC = () => {
 
   return (
     <DialogContent className="bg-transparent w-full h-[88svh] lg:h-[90svh] lg:overflow-hidden sm:max-w-[640px] lg:max-h-[999px] pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl">
+      <DialogDescription hidden>Description goes here</DialogDescription>
+
       <DialogClose className="absolute z-50 p-0 rounded-full cursor-pointer top-2 right-4 outline-none w-fit lg:top-5 lg:-right-0 bg-white">
         <Image src={ClosePurpleIcon} alt="Close" className="w-6 h-6" />
       </DialogClose>
@@ -71,7 +82,11 @@ const FriendsListModal: React.FC = () => {
                 className="flex items-center gap-3"
               >
                 <Image
-                  src={profile.friend_profile_image}
+                  src={
+                    profile.friend_profile_image
+                      ? profile.friend_profile_image
+                      : UserPurpleIcon
+                  }
                   alt="User avatar"
                   height={88}
                   width={88}

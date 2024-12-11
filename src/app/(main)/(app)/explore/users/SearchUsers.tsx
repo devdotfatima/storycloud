@@ -2,7 +2,7 @@ import { Loader } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import UserProfile from "../@/assets/icons/user-purple.svg";
+import UserProfile from "@/assets/icons/user-purple.svg";
 import { UserT } from "@/shared/types";
 import { SearchUsersPropsT, searchUsersT } from "./types";
 

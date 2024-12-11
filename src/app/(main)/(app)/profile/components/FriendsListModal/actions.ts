@@ -4,7 +4,8 @@ import { FriendsListT } from "./types";
 export const fetchFriends = async (
   user: UserT,
   pageParam: { user_id: string } | null,
-  onlyFriends: boolean = true
+  onlyFriends: boolean = true,
+  userId = ""
 ): Promise<FriendsListT> => {
   if (!user) {
     throw new Error("Unauthorized");
@@ -26,7 +27,7 @@ export const fetchFriends = async (
   const response = await fetch(
     `https://storycloudapi.com/relationships/list-user-relations?${
       onlyFriends ? "&only_accepted=true" : ""
-    }${exclusiveStartKey}&page_size=10`,
+    }${userId ? `&user_id=${userId}` : ""}${exclusiveStartKey}&page_size=10`,
     {
       method: "GET",
       headers: {

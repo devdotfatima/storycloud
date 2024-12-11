@@ -5,7 +5,7 @@ import {
   DialogClose,
 } from "@/shared/components/ui/dialog";
 import Image from "next/image";
-import CloseIcon from "../@/assets/icons/close.svg";
+import CloseIcon from "@/assets/icons/close.svg";
 import { CancelEditChangesModalPropsT } from "./types";
 
 const CancelEditChangesModal = ({ onClose }: CancelEditChangesModalPropsT) => {
