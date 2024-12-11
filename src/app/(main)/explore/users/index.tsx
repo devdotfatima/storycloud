@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import debounce from "lodash.debounce";
 import SearchBar from "@/shared/components/SearchBar";
 import { useSessionContext } from "@/app/providers/SessionProvider";
@@ -20,18 +20,15 @@ const Users = () => {
     refetch,
   } = useFetchUsers(user, searchTerm);
 
-  const debouncedSearch = useCallback(
-    debounce((query: string) => {
-      setSearchTerm(query);
-      refetch(); // Refetch data when the search term changes
-    }, 300), // Adjust debounce delay as needed
-    []
-  );
+  const debouncedSearch = debounce((query: string) => {
+    setSearchTerm(query);
+    refetch(); // Refetch data when the search term changes
+  }, 300);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     debouncedSearch(value);
   };
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-5 sm:gap-7 md:gap-10 xl:gap-16 md:px-16">

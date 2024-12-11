@@ -62,7 +62,7 @@ const EditProfile = () => {
       user_bio: user.user_bio,
     });
     setSelectedProfileImage(user.user_profile_image);
-  }, [user]);
+  }, [user, form]);
   return (
     <>
       <div className="w-full mx-6 max-w-sm sm:max-w-lg p-6 sm:p-8 bg-white rounded-lg md:max-w-screen-sm">

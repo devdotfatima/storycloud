@@ -15,6 +15,8 @@ const SearchUsers = ({
   hasNextPage,
   isLoading,
 }: SearchUsersPropsT) => {
+  console.log(data);
+
   if (status === "pending") {
     return <Loader fill="#6A6FD5" className="m-auto animate-spin" />;
   }
