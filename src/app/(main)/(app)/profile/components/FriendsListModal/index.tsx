@@ -33,7 +33,9 @@ const FriendsListModal: React.FC = () => {
   } = useFetchFriends(
     user,
     true,
-    user.user_id === userId || userId === undefined ? "" : userId
+    user.user_id === userId || userId === "profile" || userId === undefined
+      ? ""
+      : userId
   );
 
   useEffect(() => {
