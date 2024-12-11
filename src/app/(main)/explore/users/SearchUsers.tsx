@@ -6,16 +6,11 @@ import UserProfile from "../../../../assets/icons/user-purple.svg";
 import { UserT } from "@/shared/types";
 import { SearchUsersPropsT, searchUsersT } from "./types";
 
-const SearchUsers = ({
-  status,
-  error,
-  data,
-  isFetchingNextPage,
-  fetchNextPage,
-  hasNextPage,
-  isLoading,
-}: SearchUsersPropsT) => {
-  console.log(data);
+const SearchUsers = ({ status, error, data, isLoading }: SearchUsersPropsT) => {
+  const users: UserT[] =
+    data?.pages.flatMap((page: searchUsersT) =>
+      "items" in page ? page.items : []
+    ) || [];
 
   if (status === "pending") {
     return <Loader fill="#6A6FD5" className="m-auto animate-spin" />;
@@ -24,12 +19,6 @@ const SearchUsers = ({
   if (error) {
     return <p className="text-red-500">{(error as Error).message}</p>;
   }
-
-  const users: UserT[] =
-    data?.pages.flatMap((page: searchUsersT) =>
-      "items" in page ? page.items : []
-    ) || [];
-
   return (
     <div
       className=" xl:gap-[180px] xl:gap-y-[60px] mx-auto w-fit
@@ -44,10 +33,21 @@ const SearchUsers = ({
           className="flex flex-col gap-[10px] items-center"
         >
           <div className="relative lg:h-[280px] h-[160px] w-[160px] sm:w-[200px] sm:h-[200px] lg:w-[280px] aspect-[1/1]">
+            {/* <Image
+              src={profile.user_profile_image || UserProfile}
+              alt="Profile"
+              fill
+              className={`rounded-full ${
+                profile.user_profile_image
+                  ? "object-cover"
+                  : "bg-white object-fit"
+              }`}
+            /> */}
             <Image
               src={profile.user_profile_image || UserProfile}
               alt="Profile"
               fill
+              sizes="(max-width: 768px) 160px, (max-width: 1200px) 200px, 280px"
               className={`rounded-full ${
                 profile.user_profile_image
                   ? "object-cover"
@@ -63,16 +63,6 @@ const SearchUsers = ({
           </p>
         </Link>
       ))}
-
-      {hasNextPage && (
-        <button
-          onClick={() => fetchNextPage()}
-          disabled={isFetchingNextPage}
-          className="mt-5 text-white bg-blue-500 px-4 py-2 rounded"
-        >
-          {isFetchingNextPage ? "Loading More..." : "Load More"}
-        </button>
-      )}
     </div>
   );
 };

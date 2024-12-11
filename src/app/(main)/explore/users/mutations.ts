@@ -11,5 +11,9 @@ export const useFetchUsers = (user: UserT, searchTerm: string) => {
     getNextPageParam: (lastPage: {
       last_evaluated_key?: { user_id: string };
     }) => lastPage.last_evaluated_key || null,
+    // getPreviousPageParam: (firstPage: {
+    //   last_evaluated_key?: { user_id: string };
+    // }) => firstPage.last_evaluated_key || null,
+    // maxPages: 2,
   });
 };

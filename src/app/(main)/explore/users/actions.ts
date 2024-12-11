@@ -10,12 +10,23 @@ export const fetchUsers = async (
     throw new Error("Unauthorized");
   }
 
+  const encodePagingKey = (key: { user_id: string }) => {
+    try {
+      return encodeURIComponent(JSON.stringify(key));
+    } catch (e: unknown) {
+      console.log(e);
+
+      throw new Error("Failed to encode paging key");
+    }
+  };
+  const exclusiveStartKey = pageParam
+    ? `&exclusive_start_key=${encodePagingKey(pageParam)}`
+    : "";
+
   const response = await fetch(
     `https://storycloudapi.com/users/search-users?${
       searchTerm ? `&search_key=${searchTerm}` : ""
-    }${
-      pageParam ? `&exclusive_start_key=${pageParam.user_id}` : ""
-    }&page_size=10`,
+    }${exclusiveStartKey}&page_size=10`,
     {
       method: "GET",
       headers: {
