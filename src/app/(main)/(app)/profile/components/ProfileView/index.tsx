@@ -76,7 +76,7 @@ const ProfileView = ({
           </Dialog>
         ) : (
           <div className="flex gap-10 w-full items-center justify-center">
-            <FriendRequestButton isFriend={isFriend} />
+            <FriendRequestButton />
 
             <StoryRequestModal isFriend={isFriend} />
           </div>
