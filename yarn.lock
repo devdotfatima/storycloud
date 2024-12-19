@@ -2217,6 +2217,12 @@ keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
+"lamejs@github:zhuker/lamejs":
+  version "1.2.1"
+  resolved "https://codeload.github.com/zhuker/lamejs/tar.gz/582bbba6a12f981b984d8fb9e1874499fed85675"
+  dependencies:
+    use-strict "1.0.1"
+
 language-subtag-registry@^0.3.20:
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.23.tgz#23529e04d9e3b74679d70142df3fd2eb6ec572e7"
@@ -3251,6 +3257,11 @@ use-sidecar@^1.1.2:
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
+
+use-strict@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/use-strict/-/use-strict-1.0.1.tgz#0bb80d94f49a4a05192b84a8c7d34e95f1a7e3a0"
+  integrity sha512-IeiWvvEXfW5ltKVMkxq6FvNf2LojMKvB2OCeja6+ct24S1XOmQw2dGr2JyndwACWAGJva9B7yPHwAmeA9QCqAQ==
 
 util-deprecate@^1.0.2:
   version "1.0.2"
