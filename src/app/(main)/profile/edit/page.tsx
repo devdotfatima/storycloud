@@ -169,7 +169,7 @@ const EditProfile = () => {
             <div className="flex items-center justify-between mb-4">
               <button
                 disabled={isPending}
-                className={`w-full px-4 py-2 font-medium text-center focus:outline-none disabled:opacity-50  disabled:cursor-not-allowed disabled:bg-grey-100 enabled:bg-purple-100 enabled:text-purple"
+                className={`w-full px-4 py-2 font-medium text-center focus:outline-none disabled:opacity-50  disabled:cursor-progress disabled:bg-grey-100 enabled:bg-purple-100 enabled:text-purple"
                 }`}
                 type="submit"
               >

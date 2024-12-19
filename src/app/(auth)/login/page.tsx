@@ -4,8 +4,6 @@ import Link from "next/link";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
-  console.log("hsjc");
-
   return (
     <>
       <div className="w-full max-w-sm p-8 bg-white rounded-2xl md:max-w-md shadow-md">

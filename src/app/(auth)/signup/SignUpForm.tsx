@@ -194,7 +194,7 @@ const SignUpForm = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full px-4 py-2 font-medium text-center bg-purple text-purple bg-opacity-15 focus:outline-none disabled:cursor-not-allowed enabled:cursor-default"
+            className="w-full px-4 py-2 font-medium text-center bg-purple text-purple bg-opacity-15 focus:outline-none disabled:cursor-progress enabled:cursor-default"
           >
             Sign Up
           </button>

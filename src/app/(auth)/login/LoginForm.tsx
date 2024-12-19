@@ -105,7 +105,7 @@ const LoginForm = () => {
           <button
             disabled={isPending}
             type="submit"
-            className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none disabled:cursor-not-allowed enabled:cursor-default"
+            className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none disabled:cursor-progress enabled:cursor-default"
           >
             Log In
           </button>

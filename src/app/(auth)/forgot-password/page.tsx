@@ -93,7 +93,7 @@ const ForgotPassword = () => {
                   <button
                     disabled={isPending}
                     type="submit"
-                    className="w-full px-4 py-2 text-center  outline-none border-0 ring-0 text-purple bg-purple-100 focus:outline-none disabled:cursor-not-allowed enabled:cursor-default"
+                    className="w-full px-4 py-2 text-center  outline-none border-0 ring-0 text-purple bg-purple-100 focus:outline-none disabled:cursor-progress enabled:cursor-default"
                   >
                     send link
                   </button>

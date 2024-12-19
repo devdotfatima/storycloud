@@ -138,7 +138,7 @@ const HelpAndSupport = () => {
           <button
             disabled={isPending || isSubmitted}
             type="submit"
-            className="p-2 mt-6 text-white w-full sm:w-60 bg-purple-400 disabled:cursor-not-allowed "
+            className="p-2 mt-6 text-white w-full sm:w-60 bg-purple-400 disabled:cursor-progress "
           >
             send
           </button>
