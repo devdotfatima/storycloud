@@ -1,3 +1,4 @@
+import { UserT } from "@/shared/types";
 import { StaticImageData } from "next/image";
 
 export type ProfileViewPropsT = {
@@ -9,5 +10,10 @@ export type ProfileViewPropsT = {
   friendCount: number;
   isFriend?: boolean;
   profileImage: StaticImageData | string;
-  loggedInUser: boolean;
+  loggedInUser: UserT;
+};
+
+export type UserStoriesPropsT = {
+  userId: string;
+  loggedInUser: UserT;
 };

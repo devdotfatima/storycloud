@@ -1,16 +1,21 @@
-import React from "react";
+"use client";
+import { useRouter } from "next/navigation";
 import ProfileView from "./components/ProfileView";
 import ProfileImage from "@/assets/icons/user-purple.svg";
-import { validateUser } from "@/lib/dal";
-import { redirect } from "next/navigation";
+import { useSessionContext } from "@/app/providers/SessionProvider";
 
-const Profile = async () => {
-  const { user } = await validateUser();
-  if (!user) redirect("/login");
+const Profile = () => {
+  const user = useSessionContext();
+  const router = useRouter();
+
+  if (!user) {
+    router.push("/login");
+    return null; // Prevent further rendering
+  }
 
   return (
     <ProfileView
-      loggedInUser={true}
+      loggedInUser={user}
       userId={user.user_id}
       userName={user.user_name}
       userHandle={user.user_handle}

@@ -1,33 +1,64 @@
+"use client";
+import { Loader } from "lucide-react";
 import React from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import ProfileView from "../components/ProfileView";
-import { getUser } from "./actions";
 import UserProfile from "@/assets/icons/user-purple.svg";
-import { validateUser } from "@/lib/dal";
+import { UserT } from "@/shared/types";
+import { useSessionContext } from "@/app/providers/SessionProvider";
+import { fetchUser } from "./actions";
 
-const Profile = async ({
-  params,
-}: {
-  params: Promise<{ userHandle: string }>;
-}) => {
-  const userHandle = (await params).userHandle;
-  const { user: loggedInUser } = await validateUser();
+const Profile = () => {
+  const router = useRouter();
+  const { userHandle } = useParams();
+  const loggedInUser = useSessionContext();
+  const handle = typeof userHandle === "string" ? userHandle : "";
 
-  const result = await getUser(userHandle);
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useQuery<UserT | { error: string }>({
+    queryKey: ["user", handle],
+    queryFn: () => fetchUser(handle, loggedInUser),
+    enabled: !!userHandle && !!loggedInUser?.jwt_token,
+  });
 
-  // Check for an error response
-  if ("error" in result) {
-    console.error("Error fetching user:", result.error);
-    return <p>Error: {result.error}</p>;
+  if (!userHandle) {
+    return <p>Error: User handle not found in the URL.</p>;
   }
 
-  // Extract the user object
-  const { user } = result;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <Loader className="animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-red-500">Error: {error.message}</p>;
+  }
+
+  if (userData && "error" in userData) {
+    return <p className="text-red-500">Error: {userData.error}</p>;
+  }
+
+  const user = userData as UserT;
+
   if (!user) {
     return <p>User not found.</p>;
   }
+
+  if (!loggedInUser) {
+    router.push("/login");
+    return null; // Prevent rendering during the redirect
+  }
+
   return (
     <ProfileView
-      loggedInUser={loggedInUser?.user_id === user.user_id}
+      loggedInUser={loggedInUser}
       userId={user.user_id}
       userName={user.user_name}
       userHandle={user.user_handle}
@@ -35,7 +66,7 @@ const Profile = async ({
       postCount={user.num_stories_posted}
       friendCount={user.num_friends}
       isFriend={false}
-      profileImage={user.user_profile_image || UserProfile} // Assuming ProfileView supports image rendering
+      profileImage={user.user_profile_image || UserProfile}
     />
   );
 };

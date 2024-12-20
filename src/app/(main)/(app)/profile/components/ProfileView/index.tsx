@@ -22,11 +22,8 @@ const ProfileView = ({
   profileImage,
   loggedInUser,
 }: ProfileViewPropsT) => {
-  const viewerType: ViewerType = loggedInUser
-    ? "self"
-    : isFriend
-    ? "friend"
-    : "stranger";
+  const viewerType: ViewerType =
+    loggedInUser.user_id === userId ? "self" : isFriend ? "friend" : "stranger";
 
   return (
     <div className="flex flex-col items-center  px-5 py-10 font-normal md:px-16 gap-5 md:gap-11 bg-lightBlue font-mukta overflow-y-auto h-full">
@@ -96,7 +93,7 @@ const ProfileView = ({
             <Loader fill="#6A6FD5" className="mx-auto my-auto animate-spin" />
           }
         >
-          <UserStories userId={userId} />
+          <UserStories userId={userId} loggedInUser={loggedInUser} />
         </Suspense>
       )}
     </div>
