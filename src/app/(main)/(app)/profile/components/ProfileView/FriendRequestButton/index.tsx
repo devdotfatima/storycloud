@@ -8,31 +8,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import { getFriendStatus, sendFriendRequest } from "./actions";
+import {
+  acceptFriendRequest,
+  getFriendStatus,
+  sendFriendRequest,
+  unfriend,
+} from "./actions";
 import { usePathname } from "next/navigation";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 
-const acceptFriendRequest = async (friendId: string) => {
-  const response = await fetch(
-    `https://storycloudapi.com/relationships/accept-friend-request?friend_id=${friendId}`,
-    {
-      method: "PUT",
-    }
-  );
-  return response.ok
-    ? await response.json()
-    : { error: "Failed to accept request" };
-};
-
-const unfriend = async (friendId: string) => {
-  const response = await fetch(
-    `https://storycloudapi.com/relationships/unfriend?friend_id=${friendId}`,
-    {
-      method: "DELETE",
-    }
-  );
-  return response.ok ? await response.json() : { error: "Failed to unfriend" };
-};
 const FriendRequestButton = () => {
   const pathname = usePathname();
   const userId = pathname?.split("/").pop();
@@ -60,7 +44,7 @@ const FriendRequestButton = () => {
   const handleAcceptRequest = () => {
     startTransition(async () => {
       try {
-        await acceptFriendRequest(userId || "");
+        await acceptFriendRequest(userId || "", user);
         setFriendStatus("friends");
       } catch (err) {
         console.log(err);
@@ -73,7 +57,7 @@ const FriendRequestButton = () => {
   const handleUnfriend = () => {
     startTransition(async () => {
       try {
-        await unfriend(userId || "");
+        await unfriend(userId || "", user);
         setFriendStatus(null);
       } catch (err) {
         console.log(err);
@@ -88,9 +72,8 @@ const FriendRequestButton = () => {
       startTransition(async () => {
         try {
           const status = await getFriendStatus(userId, user);
-          console.log(status);
 
-          setFriendStatus(status || null);
+          setFriendStatus(status.items[0].friend_status || null);
         } catch (err) {
           console.log(err);
 
@@ -100,7 +83,7 @@ const FriendRequestButton = () => {
     }
   }, [userId, user]);
   // if (isFriend) {
-  if (friendStatus === "friends") {
+  if (friendStatus === "accepted") {
     return (
       <Select>
         <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[14%] sm:pl-[68px] text-center text-grey bg-white outline-none rounded-2xl">
@@ -108,6 +91,7 @@ const FriendRequestButton = () => {
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
           <button
+            onClick={handleUnfriend}
             className={cn(
               "relative flex w-full h-12 rounded-2xl bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
@@ -141,21 +125,45 @@ const FriendRequestButton = () => {
     );
   }
 
-  if (friendStatus === "received") {
+  if (friendStatus === "awaiting_your_response") {
     return (
-      <button
-        onClick={handleAcceptRequest}
-        className="py-2 mt-2 max-w-60 w-full bg-green-500 rounded-2xl text-white"
-      >
-        accept request
-      </button>
+      <Select>
+        <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[7vw] sm:pl-[38px] text-center text-grey bg-white outline-none rounded-2xl">
+          <SelectValue placeholder="received request" />
+        </SelectTrigger>
+        <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
+          <button
+            onClick={handleAcceptRequest}
+            className={cn(
+              "relative flex w-full h-12 rounded-2xl bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
+            )}
+          >
+            accept request
+          </button>
+          <button
+            // onClick={handleCancelRequest}
+            onClick={handleUnfriend}
+            className={cn(
+              "relative flex w-full h-12 rounded-2xl mt-2 bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
+            )}
+          >
+            cancel request
+          </button>
+        </SelectContent>
+      </Select>
+      // <button
+      //   onClick={handleAcceptRequest}
+      //   className="py-2 mt-2 max-w-60 w-full bg-green-500 rounded-2xl text-white"
+      // >
+      //   accept request
+      // </button>
     );
   }
   return (
     <button
       onClick={handleSendRequest}
       disabled={isPending}
-      className="py-2 mt-2 max-w-60 w-full bg-white rounded-2xl text-purple disabled:cursor-not-allowed"
+      className="py-2 mt-2 max-w-60 w-full bg-white rounded-2xl text-purple disabled:cursor-progress"
     >
       add friend
     </button>

@@ -49,13 +49,11 @@ const RestartAudioModal = ({
             restart?
           </DialogTitle>
 
-          <DialogClose className="w-full">
-            <button
-              onClick={handleRestart}
-              className="p-2 text-center transition duration-150 ease-in text-red bg-red-100 w-full "
-            >
-              yes
-            </button>
+          <DialogClose
+            onClick={handleRestart}
+            className="p-2 text-center transition duration-150 ease-in text-red bg-red-100 w-full "
+          >
+            yes
           </DialogClose>
 
           <DialogClose

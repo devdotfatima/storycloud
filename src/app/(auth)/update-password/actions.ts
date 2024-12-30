@@ -11,8 +11,10 @@ export const updatePassword = async (
     const { user } = await validateUser();
 
     const payload = {
-      email: password,
+      token: user?.jwt_token,
+      new_password: password,
     };
+    console.log("payload", payload);
     let response;
 
     if (user) {

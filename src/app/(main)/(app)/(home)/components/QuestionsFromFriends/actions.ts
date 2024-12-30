@@ -1,11 +1,10 @@
-import { validateUser } from "@/lib/dal";
 import { StoryRequestsResponseT } from "../../types";
+import { UserT } from "@/shared/types";
 
-export const getStoryRequestsFromFriends = async (): Promise<
-  StoryRequestsResponseT | { error: string }
-> => {
+export const getStoryRequestsFromFriends = async (
+  user: UserT | null
+): Promise<StoryRequestsResponseT | { error: string }> => {
   try {
-    const { user } = await validateUser();
     if (!user) {
       return { error: "Unauthorized" };
     }
@@ -26,7 +25,6 @@ export const getStoryRequestsFromFriends = async (): Promise<
     }
 
     const data: StoryRequestsResponseT = await response.json();
-    console.log("Story requests data:", data);
 
     return data;
   } catch (error) {

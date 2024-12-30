@@ -1,15 +1,20 @@
 "use client";
 import { useVoiceVisualizer } from "react-voice-visualizer";
 import Image from "next/image";
-import React, { useState } from "react";
-import { DialogContent, DialogClose } from "../ui/dialog";
+import { Loader } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { DialogContent, DialogClose, DialogTitle } from "../ui/dialog";
 import { steps } from "./consts";
 import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
 import { RecordStoryModalPropsT } from "./types";
 
-const RecordStoryModal = ({ onClose }: RecordStoryModalPropsT) => {
+const RecordStoryModal = ({
+  onClose,
+  isFreeStyle = false,
+  questionOfTheWeek = "",
+  freestyleStory = null,
+}: RecordStoryModalPropsT) => {
   const [currentStep, setCurrentStep] = useState(0);
-
   const recorderControls = useVoiceVisualizer();
 
   const goToNextStep = () => {
@@ -20,6 +25,11 @@ const RecordStoryModal = ({ onClose }: RecordStoryModalPropsT) => {
   };
 
   const CurrentStepComponent = steps[currentStep].component;
+  useEffect(() => {
+    if (freestyleStory) {
+      setCurrentStep(1);
+    }
+  }, [freestyleStory]);
 
   return (
     <DialogContent
@@ -28,25 +38,39 @@ const RecordStoryModal = ({ onClose }: RecordStoryModalPropsT) => {
         currentStep === 0 ? "lg:max-w-[850px]" : "lg:max-w-[1200px]"
       } sm:h-[90svh] overflow-hidden lg:pr-12 pt-[15px]`}
     >
-      <DialogClose
-        onClick={onClose}
-        className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit"
-      >
-        <Image
-          src={ClosePurpleIcon}
-          alt="Close button"
-          className="w-7 h-7 bg-white rounded-full p-0"
-          width={30}
-          height={30}
-        />
-      </DialogClose>
+      {false ? (
+        <>
+          <DialogTitle hidden>Loading</DialogTitle>
 
-      <CurrentStepComponent
-        goToPreviousStep={goToPreviousStep}
-        recorderControls={recorderControls}
-        goToNextStep={goToNextStep}
-        onClose={onClose}
-      />
+          <Loader fill="#6A6FD5" className="mx-auto my-auto animate-spin" />
+        </>
+      ) : (
+        <>
+          <DialogTitle hidden>Record Story</DialogTitle>
+          <DialogClose
+            onClick={onClose}
+            className="absolute z-50 p-0 rounded-full outline-none cursor-pointer top-1 right-3 lg:top-5 lg:right-0  w-fit"
+          >
+            <Image
+              src={ClosePurpleIcon}
+              alt="Close button"
+              className="w-7 h-7 bg-white rounded-full p-0"
+              width={30}
+              height={30}
+            />
+          </DialogClose>
+
+          <CurrentStepComponent
+            goToPreviousStep={goToPreviousStep}
+            recorderControls={recorderControls}
+            goToNextStep={goToNextStep}
+            onClose={onClose}
+            story={freestyleStory}
+            isFreeStyle={isFreeStyle}
+            questionOfTheWeek={questionOfTheWeek}
+          />
+        </>
+      )}
     </DialogContent>
   );
 };

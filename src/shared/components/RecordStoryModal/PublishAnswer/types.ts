@@ -1,4 +1,4 @@
-import { Controls } from "@/shared/types";
+import { Controls, StoryAnswerT } from "@/shared/types";
 
 export type AnswerAndStatsPropsT = {
   recorderControls?: Controls;
@@ -8,26 +8,22 @@ export type AnswerAndStatsPropsT = {
   isEditing: boolean;
   toggleEditMode: () => void;
   onClose?: () => void;
+  story?: StoryAnswerT | null;
+  isFreeStyle?: boolean;
 };
 
 export type PublishAnswerPropsT = {
   recorderControls: Controls;
   goToPreviousStep: () => void;
   onClose: () => void;
+  story: StoryAnswerT | null;
+  isFreeStyle?: boolean;
 };
 
 export type TranscriptAndCommentsPropsT = { isEditing: boolean };
 
 export type OptionsModalPropsT = {
   toggleEditMode: () => void;
-};
-
-export type MusicPlayerPropsT = {
-  soundURL: string | undefined;
-  clearCanvas: (() => void) | undefined;
-  stopRecording: (() => void) | undefined;
-  isEditing: boolean;
-  goToPreviousStep: (() => void) | undefined;
 };
 
 export type PublishModalPropsT = {

@@ -32,6 +32,7 @@ const ForgotPassword = () => {
   async function onSubmit(data: UpdatePasswordT) {
     setError(undefined);
     startTransition(async () => {
+      console.log("data", data);
       const response = await updatePassword(data);
 
       if (response?.error) {

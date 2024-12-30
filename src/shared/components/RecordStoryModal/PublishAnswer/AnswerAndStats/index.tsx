@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import { AnswerAndStatsPropsT } from "../types";
 import ProfileImage from "@/assets/images/profile_image.png";
 import HeartIcon from "@/assets/icons/heart.svg";
@@ -10,10 +10,9 @@ import BookmarkIcon from "@/assets/icons/bookmark.svg";
 import UploadIcon from "@/assets/icons/image_file_input.svg";
 import ArrowIcon from "@/assets/icons/arrow-red.svg";
 import OptionsModal from "./OptionsModal";
-import { mockStories } from "@/shared/consts";
-// import ImageSlider from "@/shared/components/ImageSlider";
 import MusicPlayer from "./MusicPlayer";
 import PublishModal from "./PublishModal";
+import { formatDate } from "@/lib/formatDate";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -22,18 +21,18 @@ const AnswerAndStats = ({
   isEditing,
   toggleEditMode,
   onClose,
+  story = null,
+  isFreeStyle = false,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
-  const { storyId } = useParams();
-  const story =
-    mockStories.find((story) => story.story_id.toString() === storyId) ||
-    mockStories[0];
-  const [title, setTitle] = useState(story?.story_title || "");
+  // const { storyId } = useParams();
+
+  const [title, setTitle] = useState(story?.story_title || "freestyle");
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-
+  console.log("story", story);
   return (
     <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 md:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
       {/* Header Section */}
@@ -91,12 +90,12 @@ const AnswerAndStats = ({
           isEditing
             ? "bg-white border-purple border-2 sm:border-0 rounded-2xl"
             : "md:bg-purple-100"
-        } w-full p-4 rounded-xl`}
+        } w-full  rounded-xl`}
       >
-        {storyId ? (
-          isEditing ? (
+        {story ? (
+          isEditing || !story.is_published ? (
             <textarea
-              className="border-0 outline-none overflow-y-auto h-16 w-full resize-none text-center rounded"
+              className="border-0 outline-none overflow-y-auto h-16 pt-4 w-full resize-none text-center rounded"
               value={title}
               onChange={handleTitleChange} // Update state on change
             />
@@ -104,13 +103,20 @@ const AnswerAndStats = ({
             <p className="h-16"> {story?.story_title} </p>
           )
         ) : (
-          <p className=""> What is your favorite travel destination?</p>
+          <p className="">
+            {" "}
+            {isFreeStyle
+              ? "freestyle"
+              : "What is your favorite travel destination?"}
+          </p>
         )}
       </div>
 
       {/* Stats (Likes, Comments, etc.) */}
       <div className="flex justify-between items-center space-x-4">
-        <p className=" text-sm sm:text-xl text-purple">sep 17 2024</p>
+        <p className=" text-sm sm:text-xl text-purple">
+          {formatDate(story?.creation_time)}
+        </p>
         <div className="flex items-center gap-2 sm:gap-5">
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
@@ -120,7 +126,9 @@ const AnswerAndStats = ({
               width={24}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{10}</span>
+            <span className="text-sm sm:text-xl">
+              {!story?.is_published ? 0 : 10}
+            </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
@@ -130,7 +138,10 @@ const AnswerAndStats = ({
               width={22}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{20}</span>
+            <span className="text-sm sm:text-xl">
+              {" "}
+              {!story?.is_published ? 0 : 10}
+            </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
@@ -140,7 +151,9 @@ const AnswerAndStats = ({
               width={24}
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
-            <span className="text-sm sm:text-xl">{30}</span>
+            <span className="text-sm sm:text-xl">
+              {!story?.is_published ? 0 : 10}
+            </span>
           </div>
         </div>
       </div>
@@ -168,11 +181,12 @@ const AnswerAndStats = ({
 
       {/* Audio Player Controls */}
       <MusicPlayer
+        story={story}
         isEditing={isEditing}
         goToPreviousStep={goToPreviousStep}
         clearCanvas={clearCanvas}
         stopRecording={stopRecording}
-        soundURL={storyId ? story.story_audio : audioSrc}
+        soundURL={story ? story?.story_audio : audioSrc}
       />
     </div>
   );

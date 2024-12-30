@@ -9,6 +9,8 @@ const PublishAnswer = ({
   recorderControls,
   goToPreviousStep,
   onClose,
+  story = null,
+  isFreeStyle = false,
 }: PublishAnswerPropsT) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
@@ -48,6 +50,8 @@ const PublishAnswer = ({
       ) : (
         <>
           <AnswerAndStats
+            isFreeStyle={isFreeStyle}
+            story={story}
             onClose={onClose}
             isEditing={isEditing}
             toggleEditMode={toggleEditMode}

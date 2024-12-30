@@ -62,3 +62,42 @@ export const getFriendStatus = async (friendId: string, user: UserT) => {
     return { error: error instanceof Error ? error.message : "Unknown error" };
   }
 };
+
+export const unfriend = async (friendId: string, user: UserT) => {
+  if (!user) {
+    throw new Error("Unauthorized");
+  }
+
+  const response = await fetch(
+    `https://storycloudapi.com/relationships/unfriend?friend_id=${friendId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.jwt_token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+  );
+  return response.ok ? await response.json() : { error: "Failed to unfriend" };
+};
+
+export const acceptFriendRequest = async (friendId: string, user: UserT) => {
+  if (!user) {
+    throw new Error("Unauthorized");
+  }
+  const response = await fetch(
+    `https://storycloudapi.com/relationships/accept-friend-request?friend_id=${friendId}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${user.jwt_token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+  );
+  return response.ok
+    ? await response.json()
+    : { error: "Failed to accept request" };
+};

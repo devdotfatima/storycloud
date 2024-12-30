@@ -8,8 +8,12 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import DeleteAudioModal from "@/shared/components/AudioRecorder/DeleteAudioModal";
 import RestartAudioModal from "@/shared/components/AudioRecorder/RestartAudioModal";
-import { MusicPlayerPropsT } from "../types";
+import { MusicPlayerPropsT } from "./types";
 import RestartGreyIcon from "@/assets/icons/restart-grey.svg";
+import { formatTime } from "./utils";
+
+import { useSessionContext } from "@/app/providers/SessionProvider";
+import { useDeleteStory } from "../../mutations";
 
 const MusicPlayer = ({
   soundURL,
@@ -17,6 +21,7 @@ const MusicPlayer = ({
   clearCanvas,
   goToPreviousStep,
   isEditing,
+  story = null,
 }: MusicPlayerPropsT) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
@@ -26,6 +31,8 @@ const MusicPlayer = ({
   const [duration, setDuration] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const { storyId } = useParams();
+  const { mutate: deleteStory } = useDeleteStory();
+  const user = useSessionContext();
 
   const togglePlayPause = useCallback(() => {
     if (audioRef.current) {
@@ -91,15 +98,12 @@ const MusicPlayer = ({
     }
   };
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${minutes}:${seconds}`;
-  };
-
   const handleRestart = useCallback(() => {
+    if (story) {
+      deleteStory({ story_id: story.story_id, user });
+      setCurrentTime(0);
+      setProgress(0);
+    }
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       setCurrentTime(0);

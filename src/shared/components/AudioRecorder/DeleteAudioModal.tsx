@@ -42,15 +42,13 @@ const DeleteAudioModal = ({
       <DialogContent className="bg-transparent h-screen w-full     lg:max-w-[450px] max-h-[256px]  overflow-y-auto lg:overflow-hidden   border-0  pt-[20px] sm:pr-8 ">
         <div className="relative flex flex-col items-center h-full gap-4 p-8  bg-white rounded-2xl ">
           <DialogTitle className="flex items-center justify-center gap-3  mb-6 ">
-            <h1 className=" font-normal">delete?</h1>
+            delete?
           </DialogTitle>
-          <DialogClose className="w-full">
-            <button
-              onClick={handleDelete}
-              className="p-2 text-center transition duration-150 ease-in text-red bg-red-100 w-full "
-            >
-              yes
-            </button>
+          <DialogClose
+            onClick={handleDelete}
+            className="p-2 text-center transition duration-150 ease-in text-red bg-red-100 w-full "
+          >
+            yes
           </DialogClose>
 
           <DialogClose

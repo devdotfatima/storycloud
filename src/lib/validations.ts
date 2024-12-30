@@ -79,6 +79,13 @@ export const helpRequestSchema = z.object({
   text: requiredString,
 });
 
+export const storyCreationSchema = z.object({
+  audio: z
+    .instanceof(File, { message: "Audio file is required." })
+    .refine((file) => file.type === "audio/mpeg", {
+      message: "Only MP3 files are allowed.",
+    }),
+});
 export type helpRequestT = z.infer<typeof helpRequestSchema>;
 
 export type EditProfileT = z.infer<typeof editProfileSchema>;
@@ -91,4 +98,4 @@ export type ForgotPasswordT = z.infer<typeof forgotPasswordSchema>;
 
 export type UpdatePasswordT = z.infer<typeof updatePasswordSchema>;
 
-export type EditProfileSchema = z.infer<typeof editProfileSchema>;
+export type StoryCreationT = z.infer<typeof storyCreationSchema>;
