@@ -80,7 +80,7 @@ const FriendsListModal: React.FC = () => {
             {friends.map((profile) => (
               <Link
                 key={profile.friend_id}
-                href={`${profile.friend_id}`}
+                href={`profile/${profile.friend_id}`}
                 className="flex items-center gap-3"
               >
                 <Image

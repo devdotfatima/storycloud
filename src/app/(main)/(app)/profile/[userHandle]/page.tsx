@@ -5,9 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import ProfileView from "../components/ProfileView";
 import UserProfile from "@/assets/icons/user-purple.svg";
-import { UserT } from "@/shared/types";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { fetchUser } from "./actions";
+import { getFriendStatus } from "../components/ProfileView/FriendRequestButton/actions";
+import { FriendStatusT, UserT } from "@/shared/types";
 
 const Profile = () => {
   const router = useRouter();
@@ -19,9 +20,22 @@ const Profile = () => {
     data: userData,
     error,
     isLoading,
-  } = useQuery<UserT | { error: string }>({
-    queryKey: ["user", handle],
-    queryFn: () => fetchUser(handle, loggedInUser),
+  } = useQuery({
+    queryKey: ["user", "friendStatus", handle],
+    queryFn: async () => {
+      if (!handle || !loggedInUser) return { user: null, friendStatus: null };
+
+      const userResponse = fetchUser(handle, loggedInUser);
+      const friendStatusResponse = getFriendStatus(handle, loggedInUser);
+
+      // Fetch both in parallel
+      const [user, friendStatus] = await Promise.all([
+        userResponse,
+        friendStatusResponse,
+      ]);
+
+      return { user, friendStatus };
+    },
     enabled: !!userHandle && !!loggedInUser?.jwt_token,
   });
 
@@ -37,15 +51,21 @@ const Profile = () => {
     );
   }
 
-  if (error) {
-    return <p className="text-red-500">Error: {error.message}</p>;
+  if (error || !userData) {
+    return (
+      <p className="text-red-500">
+        Error: {error?.message || "Data fetch failed"}
+      </p>
+    );
   }
 
-  if (userData && "error" in userData) {
-    return <p className="text-red-500">Error: {userData.error}</p>;
+  if ("error" in userData) {
+    return <p className="text-red-500">Error: {userData.error as string}</p>;
   }
-
-  const user = userData as UserT;
+  const { user, friendStatus } = userData as {
+    user: UserT;
+    friendStatus: FriendStatusT | null;
+  };
 
   if (!user) {
     return <p>User not found.</p>;
@@ -65,7 +85,12 @@ const Profile = () => {
       userBio={user.user_bio}
       postCount={user.num_stories_posted}
       friendCount={user.num_friends}
-      isFriend={false}
+      isFriend={
+        friendStatus ? friendStatus.items[0]?.friend_status === "friend" : false
+      }
+      friendStatus={
+        friendStatus ? friendStatus.items[0]?.friend_status : undefined
+      }
       profileImage={user.user_profile_image || UserProfile}
     />
   );

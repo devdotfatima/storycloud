@@ -44,7 +44,7 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
             isFriend
               ? "text-purple pointer-events-auto "
               : " text-grey pointer-events-none"
-          }" py-1.5 sm:py-2 mt-2 max-w-60 w-full bg-white rounded-2xl"`}
+          }" py-1.5 sm:py-2 mt-2 w-full   sm:max-w-60 bg-white rounded-2xl"`}
         >
           request story
         </button>

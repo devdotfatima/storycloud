@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useState, useTransition } from "react";
 
 import {
   Select,
@@ -8,24 +8,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import {
-  acceptFriendRequest,
-  getFriendStatus,
-  sendFriendRequest,
-  unfriend,
-} from "./actions";
-import { usePathname } from "next/navigation";
+import { acceptFriendRequest, sendFriendRequest, unfriend } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 
-const FriendRequestButton = () => {
-  const pathname = usePathname();
-  const userId = pathname?.split("/").pop();
-  const user = useSessionContext();
-
+const FriendRequestButton = ({
+  friendStatus,
+  userId,
+  setFriendStatus,
+}: {
+  friendStatus: string | undefined;
+  userId: string;
+  setFriendStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
+}) => {
   const [isPending, startTransition] = useTransition();
   const [, setError] = useState<string>();
-
-  const [friendStatus, setFriendStatus] = useState<string | null>(null);
+  const user = useSessionContext();
+  console.log(friendStatus);
 
   const handleSendRequest = () => {
     setError(undefined);
@@ -58,7 +56,7 @@ const FriendRequestButton = () => {
     startTransition(async () => {
       try {
         await unfriend(userId || "", user);
-        setFriendStatus(null);
+        setFriendStatus(undefined);
       } catch (err) {
         console.log(err);
 
@@ -67,21 +65,21 @@ const FriendRequestButton = () => {
     });
   };
 
-  useEffect(() => {
-    if (userId) {
-      startTransition(async () => {
-        try {
-          const status = await getFriendStatus(userId, user);
+  // useEffect(() => {
+  //   if (userId) {
+  //     startTransition(async () => {
+  //       try {
+  //         const status = await getFriendStatus(userId, user);
 
-          setFriendStatus(status.items[0].friend_status || null);
-        } catch (err) {
-          console.log(err);
+  //         setFriendStatus(status.items[0].friend_status || null);
+  //       } catch (err) {
+  //         console.log(err);
 
-          setError("Failed to fetch friend status");
-        }
-      });
-    }
-  }, [userId, user]);
+  //         setError("Failed to fetch friend status");
+  //       }
+  //     });
+  //   }
+  // }, [userId, user]);
   // if (isFriend) {
   if (friendStatus === "accepted") {
     return (
@@ -128,14 +126,14 @@ const FriendRequestButton = () => {
   if (friendStatus === "awaiting_your_response") {
     return (
       <Select>
-        <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[7vw] sm:pl-[38px] text-center text-grey bg-white outline-none rounded-2xl">
-          <SelectValue placeholder="received request" />
+        <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[15vw] sm:pl-[78px] border-none text-center shadow-none text-grey bg-white outline-none rounded-2xl">
+          <SelectValue placeholder="respond" />
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
           <button
             onClick={handleAcceptRequest}
             className={cn(
-              "relative flex w-full h-12 rounded-2xl bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
+              "relative flex w-full h-12 rounded-2xl bg-green-100 text-green justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
           >
             accept request
@@ -144,7 +142,7 @@ const FriendRequestButton = () => {
             // onClick={handleCancelRequest}
             onClick={handleUnfriend}
             className={cn(
-              "relative flex w-full h-12 rounded-2xl mt-2 bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
+              "relative flex w-full h-12 rounded-2xl mt-2 bg-red-100 text-red justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
           >
             cancel request

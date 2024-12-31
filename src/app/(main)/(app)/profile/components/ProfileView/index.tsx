@@ -1,5 +1,7 @@
 import Image from "next/image";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
+import { Loader } from "lucide-react";
+import Link from "next/link";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import { ProfileViewPropsT } from "../../types";
 import FriendsListModal from "../FriendsListModal";
@@ -7,8 +9,6 @@ import StoryRequestModal from "./StoryRequestModal";
 import LockGreyIcon from "@/assets/icons/lock-grey.svg";
 import FriendRequestButton from "./FriendRequestButton";
 import UserStories from "./UserStories";
-import { Loader } from "lucide-react";
-import Link from "next/link";
 
 type ViewerType = "self" | "friend" | "stranger";
 const ProfileView = ({
@@ -21,7 +21,12 @@ const ProfileView = ({
   isFriend = false,
   profileImage,
   loggedInUser,
+  friendStatus = undefined,
 }: ProfileViewPropsT) => {
+  const [currentfriendStatus, setFriendStatus] = useState<string | undefined>(
+    friendStatus
+  );
+
   const viewerType: ViewerType =
     loggedInUser.user_id === userId ? "self" : isFriend ? "friend" : "stranger";
 
@@ -72,8 +77,12 @@ const ProfileView = ({
             {/* <UserProfileModal /> */}
           </Dialog>
         ) : (
-          <div className="flex gap-10 w-full items-center justify-center">
-            <FriendRequestButton />
+          <div className="flex gap-3 sm:gap-10 w-full items-center justify-center">
+            <FriendRequestButton
+              friendStatus={currentfriendStatus}
+              userId={userId}
+              setFriendStatus={setFriendStatus}
+            />
 
             <StoryRequestModal isFriend={isFriend} />
           </div>

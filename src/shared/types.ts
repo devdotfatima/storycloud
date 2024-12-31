@@ -147,3 +147,6 @@ export type StoryAnswerT = {
   is_published: boolean;
   audience: "all_friends" | "private" | "public";
 };
+export type FriendStatusT = {
+  items: Array<{ friend_status: string }>;
+};

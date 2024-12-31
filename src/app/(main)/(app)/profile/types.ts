@@ -11,6 +11,7 @@ export type ProfileViewPropsT = {
   isFriend?: boolean;
   profileImage: StaticImageData | string;
   loggedInUser: UserT;
+  friendStatus?: string;
 };
 
 export type UserStoriesPropsT = {
