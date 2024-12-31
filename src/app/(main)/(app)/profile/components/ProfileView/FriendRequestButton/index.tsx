@@ -43,7 +43,7 @@ const FriendRequestButton = ({
     startTransition(async () => {
       try {
         await acceptFriendRequest(userId || "", user);
-        setFriendStatus("friends");
+        setFriendStatus("accepted");
       } catch (err) {
         console.log(err);
 
@@ -65,22 +65,6 @@ const FriendRequestButton = ({
     });
   };
 
-  // useEffect(() => {
-  //   if (userId) {
-  //     startTransition(async () => {
-  //       try {
-  //         const status = await getFriendStatus(userId, user);
-
-  //         setFriendStatus(status.items[0].friend_status || null);
-  //       } catch (err) {
-  //         console.log(err);
-
-  //         setError("Failed to fetch friend status");
-  //       }
-  //     });
-  //   }
-  // }, [userId, user]);
-  // if (isFriend) {
   if (friendStatus === "accepted") {
     return (
       <Select>
