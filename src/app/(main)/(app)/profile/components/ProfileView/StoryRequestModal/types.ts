@@ -5,8 +5,6 @@ export type StoryRequestModalPropsT = {
 
 export type RequestStoryFormPropsT = {
   onSend: () => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  inputValue: string;
 };
 
 export type StoryRequestSentPropsT = {

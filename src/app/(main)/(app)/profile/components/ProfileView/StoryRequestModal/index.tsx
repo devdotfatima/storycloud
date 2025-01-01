@@ -19,15 +19,13 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
   const [isStorySentModalOpen, setStorySentModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
   const handleCloseModals = () => {
     setStoryRequestModalOpen(false);
     setStorySentModalOpen(false);
   };
+
   const onSend = () => setStorySentModalOpen(true);
+
   const handleDialogChange = (isOpen: boolean) => {
     setStoryRequestModalOpen(isOpen);
     if (!isOpen) {
@@ -61,11 +59,7 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
         </DialogClose>
         <div className="flex flex-col items-center w-full h-full  py-6  px-5 sm:px-10 mx-auto overflow-hidden bg-white shadow-md rounded-t-2xl sm:rounded-2xl gap-5 lg:gap-7 lg:py-10  ">
           <DialogTitle className="text-purple ">request a story</DialogTitle>
-          <RequestStoryForm
-            handleInputChange={handleInputChange}
-            inputValue={inputValue}
-            onSend={onSend}
-          />
+          <RequestStoryForm onSend={onSend} />
 
           <h3 className="text-purple">suggestions</h3>
           <SuggestionList />
