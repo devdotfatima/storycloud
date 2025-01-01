@@ -16,7 +16,7 @@ const QuestionsFromFriends = () => {
   return (
     <div className="flex gap-10 pr-8 md:pr-16 pb-4 xl:pr-28 overflow-x-auto">
       {filteredQuestions.map((request) => (
-        <QuestionCard key={request.request_id} />
+        <QuestionCard key={request.request_id} request={request} />
       ))}
     </div>
   );

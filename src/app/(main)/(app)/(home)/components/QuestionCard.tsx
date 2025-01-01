@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import RecordStoryModal from "@/shared/components/RecordStoryModal";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import ProfileImage from "@/assets/images/profile_image.png";
+import { QuestionCardPropsT } from "../types";
 
-const QuestionCard = () => {
+const QuestionCard = ({ request }: QuestionCardPropsT) => {
   const [isRecordStoryModalOpen, setIsRecordStoryModalOpen] = useState(false);
 
   const openDialog = () => {
@@ -33,7 +34,7 @@ const QuestionCard = () => {
             <p className="text-purple">candice_li</p>
           </div>
 
-          <h4 className="font-crimson text-4xl">How did you meet dad?</h4>
+          <h4 className="font-crimson text-4xl">{request.request_text} </h4>
         </div>
       </DialogTrigger>
       <RecordStoryModal onClose={closeDialog} />

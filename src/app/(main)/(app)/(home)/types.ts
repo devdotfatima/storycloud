@@ -4,3 +4,7 @@ export type StoryRequestsResponseT = {
   items: StoryRequestT[];
   last_evaluated_key: string | null;
 };
+
+export type QuestionCardPropsT = {
+  request: StoryRequestT;
+};
