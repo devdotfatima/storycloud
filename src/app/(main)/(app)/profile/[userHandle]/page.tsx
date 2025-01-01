@@ -86,7 +86,9 @@ const Profile = () => {
       postCount={user.num_stories_posted}
       friendCount={user.num_friends}
       isFriend={
-        friendStatus ? friendStatus.items[0]?.friend_status === "friend" : false
+        friendStatus
+          ? friendStatus.items[0]?.friend_status === "accepted"
+          : false
       }
       friendStatus={
         friendStatus ? friendStatus.items[0]?.friend_status : undefined
