@@ -86,6 +86,15 @@ export const storyCreationSchema = z.object({
       message: "Only MP3 files are allowed.",
     }),
 });
+
+export const storyRequestSchema = z.object({
+  receiver_id: z.string().uuid("Invalid receiver ID"),
+  request_text: requiredString.max(
+    50,
+    "Request text cannot exceed 50 characters"
+  ),
+});
+
 export type helpRequestT = z.infer<typeof helpRequestSchema>;
 
 export type EditProfileT = z.infer<typeof editProfileSchema>;
@@ -99,3 +108,5 @@ export type ForgotPasswordT = z.infer<typeof forgotPasswordSchema>;
 export type UpdatePasswordT = z.infer<typeof updatePasswordSchema>;
 
 export type StoryCreationT = z.infer<typeof storyCreationSchema>;
+
+export type StoryRequestT = z.infer<typeof storyRequestSchema>;
