@@ -23,7 +23,6 @@ const FriendRequestButton = ({
   const [isPending, startTransition] = useTransition();
   const [, setError] = useState<string>();
   const user = useSessionContext();
-  console.log(friendStatus);
 
   const handleSendRequest = () => {
     setError(undefined);
