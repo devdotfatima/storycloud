@@ -90,12 +90,22 @@ const ProfileView = ({
       </div>
 
       {viewerType === "stranger" ? (
-        <div className="bg-white max-w-[1100px] gap-5 w-full h-[400px] md:h-[550px] flex flex-col justify-center items-center rounded-2xl">
-          <Image src={LockGreyIcon} alt="dsj" height={60} width={60} />
-          <h3 className="text-grey text-xl max-w-60 text-center">
-            send me a friend request to view my stories!
-          </h3>
-        </div>
+        isFriend ? (
+          <Suspense
+            fallback={
+              <Loader fill="#6A6FD5" className="mx-auto my-auto animate-spin" />
+            }
+          >
+            <UserStories userId={userId} loggedInUser={loggedInUser} />
+          </Suspense>
+        ) : (
+          <div className="bg-white max-w-[1100px] gap-5 w-full h-[400px] md:h-[550px] flex flex-col justify-center items-center rounded-2xl">
+            <Image src={LockGreyIcon} alt="dsj" height={60} width={60} />
+            <h3 className="text-grey text-xl max-w-60 text-center">
+              send me a friend request to view my stories!
+            </h3>
+          </div>
+        )
       ) : (
         <Suspense
           fallback={
