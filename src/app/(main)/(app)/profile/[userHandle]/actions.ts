@@ -20,6 +20,6 @@ export const fetchUser = async (
   }
 
   const userFromApi: UserT = await response.json();
-  console.log("data", userFromApi);
+
   return userFromApi;
 };
