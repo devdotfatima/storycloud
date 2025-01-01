@@ -17,7 +17,7 @@ import StoryRequestSentModal from "./StoryRequestSentModal";
 const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
   const [isStoryRequestModalOpen, setStoryRequestModalOpen] = useState(false);
   const [isStorySentModalOpen, setStorySentModalOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [request, setRequest] = useState("");
 
   const handleCloseModals = () => {
     setStoryRequestModalOpen(false);
@@ -29,8 +29,6 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
   const handleDialogChange = (isOpen: boolean) => {
     setStoryRequestModalOpen(isOpen);
     if (!isOpen) {
-      // Reset state when dialog closes
-      setInputValue("");
       setStorySentModalOpen(false);
     }
   };
@@ -59,7 +57,7 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
         </DialogClose>
         <div className="flex flex-col items-center w-full h-full  py-6  px-5 sm:px-10 mx-auto overflow-hidden bg-white shadow-md rounded-t-2xl sm:rounded-2xl gap-5 lg:gap-7 lg:py-10  ">
           <DialogTitle className="text-purple ">request a story</DialogTitle>
-          <RequestStoryForm onSend={onSend} />
+          <RequestStoryForm setRequest={setRequest} onSend={onSend} />
 
           <h3 className="text-purple">suggestions</h3>
           <SuggestionList />
@@ -67,7 +65,7 @@ const StoryRequestModal = ({ isFriend }: StoryRequestModalPropsT) => {
       </DialogContent>
       {isStorySentModalOpen && (
         <StoryRequestSentModal
-          storyRequest={inputValue}
+          storyRequest={request}
           onClose={handleCloseModals}
         />
       )}

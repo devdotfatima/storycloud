@@ -5,6 +5,7 @@ export type StoryRequestModalPropsT = {
 
 export type RequestStoryFormPropsT = {
   onSend: () => void;
+  setRequest: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type StoryRequestSentPropsT = {
