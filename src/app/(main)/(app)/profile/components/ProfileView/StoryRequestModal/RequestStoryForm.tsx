@@ -11,7 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { sendStoryRequest } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 
-const RequestStoryForm = ({ onSend, setRequest }: RequestStoryFormPropsT) => {
+const RequestStoryForm = ({
+  onSend,
+  setRequest,
+  setRequestId,
+}: RequestStoryFormPropsT) => {
   const [error, setError] = useState<string>();
   const { userHandle } = useParams();
   const handle = typeof userHandle === "string" ? userHandle : "";
@@ -32,6 +36,7 @@ const RequestStoryForm = ({ onSend, setRequest }: RequestStoryFormPropsT) => {
         setError(response.error);
       } else {
         setRequest(form.getValues("request_text"));
+        setRequestId(response.request_id || null);
         onSend();
       }
     });
