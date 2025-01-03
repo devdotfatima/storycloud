@@ -108,6 +108,8 @@ export type StoryRequestT = {
   request_id: string;
   creation_time?: string;
   request_text: string;
+  requestor_name: string;
+  requestor_profile_image: string | null;
 };
 
 // api/story.ts
