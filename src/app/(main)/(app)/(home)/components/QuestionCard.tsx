@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RecordStoryModal from "@/shared/components/RecordStoryModal";
 import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
-import ProfileImage from "@/assets/images/profile_image.png";
+import User from "@/assets/icons/user-purple.svg";
 import { QuestionCardPropsT } from "../types";
 
 const QuestionCard = ({ request }: QuestionCardPropsT) => {
@@ -24,14 +24,17 @@ const QuestionCard = ({ request }: QuestionCardPropsT) => {
           onClick={openDialog}
         >
           <div className="flex items-center gap-4 font-medium">
-            <Image
-              className="rounded-full h-16 w-16"
-              src={ProfileImage}
-              alt="profile image"
-              width={60}
-              height={60}
-            />
-            <p className="text-purple">candice_li</p>
+            <div className=" rounded-full h-16 w-16 overflow-hidden ">
+              <Image
+                className={` object-contain flex items-center mx-auto rounded-full`}
+                src={request.requestor_profile_image || User}
+                alt="profile image"
+                width={64}
+                height={64}
+              />
+            </div>
+
+            <p className="text-purple">{request.requestor_name}</p>
           </div>
 
           <h4 className="font-crimson text-4xl">{request.request_text} </h4>
