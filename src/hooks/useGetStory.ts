@@ -1,11 +1,10 @@
-// hooks/useGetFreestyleStory.ts
 import { getStory } from "@/shared/actions/story";
 import { StoryAnswerT, UserT } from "@/shared/types";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetFreestyleStory = (story_id: string, user: UserT) => {
+export const useGetStory = (story_id: string, user: UserT) => {
   return useQuery<StoryAnswerT, Error>({
-    queryKey: ["freestyleStory", story_id, user.user_id],
+    queryKey: [story_id, user.user_id],
     queryFn: () =>
       getStory({
         story_id,

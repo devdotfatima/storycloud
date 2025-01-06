@@ -12,7 +12,7 @@ import BookImage from "@/assets/images/book.png";
 import { useStoryRequests } from "../StoryRequestsProvider";
 import { Loader } from "lucide-react";
 import { useSessionContext } from "@/app/providers/SessionProvider";
-import { useGetFreestyleStory } from "@/hooks/useGetFreestyleStory";
+import { useGetStory } from "@/hooks/useGetStory";
 
 const Freestyle = () => {
   const [isRecordStoryModalOpen, setIsRecordStoryModalOpen] = useState(false);
@@ -35,7 +35,7 @@ const Freestyle = () => {
   const freestyleStory =
     freestyleStoryRequest.length > 0 ? freestyleStoryRequest[0] : undefined;
 
-  const { data: story, isLoading: isStoryLoading } = useGetFreestyleStory(
+  const { data: story, isLoading: isStoryLoading } = useGetStory(
     freestyleStory?.story_id ?? "",
     user
   );

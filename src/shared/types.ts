@@ -63,19 +63,6 @@ export type mockCommentT = {
   createdAt: string;
 };
 
-export type mockStoryT = {
-  request_id: number;
-  request_text: string;
-  audioClip: string;
-  // totalLikes: number;
-  // totalComments: number;
-  // totalShares: number;
-  // transcript: string;
-  // comments: mockCommentT[];
-  // storyImages: StaticImageData[];
-  isMyStory: boolean;
-};
-
 export type UserT = {
   user_name: string;
   user_email: string;
@@ -148,6 +135,8 @@ export type StoryAnswerT = {
   story_transcript?: string; // Optional, transcript text
   is_published: boolean;
   audience: "all_friends" | "private" | "public";
+  reactions_count: number;
+  comments_count: number;
 };
 export type FriendStatusT = {
   items: Array<{ friend_status: string }>;

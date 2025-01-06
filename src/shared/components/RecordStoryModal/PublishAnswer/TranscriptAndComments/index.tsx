@@ -4,11 +4,14 @@ import { getTranscriptAndCommentsTabs } from "../../consts";
 import { TranscriptAndCommentsPropsT } from "../types";
 
 // Explicitly typing the ref to hold HTMLButtonElement or null
-const TranscriptAndComments = ({ isEditing }: TranscriptAndCommentsPropsT) => {
+const TranscriptAndComments = ({
+  isEditing,
+  story,
+}: TranscriptAndCommentsPropsT) => {
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-  const tabs = getTranscriptAndCommentsTabs(isEditing);
+  const tabs = getTranscriptAndCommentsTabs(isEditing, story);
   useEffect(() => {
     if (activeTabIndex === null) {
       return;

@@ -20,14 +20,20 @@ export type PublishAnswerPropsT = {
   isFreeStyle?: boolean;
 };
 
-export type TranscriptAndCommentsPropsT = { isEditing: boolean };
+export type TranscriptAndCommentsPropsT = {
+  isEditing: boolean;
+  story?: StoryAnswerT | null;
+};
 
 export type OptionsModalPropsT = {
   toggleEditMode: () => void;
+  story: StoryAnswerT | null;
 };
 
 export type PublishModalPropsT = {
   onClose: () => void;
+  isPublished: boolean;
+  handlePublish: () => Promise<void>;
 };
 
 export type CancelEditChangesModalPropsT = {

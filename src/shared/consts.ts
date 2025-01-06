@@ -1,7 +1,3 @@
-import AudioSample1 from "../assets/audios/librivox.mp3";
-
-import { StoryAnswerT } from "./types";
-
 export const profiles = [
   {
     userId: 1,
@@ -57,40 +53,6 @@ export const profiles = [
     isFriend: true, // Michael is a friend
     profileImage:
       "https://images.unsplash.com/photo-1688305069093-30ffa8bc1ce2?q=80&w=3723&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
-
-export const mockStories: StoryAnswerT[] = [
-  {
-    story_id: "1",
-    story_title: "What is your favorite travel destination?",
-    formatted_story_title: "What is your favorite travel destination?",
-    story_audio: AudioSample1,
-
-    story_transcript:
-      "I have always loved visiting the mountains. The fresh air, the serene environment... I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...I have always loved visiting the mountains. The fresh air, the serene environment...",
-
-    story_images: {
-      additionalProp1: "assets/images/story_cover_1.jpg",
-      additionalProp2: "assets/images/story_cover_5.jpg",
-    },
-    user_id: "1",
-    is_published: true,
-    audience: "all_friends",
-  },
-  {
-    story_id: "2",
-    story_title: "How did you meet Dad?",
-    formatted_story_title: "How did you meet Dad?",
-    story_audio: AudioSample1,
-
-    story_images: { additionalProp1: "assets/images/story_cover_8.jpg" },
-    story_transcript:
-      "It was a rainy day in Paris. I was sipping coffee in a small café when he walked in...",
-
-    is_published: false,
-    audience: "all_friends",
-    user_id: "1",
   },
 ];
 

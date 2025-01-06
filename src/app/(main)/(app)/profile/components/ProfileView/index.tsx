@@ -23,9 +23,9 @@ const ProfileView = ({
   loggedInUser,
   friendStatus = undefined,
 }: ProfileViewPropsT) => {
-  const [currentfriendStatus, setFriendStatus] = useState<string | undefined>(
-    friendStatus
-  );
+  const [currenFriendStatus, setCurrentFriendStatus] = useState<
+    string | undefined
+  >(friendStatus);
 
   const viewerType: ViewerType =
     loggedInUser.user_id === userId ? "self" : isFriend ? "friend" : "stranger";
@@ -79,9 +79,9 @@ const ProfileView = ({
         ) : (
           <div className="flex gap-3 sm:gap-10 w-full items-center justify-center">
             <FriendRequestButton
-              friendStatus={currentfriendStatus}
+              friendStatus={currenFriendStatus}
               userId={userId}
-              setFriendStatus={setFriendStatus}
+              setFriendStatus={setCurrentFriendStatus}
             />
 
             <StoryRequestModal isFriend={isFriend} />
