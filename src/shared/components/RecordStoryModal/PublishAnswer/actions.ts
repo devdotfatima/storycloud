@@ -19,3 +19,44 @@ export const deleteStory = async (
     throw new Error(`Failed to delete story: ${response.statusText}`);
   }
 };
+
+export const publishStory = async (
+  story_id: string,
+  title: string,
+  images: File[],
+  audience: "close_friends" | "all_friends",
+  user: UserT
+): Promise<{ success?: boolean; error?: string }> => {
+  try {
+    const formData = new FormData();
+    formData.append("story_id", story_id);
+    formData.append("story_title", title);
+    formData.append("audience", audience);
+
+    images.forEach((image, index) => {
+      formData.append(`images[${index}]`, image);
+    });
+
+    const response = await fetch(
+      `https://www.storycloudapi.com/stories/publish-story`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${user.jwt_token}`,
+        },
+        body: formData,
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "Failed to publish story");
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error publishing story:", error);
+
+    return { error: error instanceof Error ? error.message : "Unknown error" };
+  }
+};

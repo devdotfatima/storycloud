@@ -13,6 +13,8 @@ import OptionsModal from "./OptionsModal";
 import MusicPlayer from "./MusicPlayer";
 import PublishModal from "./PublishModal";
 import { formatDate } from "@/lib/formatDate";
+import { useSessionContext } from "@/app/providers/SessionProvider";
+import { publishStory } from "../actions";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -25,14 +27,31 @@ const AnswerAndStats = ({
   isFreeStyle = false,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
-  // const { storyId } = useParams();
-
+  const [isPublished, setIsPublished] = useState(false);
   const [title, setTitle] = useState(story?.story_title || "freestyle");
+  const user = useSessionContext();
+  // const { storyId } = useParams();
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  console.log("story", story);
+  const handlePublish = async () => {
+    // setIsPublished(true);
+    const response = await publishStory(
+      story?.story_id || "",
+      title,
+      [],
+      "all_friends",
+      user
+    );
+
+    if (response.success) {
+      setIsPublished(true);
+    } else {
+      console.error(response.error);
+    }
+  };
+
   return (
     <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 md:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
       {/* Header Section */}
@@ -61,7 +80,13 @@ const AnswerAndStats = ({
               width={80}
               className="h-12 sm:h-12 w-20 "
             />{" "}
-            {onClose ? <PublishModal onClose={onClose} /> : null}
+            {onClose ? (
+              <PublishModal
+                handlePublish={handlePublish}
+                isPublished={isPublished}
+                onClose={onClose}
+              />
+            ) : null}
           </div>
         ) : isEditing ? (
           <div className="flex h-6 sm:h-12 items-center ">
@@ -80,7 +105,7 @@ const AnswerAndStats = ({
             </button>
           </div>
         ) : (
-          <OptionsModal toggleEditMode={toggleEditMode} />
+          <OptionsModal toggleEditMode={toggleEditMode} story={story} />
         )}
       </div>
 
@@ -127,7 +152,7 @@ const AnswerAndStats = ({
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
             <span className="text-sm sm:text-xl">
-              {!story?.is_published ? 0 : 10}
+              {story?.is_published ? story.comments_count : 10}
             </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
@@ -139,8 +164,7 @@ const AnswerAndStats = ({
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
             <span className="text-sm sm:text-xl">
-              {" "}
-              {!story?.is_published ? 0 : 10}
+              {story?.is_published ? story.reactions_count : 10}
             </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
@@ -174,9 +198,20 @@ const AnswerAndStats = ({
           </div>
           <div className={`rounded-full p-1 h-2 w-2 bg-purple-400`}></div>
         </div>
-      ) : (
+      ) : story?.story_images && Object.keys(story.story_images).length > 0 ? (
         // <ImageSlider images={story.story_images} />
         <p></p>
+      ) : (
+        <div className=" flex flex-col gap-3 items-center h-full ">
+          <div className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-56 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer">
+            <Image
+              src={UploadIcon}
+              alt="attach photo"
+              height={"100"}
+              width={"100"}
+            />
+          </div>
+        </div>
       )}
 
       {/* Audio Player Controls */}

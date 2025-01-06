@@ -1,13 +1,20 @@
 "use client";
 // import { mockStories } from "@/shared/consts";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { TranscriptAndCommentsPropsT } from "../types";
+import { useFetchTranscript } from "@/hooks/useFetchTranscript";
 
-const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
+const Transcript = ({ isEditing, story }: TranscriptAndCommentsPropsT) => {
   const { storyId } = useParams();
-  // const story = mockStories.find((story) => story.id.toString() === storyId);
-  const [transcript, setTranscript] = useState("");
+  const {
+    data: transcript,
+    // isLoading: isTranscriptLoading,
+    // error: transcriptError,
+  } = useFetchTranscript(story?.story_transcript);
+  console.log(story?.story_transcript);
+
+  // const [transcript, setTranscript] = useState("");
 
   // Set initial transcript from story if it exists
   // useEffect(() => {
@@ -15,6 +22,7 @@ const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
   //     setTranscript(story.transcript);
   //   }
   // }, [story]);
+  console.log(story);
 
   return (
     <div
@@ -33,10 +41,10 @@ const Transcript = ({ isEditing }: TranscriptAndCommentsPropsT) => {
         <textarea
           className="border-0 outline-none overflow-y-auto h-full w-full resize-none rounded"
           value={transcript}
-          onChange={(e) => setTranscript(e.target.value)} // Update state on change
+          // onChange={(e) => setTranscript(e.target.value)}
         />
       ) : (
-        <p className="pr-3 overflow-y-auto h-full ">{"story?.transcript"}</p>
+        <p className="pr-3 overflow-y-auto h-full ">{transcript}</p>
       )}
     </div>
   );

@@ -59,7 +59,7 @@ const PublishAnswer = ({
             goToPreviousStep={goToPreviousStep}
             handleShowUploadImageScreen={toggleUploadImageScreen}
           />
-          <TranscriptAndComments isEditing={isEditing} />
+          <TranscriptAndComments isEditing={isEditing} story={story} />
         </>
       )}
     </div>
