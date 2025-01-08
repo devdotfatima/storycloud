@@ -1,6 +1,7 @@
 export function timeAgo(inputTime: string | number | Date): string {
   let time: number;
 
+  // Convert inputTime to a timestamp
   if (typeof inputTime === "string") {
     time = new Date(inputTime).getTime();
   } else if (inputTime instanceof Date) {
@@ -13,9 +14,9 @@ export function timeAgo(inputTime: string | number | Date): string {
 
   const timeFormats: [number, string, string | number][] = [
     [60, "seconds", 1],
-    [120, "1 minute ago", "1 minute from now"],
+    [120, "1 minute ago", "1 minute ago"],
     [3600, "minutes", 60],
-    [7200, "1 hour ago", "1 hour from now"],
+    [7200, "1 hour ago", "1 hour ago"],
     [86400, "hours", 3600],
     [172800, "Yesterday", "Tomorrow"],
     [604800, "days", 86400],
@@ -33,9 +34,7 @@ export function timeAgo(inputTime: string | number | Date): string {
   let token = "ago";
   let listChoice = 1;
 
-  if (seconds < 1) {
-    return "Just now";
-  }
+  // Handle future times
   if (seconds < 0) {
     token = "from now";
     listChoice = 2;
@@ -47,14 +46,19 @@ export function timeAgo(inputTime: string | number | Date): string {
   if (format) {
     const [, unit, divisorOrMessage] = format;
 
+    // Handle special cases where divisorOrMessage is a string
     if (typeof divisorOrMessage === "string") {
-      return divisorOrMessage[listChoice] as string;
+      return listChoice === 1
+        ? divisorOrMessage // Past message
+        : `${divisorOrMessage.replace("ago", "ago")}`; // Future message
     }
 
+    // Handle regular cases where divisorOrMessage is a number
     const value = Math.floor(absSeconds / divisorOrMessage);
     return `${value} ${unit} ${token}`;
   }
 
+  // Fallback for very large time differences
   const [, unit, divisor] = timeFormats[timeFormats.length - 1];
   const value = Math.floor(absSeconds / (divisor as number));
   return `${value} ${unit} ${token}`;

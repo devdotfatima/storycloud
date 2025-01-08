@@ -12,7 +12,6 @@ const Transcript = ({ isEditing, story }: TranscriptAndCommentsPropsT) => {
     // isLoading: isTranscriptLoading,
     // error: transcriptError,
   } = useFetchTranscript(story?.story_transcript);
-  console.log(story?.story_transcript);
 
   // const [transcript, setTranscript] = useState("");
 
@@ -22,7 +21,6 @@ const Transcript = ({ isEditing, story }: TranscriptAndCommentsPropsT) => {
   //     setTranscript(story.transcript);
   //   }
   // }, [story]);
-  console.log(story);
 
   return (
     <div
