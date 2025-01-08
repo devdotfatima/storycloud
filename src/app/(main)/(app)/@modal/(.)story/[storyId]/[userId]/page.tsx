@@ -21,13 +21,15 @@ import { Loader } from "lucide-react";
 
 const Story = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const { storyId } = useParams();
+  const { storyId, userId } = useParams();
+
   const id = typeof storyId === "string" ? storyId : "";
   const user = useSessionContext();
 
   const { data: story, isLoading: isStoryLoading } = useGetStory(
     id ?? "",
-    user
+    user,
+    typeof userId === "string" ? userId : ""
   );
 
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =

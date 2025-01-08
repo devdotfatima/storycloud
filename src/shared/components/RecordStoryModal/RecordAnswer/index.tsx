@@ -173,6 +173,7 @@ const RecordAnswer = ({
     },
     [convertToMp3, createStoryMutation, goToNextStep]
   );
+
   useEffect(() => {
     if (!recordedBlob) {
       return;

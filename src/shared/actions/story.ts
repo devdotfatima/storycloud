@@ -5,7 +5,7 @@ export const getStory = async (
 ): Promise<StoryAnswerT> => {
   const queryParams = new URLSearchParams({
     story_id: params.story_id,
-    user_id: params.user.user_id,
+    user_id: params.userId,
     include_audio: String(params.include_audio ?? true),
     include_transcript: String(params.include_transcript ?? true),
     include_images: String(params.include_images ?? true),

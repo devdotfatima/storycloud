@@ -107,6 +107,7 @@ export type GetStoryParams = {
   include_transcript?: boolean;
   include_images?: boolean;
   include_synopsis?: boolean;
+  userId: string;
 };
 
 // export type Story = {
@@ -140,4 +141,16 @@ export type StoryAnswerT = {
 };
 export type FriendStatusT = {
   items: Array<{ friend_status: string }>;
+};
+
+export type CommentT = {
+  comment_id: string;
+  comment_text: string;
+
+  commenter_photo: string | null;
+  commenter_user_handle: string;
+  creation_time: string;
+
+  commenter_id?: string;
+  story_id?: string;
 };

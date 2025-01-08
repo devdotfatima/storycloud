@@ -22,6 +22,6 @@ export const getTranscriptAndCommentsTabs = (
   {
     id: 1,
     name: "comments",
-    content: <Comments />,
+    content: <Comments story={story} />,
   },
 ];

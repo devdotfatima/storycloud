@@ -1,4 +1,4 @@
-import { Controls, StoryAnswerT } from "@/shared/types";
+import { CommentT, Controls, StoryAnswerT } from "@/shared/types";
 
 export type AnswerAndStatsPropsT = {
   recorderControls?: Controls;
@@ -38,4 +38,18 @@ export type PublishModalPropsT = {
 
 export type CancelEditChangesModalPropsT = {
   onClose: () => void;
+};
+
+export type CommentsPropsT = {
+  story?: StoryAnswerT | null;
+};
+
+export type CommentPropT = {
+  comment: CommentT;
+  myStory: boolean;
+};
+
+export type commentsT = {
+  items: CommentT[];
+  last_evaluated_key?: { comment_id: string };
 };

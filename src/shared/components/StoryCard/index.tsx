@@ -6,8 +6,13 @@ import { StoryCardPropsT } from "./types";
 import { formatDate } from "@/lib/formatDate";
 import UploadIcon from "@/assets/icons/image_file_input.svg";
 import { timeAgo } from "@/lib/timeAgo";
+import { useParams } from "next/navigation";
+import { useSessionContext } from "@/app/providers/SessionProvider";
 
 const StoryCard = ({ story }: StoryCardPropsT) => {
+  const { userHandle } = useParams();
+  const user = useSessionContext();
+  const handle = typeof userHandle === "string" ? userHandle : user.user_id;
   return (
     <div className="flex flex-col sm:h-[610px] max-w-[400px] sm:max-w-[500px] w-full  p-4 sm:p-6 bg-white gap-3 sm:gap-6 rounded-2xl ">
       <div className=" flex items-center gap-2.5 sm:gap-3 text-sm sm:text-lg">
@@ -27,7 +32,11 @@ const StoryCard = ({ story }: StoryCardPropsT) => {
           {timeAgo(story.creation_time || new Date())}
         </time>
       </div>
-      <Link href={`/story/${story.story_id}`} passHref className="h-full">
+      <Link
+        href={`/story/${story.story_id}/${handle}`}
+        passHref
+        className="h-full"
+      >
         {story.story_images && Object.keys(story.story_images).length > 0 ? (
           <Image
             src={story.story_images ? story.story_images.additionalProp1 : ""}
@@ -50,7 +59,7 @@ const StoryCard = ({ story }: StoryCardPropsT) => {
         )}
       </Link>
       <Link
-        href={"/story/1"}
+        href={`/story/${story.story_id}/${handle}`}
         passHref
         className="font-crimson text-xl sm:text-3xl font-medium"
       >

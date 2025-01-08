@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { getTranscriptAndCommentsTabs } from "../../consts";
 import { TranscriptAndCommentsPropsT } from "../types";
 
-// Explicitly typing the ref to hold HTMLButtonElement or null
 const TranscriptAndComments = ({
   isEditing,
   story,

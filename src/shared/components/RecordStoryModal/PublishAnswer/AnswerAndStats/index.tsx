@@ -152,7 +152,7 @@ const AnswerAndStats = ({
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
             <span className="text-sm sm:text-xl">
-              {story?.is_published ? story.comments_count : 10}
+              {story?.is_published ? story.reactions_count : 10}
             </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
@@ -164,7 +164,7 @@ const AnswerAndStats = ({
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
             <span className="text-sm sm:text-xl">
-              {story?.is_published ? story.reactions_count : 10}
+              {story?.is_published ? story.comments_count : 10}
             </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">
