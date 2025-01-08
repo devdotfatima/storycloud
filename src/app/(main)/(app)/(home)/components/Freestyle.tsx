@@ -37,7 +37,8 @@ const Freestyle = () => {
 
   const { data: story, isLoading: isStoryLoading } = useGetStory(
     freestyleStory?.story_id ?? "",
-    user
+    user,
+    user.user_id
   );
 
   return (
