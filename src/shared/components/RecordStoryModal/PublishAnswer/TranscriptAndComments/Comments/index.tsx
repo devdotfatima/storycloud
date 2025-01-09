@@ -59,7 +59,7 @@ const Comments = ({ story = null }: CommentsPropsT) => {
         <div className="flex justify-between flex-col h-full ">
           <div className="h-[90%] max-h-[350px] lg:max-h-[600px] space-y-3 overflow-y-auto">
             {isLoading ? (
-              <Loader className="animate-spin size-4 text-purple m-auto h-full" />
+              <Loader fill="#6A6FD5" className="animate-spin  m-auto h-full" />
             ) : (
               comments.map((comment: CommentT) => (
                 <Comment

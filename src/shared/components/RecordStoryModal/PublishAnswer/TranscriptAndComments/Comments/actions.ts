@@ -1,4 +1,4 @@
-import { UserT } from "@/shared/types";
+import { UserT, CommentT } from "@/shared/types";
 
 export const addComment = async (
   payload: {
@@ -54,13 +54,7 @@ export const fetchComments = async (
   pageParam: { story_id: string; creation_time: string } | null,
   page_size = 10
 ): Promise<{
-  comments: Array<{
-    comment_id: string;
-    commenter_user_handle: string;
-    commenter_photo: string;
-    comment_text: string;
-    creation_time: string;
-  }>;
+  comments: CommentT[];
   last_evaluated_key?: { story_id: string; creation_time: string };
 }> => {
   const exclusiveStartKey = pageParam

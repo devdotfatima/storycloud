@@ -15,6 +15,8 @@ import PublishModal from "./PublishModal";
 import { formatDate } from "@/lib/formatDate";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { publishStory } from "../actions";
+import { useReactToStory } from "./mutations";
+import { useParams } from "next/navigation";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -30,6 +32,12 @@ const AnswerAndStats = ({
   const [isPublished, setIsPublished] = useState(false);
   const [title, setTitle] = useState(story?.story_title || "freestyle");
   const user = useSessionContext();
+  const { userId } = useParams();
+  const addReactMutation = useReactToStory(
+    user,
+    story?.story_id || "",
+    typeof userId === "string" ? userId : ""
+  );
   // const { storyId } = useParams();
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -49,6 +57,12 @@ const AnswerAndStats = ({
       setIsPublished(true);
     } else {
       console.error(response.error);
+    }
+  };
+
+  const handleAddReaction = () => {
+    if (story) {
+      addReactMutation.mutate("\\u2764\\ufe0f");
     }
   };
 
@@ -145,14 +159,15 @@ const AnswerAndStats = ({
         <div className="flex items-center gap-2 sm:gap-5">
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
+              onClick={handleAddReaction}
               src={HeartIcon}
               alt="likes"
               height={24}
               width={24}
-              className="h-5 w-5 sm:h-6 sm:w-6"
+              className="h-5 w-5 sm:h-6 sm:w-6 cursor-pointer"
             />
             <span className="text-sm sm:text-xl">
-              {story?.is_published ? story.reactions_count : 10}
+              {story?.is_published ? story.reactions_count : 0}
             </span>
           </div>
           <div className="flex items-center  gap-1 sm:gap-2">

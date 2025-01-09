@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useState, useTransition } from "react";
+import React from "react";
 
 import {
   Select,
@@ -10,59 +10,64 @@ import {
 } from "@/shared/components/ui/select";
 import { acceptFriendRequest, sendFriendRequest, unfriend } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import { FriendRequestButtonPropsT } from "../../../types";
+import { useMutation } from "@tanstack/react-query";
 
 const FriendRequestButton = ({
   friendStatus,
   userId,
   setFriendStatus,
-}: {
-  friendStatus: string | undefined;
-  userId: string;
-  setFriendStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
-}) => {
-  const [isPending, startTransition] = useTransition();
-  const [, setError] = useState<string>();
+  refetchUserData,
+}: FriendRequestButtonPropsT) => {
   const user = useSessionContext();
 
-  const handleSendRequest = () => {
-    setError(undefined);
-    startTransition(async () => {
-      try {
-        await sendFriendRequest(userId || "", user);
-        setFriendStatus("pending");
-      } catch (err) {
-        console.log(err);
+  const { mutate: sendRequest, isPending: isSending } = useMutation({
+    mutationFn: () => sendFriendRequest(userId, user),
+    onMutate: async () => {
+      const previousState = friendStatus;
+      setFriendStatus("pending");
+      return { previousState };
+    },
+    onError: (error, variables, context) => {
+      console.error("error", error);
+      setFriendStatus(context?.previousState);
+    },
+    onSettled: () => {
+      refetchUserData?.();
+    },
+  });
 
-        setError("Failed to send friend request");
-      }
-    });
-  };
+  const { mutate: acceptRequest, isPending: isAccepting } = useMutation({
+    mutationFn: () => acceptFriendRequest(userId, user),
+    onMutate: async () => {
+      const previousState = friendStatus;
+      setFriendStatus("accepted");
+      return { previousState };
+    },
+    onError: (error, variables, context) => {
+      console.error("error", error);
 
-  const handleAcceptRequest = () => {
-    startTransition(async () => {
-      try {
-        await acceptFriendRequest(userId || "", user);
-        setFriendStatus("accepted");
-      } catch (err) {
-        console.log(err);
+      setFriendStatus(context?.previousState);
+    },
+    onSettled: () => {
+      refetchUserData?.();
+    },
+  });
 
-        setError("Failed to accept friend request");
-      }
-    });
-  };
-
-  const handleUnfriend = () => {
-    startTransition(async () => {
-      try {
-        await unfriend(userId || "", user);
-        setFriendStatus(undefined);
-      } catch (err) {
-        console.log(err);
-
-        setError("Failed to unfriend");
-      }
-    });
-  };
+  const { mutate: unfriendUser, isPending: isUnfriending } = useMutation({
+    mutationFn: () => unfriend(userId, user),
+    onMutate: async () => {
+      const previousState = friendStatus;
+      setFriendStatus(undefined);
+      return { previousState };
+    },
+    onError: (error, variables, context) => {
+      setFriendStatus(context?.previousState);
+    },
+    onSettled: () => {
+      refetchUserData?.();
+    },
+  });
 
   if (friendStatus === "accepted") {
     return (
@@ -72,7 +77,7 @@ const FriendRequestButton = ({
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
           <button
-            onClick={handleUnfriend}
+            onClick={() => unfriendUser()}
             className={cn(
               "relative flex w-full h-12 rounded-2xl bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
@@ -93,8 +98,8 @@ const FriendRequestButton = ({
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
           <button
-            // onClick={handleCancelRequest}
-            onClick={handleUnfriend}
+            onClick={() => unfriendUser()}
+            disabled={isUnfriending}
             className={cn(
               "relative flex w-full h-12 rounded-2xl bg-purple-400 text-white justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
@@ -114,7 +119,9 @@ const FriendRequestButton = ({
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">
           <button
-            onClick={handleAcceptRequest}
+            // onClick={handleAcceptRequest}
+            onClick={() => acceptRequest()}
+            disabled={isAccepting}
             className={cn(
               "relative flex w-full h-12 rounded-2xl bg-green-100 text-green justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
@@ -122,8 +129,9 @@ const FriendRequestButton = ({
             accept request
           </button>
           <button
-            // onClick={handleCancelRequest}
-            onClick={handleUnfriend}
+            // onClick={handleUnfriend}
+            onClick={() => unfriendUser()}
+            disabled={isUnfriending}
             className={cn(
               "relative flex w-full h-12 rounded-2xl mt-2 bg-red-100 text-red justify-center cursor-pointer select-none border-0 items-center px-10 outline-none transition-all p-0"
             )}
@@ -132,18 +140,14 @@ const FriendRequestButton = ({
           </button>
         </SelectContent>
       </Select>
-      // <button
-      //   onClick={handleAcceptRequest}
-      //   className="py-2 mt-2 max-w-60 w-full bg-green-500 rounded-2xl text-white"
-      // >
-      //   accept request
-      // </button>
     );
   }
   return (
     <button
-      onClick={handleSendRequest}
-      disabled={isPending}
+      onClick={() => sendRequest()}
+      disabled={isSending}
+      // onClick={handleSendRequest}
+      // disabled={isPending}
       className="py-2 mt-2 max-w-60 w-full bg-white rounded-2xl text-purple disabled:cursor-progress"
     >
       add friend

@@ -20,20 +20,16 @@ const Profile = () => {
     data: userData,
     error,
     isLoading,
+    refetch: refetchUserData,
   } = useQuery({
-    queryKey: ["user", "friendStatus", handle],
+    queryKey: ["user", handle],
     queryFn: async () => {
       if (!handle || !loggedInUser) return { user: null, friendStatus: null };
 
-      const userResponse = fetchUser(handle, loggedInUser);
-      const friendStatusResponse = getFriendStatus(handle, loggedInUser);
-
-      // Fetch both in parallel
       const [user, friendStatus] = await Promise.all([
-        userResponse,
-        friendStatusResponse,
+        fetchUser(handle, loggedInUser),
+        getFriendStatus(handle, loggedInUser),
       ]);
-
       return { user, friendStatus };
     },
     enabled: !!userHandle && !!loggedInUser?.jwt_token,
@@ -78,6 +74,7 @@ const Profile = () => {
 
   return (
     <ProfileView
+      refetchUserData={refetchUserData}
       loggedInUser={loggedInUser}
       userId={user.user_id}
       userName={user.user_name}

@@ -18,12 +18,16 @@ export const sendFriendRequest = async (userId: string, user: UserT) => {
       }
     );
 
-    return response.ok
-      ? await response.json()
-      : { error: "Failed to send request" };
+    if (!response.ok) {
+      throw new Error("Failed to send request");
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error("Unexpected error:", error);
-    return { error: "Something went wrong. Please try again." };
+    throw new Error(
+      "Something went wrong. Please try again",
+      error as ErrorOptions
+    );
   }
 };
 
@@ -79,7 +83,11 @@ export const unfriend = async (friendId: string, user: UserT) => {
       },
     }
   );
-  return response.ok ? await response.json() : { error: "Failed to unfriend" };
+  if (!response.ok) {
+    throw new Error("Failed to unfriend");
+  }
+
+  return await response.json();
 };
 
 export const acceptFriendRequest = async (friendId: string, user: UserT) => {
@@ -97,7 +105,10 @@ export const acceptFriendRequest = async (friendId: string, user: UserT) => {
       },
     }
   );
-  return response.ok
-    ? await response.json()
-    : { error: "Failed to accept request" };
+
+  if (!response.ok) {
+    throw new Error("Failed to accept request");
+  }
+
+  return await response.json();
 };

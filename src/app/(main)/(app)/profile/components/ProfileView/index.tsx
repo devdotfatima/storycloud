@@ -22,6 +22,7 @@ const ProfileView = ({
   profileImage,
   loggedInUser,
   friendStatus = undefined,
+  refetchUserData,
 }: ProfileViewPropsT) => {
   const [currenFriendStatus, setCurrentFriendStatus] = useState<
     string | undefined
@@ -79,6 +80,7 @@ const ProfileView = ({
         ) : (
           <div className="flex gap-3 sm:gap-10 w-full items-center justify-center">
             <FriendRequestButton
+              refetchUserData={refetchUserData}
               friendStatus={currenFriendStatus}
               userId={userId}
               setFriendStatus={setCurrentFriendStatus}
