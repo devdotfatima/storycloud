@@ -4,7 +4,7 @@ import { FriendsListT } from "./types";
 export const fetchFriends = async (
   user: UserT,
   pageParam: { user_id: string } | null,
-  onlyFriends: boolean = true,
+
   userId = ""
 ): Promise<FriendsListT> => {
   if (!user) {
@@ -25,9 +25,9 @@ export const fetchFriends = async (
     : ""; // You can also omit this if `pageParam` is null.
 
   const response = await fetch(
-    `https://storycloudapi.com/relationships/list-user-relations?${
-      onlyFriends ? "&only_accepted=true" : ""
-    }${userId ? `&user_id=${userId}` : ""}${exclusiveStartKey}&page_size=10`,
+    `https://storycloudapi.com/relationships/list-user-relations?&only_accepted=true${
+      userId ? `&user_id=${userId}` : ""
+    }${exclusiveStartKey}&page_size=10`,
     {
       method: "GET",
       headers: {

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetStory = (story_id: string, user: UserT, userId: string) => {
   return useQuery<StoryAnswerT, Error>({
-    queryKey: [story_id, user.user_id, userId],
+    queryKey: [story_id, userId],
     queryFn: () =>
       getStory({
         story_id,

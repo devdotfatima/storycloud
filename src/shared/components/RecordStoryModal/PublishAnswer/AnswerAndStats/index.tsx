@@ -1,10 +1,8 @@
 "use client";
 import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
-// import { useParams } from "next/navigation";
 import { AnswerAndStatsPropsT } from "../types";
 import ProfileImage from "@/assets/images/profile_image.png";
-import HeartIcon from "@/assets/icons/heart.svg";
 import MessageIcon from "@/assets/icons/message.svg";
 import BookmarkIcon from "@/assets/icons/bookmark.svg";
 import UploadIcon from "@/assets/icons/image_file_input.svg";
@@ -13,10 +11,9 @@ import OptionsModal from "./OptionsModal";
 import MusicPlayer from "./MusicPlayer";
 import PublishModal from "./PublishModal";
 import { formatDate } from "@/lib/formatDate";
+import StoryReactions from "./StoryReactions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { publishStory } from "../actions";
-import { useReactToStory } from "./mutations";
-import { useParams } from "next/navigation";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -32,17 +29,12 @@ const AnswerAndStats = ({
   const [isPublished, setIsPublished] = useState(false);
   const [title, setTitle] = useState(story?.story_title || "freestyle");
   const user = useSessionContext();
-  const { userId } = useParams();
-  const addReactMutation = useReactToStory(
-    user,
-    story?.story_id || "",
-    typeof userId === "string" ? userId : ""
-  );
-  // const { storyId } = useParams();
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
+  console.log(story);
+
   const handlePublish = async () => {
     // setIsPublished(true);
     const response = await publishStory(
@@ -57,12 +49,6 @@ const AnswerAndStats = ({
       setIsPublished(true);
     } else {
       console.error(response.error);
-    }
-  };
-
-  const handleAddReaction = () => {
-    if (story) {
-      addReactMutation.mutate("\\u2764\\ufe0f");
     }
   };
 
@@ -157,19 +143,7 @@ const AnswerAndStats = ({
           {formatDate(story?.creation_time)}
         </p>
         <div className="flex items-center gap-2 sm:gap-5">
-          <div className="flex items-center  gap-1 sm:gap-2">
-            <Image
-              onClick={handleAddReaction}
-              src={HeartIcon}
-              alt="likes"
-              height={24}
-              width={24}
-              className="h-5 w-5 sm:h-6 sm:w-6 cursor-pointer"
-            />
-            <span className="text-sm sm:text-xl">
-              {story?.is_published ? story.reactions_count : 0}
-            </span>
-          </div>
+          <StoryReactions story={story} />
           <div className="flex items-center  gap-1 sm:gap-2">
             <Image
               src={MessageIcon}

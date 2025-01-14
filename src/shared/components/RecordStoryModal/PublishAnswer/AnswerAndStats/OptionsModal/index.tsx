@@ -12,16 +12,35 @@ import {
 import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
 import ReturnPurpleIcon from "@/assets/icons/return-purple.svg";
 import CopyPurpleIcon from "@/assets/icons/copy-purple.svg";
-import { OptionsModalPropsT } from "../types";
+import { OptionsModalPropsT } from "../../types";
+import { useDeleteStory } from "./mutations";
+import { useSessionContext } from "@/app/providers/SessionProvider";
 
-const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
+const OptionsModal = ({ toggleEditMode, story }: OptionsModalPropsT) => {
   const [showLink, setShowLink] = useState(false);
   const [deleteStory, setDeleteStory] = useState(false);
   const pathname = usePathname();
+  const user = useSessionContext();
   const myStory = true;
   const handleCopyClick = () => {
     navigator.clipboard.writeText(` http://localhost:3000${pathname}`);
-    // setTooltipContent("Copied.");
+  };
+  const { mutate: deleteStoryMutation, isPending: isDeleting } = useDeleteStory(
+    story ? story.story_id : "",
+    user
+  );
+
+  const handleDeleteStory = () => {
+    deleteStoryMutation(undefined, {
+      onSuccess: () => {
+        setDeleteStory(true);
+      },
+      onError: (error) => {
+        console.log("error", error);
+
+        alert("Failed to delete the story: " + error.message);
+      },
+    });
   };
   return (
     <Dialog>
@@ -62,6 +81,7 @@ const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
             {myStory ? (
               <button
                 type="button"
+                disabled={isDeleting}
                 onClick={() => setDeleteStory(true)}
                 className="p-2 transition duration-150 mb-6 ease-in  text-purple bg-purple-100 w-full  "
               >
@@ -77,7 +97,7 @@ const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
             </button>
 
             <DialogTitle className="flex items-center justify-center ">
-              <h1 className=" font-normal">share link</h1>
+              share link
             </DialogTitle>
             <div className="bg-purple-100 px-5 relative  flex-col  mt-4 text-purple w-full h-full rounded-2xl flex items-center justify-center">
               http://localhost:3000{pathname}
@@ -97,13 +117,13 @@ const OptionsModal = ({ toggleEditMode }: OptionsModalPropsT) => {
               <Image src={ReturnPurpleIcon} alt="go back" />
             </button>
             <DialogTitle className="flex items-center justify-center ">
-              <h1 className=" font-normal">delete story?</h1>
+              delete story?
             </DialogTitle>
             <div className="my-auto ">
               {" "}
               <button
                 type="button"
-                // onClick={() => setShowLink(true)}
+                onClick={handleDeleteStory}
                 className="p-2 transition duration-150 mb-6 ease-in text-red bg-red-100 w-full  "
               >
                 delete

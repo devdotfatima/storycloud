@@ -4,12 +4,14 @@ import AudioRecorder from "../../AudioRecorder";
 import { RecordAnswerPropsT } from "./types";
 import { useCreateStory } from "./mutations";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import { StoryAnswerT } from "@/shared/types";
 
 const RecordAnswer = ({
   goToNextStep,
   recorderControls,
   isFreeStyle = false,
   questionOfTheWeek = "",
+  setStory,
 }: RecordAnswerPropsT) => {
   const [title, setTitle] = useState(questionOfTheWeek || "freestyle");
   const user = useSessionContext();
@@ -47,45 +49,6 @@ const RecordAnswer = ({
     stopRecording();
     clearCanvas();
   };
-
-  // const convertToMp3 = useCallback(async (audioBlob: Blob) => {
-  //   try {
-  //     const arrayBuffer = await audioBlob.arrayBuffer();
-  //     const audioContext = new AudioContext();
-
-  //     // Decode the audio Blob into raw audio data
-  //     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-
-  //     const channelData = audioBuffer.getChannelData(0); // Assuming mono audio
-  //     const sampleRate = audioBuffer.sampleRate;
-
-  //     // Create an MP3 encoder
-  //     const mp3Encoder = new Mp3Encoder(1, sampleRate, 128); // 1 channel, sampleRate, 128kbps
-  //     const samplesPerFrame = 1152;
-  //     const mp3Data: Uint8Array[] = [];
-
-  //     for (let i = 0; i < channelData.length; i += samplesPerFrame) {
-  //       const sampleChunk = channelData.subarray(i, i + samplesPerFrame);
-
-  //       const mp3Buffer = mp3Encoder.encodeBuffer(sampleChunk);
-  //       if (mp3Buffer.length > 0) {
-  //         mp3Data.push(mp3Buffer);
-  //       }
-  //     }
-
-  //     // Finish encoding
-  //     const mp3End = mp3Encoder.flush();
-  //     if (mp3End.length > 0) {
-  //       mp3Data.push(mp3End);
-  //     }
-
-  //     const mp3Blob = new Blob(mp3Data, { type: "audio/mpeg" });
-  //     return mp3Blob;
-  //   } catch (error) {
-  //     console.error("Error converting audio to MP3:", error);
-  //     throw error;
-  //   }
-  // }, []);
 
   const convertToMp3 = useCallback(async (audioBlob: Blob) => {
     try {
@@ -137,6 +100,7 @@ const RecordAnswer = ({
       throw error;
     }
   }, []);
+
   const onNext = () => {
     stopRecording();
     setIsConverting(true);
@@ -157,7 +121,7 @@ const RecordAnswer = ({
           { audio: mp3File },
           {
             onSuccess: (data) => {
-              console.log("Story created successfully:", data);
+              setStory(data as StoryAnswerT);
               goToNextStep();
             },
             onError: (error) => {
@@ -179,8 +143,6 @@ const RecordAnswer = ({
       return;
     }
     if (recordedBlob && isConverting) {
-      console.log("triggered");
-
       processAudio(recordedBlob);
     }
   }, [recordedBlob, processAudio, isConverting]);

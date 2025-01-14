@@ -6,4 +6,5 @@ export type RecordAnswerPropsT = {
   goToPreviousStep: () => void;
   recorderControls: Controls;
   story: StoryAnswerT | null;
+  setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
 } & RecordStoryModalPropsT;

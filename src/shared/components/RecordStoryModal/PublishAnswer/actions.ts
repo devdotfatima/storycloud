@@ -36,6 +36,7 @@ export const publishStory = async (
     images.forEach((image, index) => {
       formData.append(`images[${index}]`, image);
     });
+    console.log(formData);
 
     const response = await fetch(
       `https://www.storycloudapi.com/stories/publish-story`,

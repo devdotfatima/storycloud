@@ -32,7 +32,6 @@ const FriendsListModal: React.FC = () => {
     hasNextPage,
   } = useFetchFriends(
     user,
-    true,
     user.user_id === userId || userId === "profile" || userId === undefined
       ? ""
       : userId

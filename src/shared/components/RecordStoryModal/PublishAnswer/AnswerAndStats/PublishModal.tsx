@@ -26,14 +26,12 @@ const PublishModal = ({
             your story has been published successfully!
           </DialogTitle>
 
-          <DialogClose className=" w-full">
-            <button
-              type="button"
-              onClick={onClose}
-              className="p-2 transition duration-150 mb-3 sm:mb-4  ease-in  text-purple bg-purple-100 w-full  "
-            >
-              done
-            </button>
+          <DialogClose
+            type="button"
+            onClick={onClose}
+            className="p-2 transition duration-150 mb-3 sm:mb-4  ease-in  text-purple bg-purple-100 w-full  "
+          >
+            done
           </DialogClose>
         </div>
       </DialogContent>

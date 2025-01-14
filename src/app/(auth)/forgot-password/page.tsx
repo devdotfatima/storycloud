@@ -38,6 +38,8 @@ const ForgotPassword = () => {
         setError(response.error);
         return;
       }
+      console.log(response);
+
       if (data.email) {
         setEmailSent(true);
       }

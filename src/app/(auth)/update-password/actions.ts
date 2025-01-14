@@ -14,7 +14,7 @@ export const updatePassword = async (
       token: user?.jwt_token,
       new_password: password,
     };
-    console.log("payload", payload);
+
     let response;
 
     if (user) {
@@ -38,6 +38,7 @@ export const updatePassword = async (
         body: JSON.stringify(payloadWithToken),
       });
     }
+    console.log(response);
 
     // Check for response status
     if (!response.ok) {

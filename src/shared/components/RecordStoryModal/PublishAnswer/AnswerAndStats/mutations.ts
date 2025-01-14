@@ -14,7 +14,7 @@ export const useReactToStory = (
   const queryClient = useQueryClient();
 
   const queryFilter: QueryFilters = {
-    queryKey: [story_id, user.user_id, userId],
+    queryKey: [story_id, userId],
   };
 
   return useMutation({
