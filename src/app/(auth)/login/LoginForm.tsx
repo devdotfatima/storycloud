@@ -17,6 +17,7 @@ import { Input } from "@/shared/components/ui/input";
 import GoogleImage from "@/assets/images/google.png";
 import { loginSchema, LoginT } from "@/lib/validations";
 import { login } from "./actions";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -102,13 +103,12 @@ const LoginForm = () => {
         />
 
         <div className="flex items-center justify-between mb-4">
-          <button
-            disabled={isPending}
-            type="submit"
+          <LoadingButton
+            loading={isPending}
             className="w-full px-4 py-2 font-medium text-center rounded-2xl bg-purple-400 text-purple bg-opacity-15 focus:outline-none disabled:cursor-progress enabled:cursor-default"
           >
-            Log In
-          </button>
+            log in
+          </LoadingButton>
         </div>
 
         <div className="flex items-center my-4">

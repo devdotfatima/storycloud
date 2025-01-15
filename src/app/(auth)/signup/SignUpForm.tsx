@@ -17,6 +17,7 @@ import { Input } from "@/shared/components/ui/input";
 // import ValidationFailIcon from "@/assets/icons/validation-fail.svg";
 // import ValidationPassIcon from "@/assets/icons/validation-pass.svg";
 import { signUp } from "./actions";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -191,13 +192,13 @@ const SignUpForm = () => {
 
         {/* Submit Button */}
         <div className="flex items-center justify-between mb-4">
-          <button
+          <LoadingButton
             type="submit"
-            disabled={isPending}
+            loading={isPending}
             className="w-full px-4 py-2 font-medium text-center bg-purple text-purple bg-opacity-15 focus:outline-none disabled:cursor-progress enabled:cursor-default"
           >
             Sign Up
-          </button>
+          </LoadingButton>
         </div>
       </form>
     </Form>
