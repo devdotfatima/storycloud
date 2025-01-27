@@ -7,18 +7,24 @@ import {
   Dialog,
 } from "@/shared/components/ui/dialog";
 import { PublishModalPropsT } from "../types";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const PublishModal = ({
   onClose,
   isPublished,
   handlePublish,
+  isPublishing,
 }: PublishModalPropsT) => {
   return (
     <Dialog open={isPublished} onOpenChange={handlePublish}>
       <DialogTrigger asChild>
-        <button className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple">
+        <LoadingButton
+          loading={isPublishing}
+          type="button"
+          className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple"
+        >
           publish
-        </button>
+        </LoadingButton>
       </DialogTrigger>
       <DialogContent className="bg-transparent md:h-full w-[90svw] lg:max-w-[450px] md:max-h-[260px] h-[200px] sm:h-[220px]  overflow-y-auto lg:overflow-hidden border-0 ">
         <div className="relative flex flex-col items-center justify-end gap-6 md:gap-10 h-full px-4 sm:px-8 py-6 bg-white rounded-2xl ">
