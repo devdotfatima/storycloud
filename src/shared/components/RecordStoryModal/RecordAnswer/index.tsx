@@ -5,6 +5,7 @@ import { RecordAnswerPropsT } from "./types";
 import { useCreateStory } from "./mutations";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { StoryAnswerT } from "@/shared/types";
+import LoadingButton from "../../LoadingButton";
 
 const RecordAnswer = ({
   goToNextStep,
@@ -135,7 +136,7 @@ const RecordAnswer = ({
         setIsConverting(false); // Stop the loader
       }
     },
-    [convertToMp3, createStoryMutation, goToNextStep]
+    [convertToMp3, createStoryMutation, goToNextStep, setStory]
   );
 
   useEffect(() => {
@@ -148,17 +149,18 @@ const RecordAnswer = ({
   }, [recordedBlob, processAudio, isConverting]);
   return (
     <div className="w-full h-full overflow-hidden  bg-white rounded-2xl p-6 md:p-10 flex flex-col  gap-6 lg:gap-10 [@media(max-height:760px)]:overflow-y-auto">
-      <button
-        disabled={isConverting}
+      <LoadingButton
+        loading={isConverting || createStoryMutation.isPending}
+        type="button"
+        onClick={onNext}
         className={`${
           recordingTime > 0
             ? "bg-purple-100 text-purple pointer-events-auto "
             : " bg-grey-100 text-grey pointer-events-none "
         } w-32 py-2  self-end disabled:cursor-progress`}
-        onClick={onNext}
       >
         next
-      </button>
+      </LoadingButton>
 
       <div
         className={`text-center text-2xl h-40 max-w-[600px] mx-auto flex items-center justify-center sm:text-3xl font-crimson font-medium ${
