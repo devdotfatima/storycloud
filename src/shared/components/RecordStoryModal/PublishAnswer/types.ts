@@ -1,5 +1,14 @@
 import { CommentT, Controls, StoryAnswerT } from "@/shared/types";
 
+export type PublishAnswerPropsT = {
+  recorderControls: Controls;
+  goToPreviousStep: () => void;
+  onClose: () => void;
+  story: StoryAnswerT | null;
+  isFreeStyle?: boolean;
+  setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
+};
+
 export type AnswerAndStatsPropsT = {
   recorderControls?: Controls;
   goToPreviousStep?: () => void;
@@ -10,14 +19,7 @@ export type AnswerAndStatsPropsT = {
   onClose?: () => void;
   story?: StoryAnswerT | null;
   isFreeStyle?: boolean;
-};
-
-export type PublishAnswerPropsT = {
-  recorderControls: Controls;
-  goToPreviousStep: () => void;
-  onClose: () => void;
-  story: StoryAnswerT | null;
-  isFreeStyle?: boolean;
+  setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
 };
 
 export type TranscriptAndCommentsPropsT = {
@@ -34,6 +36,7 @@ export type PublishModalPropsT = {
   onClose: () => void;
   isPublished: boolean;
   handlePublish: () => Promise<void>;
+  isPublishing: boolean;
 };
 
 export type CancelEditChangesModalPropsT = {
