@@ -18,6 +18,7 @@ import CancelEditChangesModal from "@/shared/components/RecordStoryModal/Publish
 import { useGetStory } from "@/hooks/useGetStory";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { Loader } from "lucide-react";
+import { StoryAnswerT } from "@/shared/types";
 
 const Story = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -30,6 +31,9 @@ const Story = () => {
     id ?? "",
     user,
     typeof userId === "string" ? userId : ""
+  );
+  const [, setCurrentStory] = useState<StoryAnswerT | null>(
+    story ? story : null
   );
 
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
@@ -113,6 +117,7 @@ const Story = () => {
 
               {isUploadImageScreenVisible ? (
                 <UploadStoryImages
+                  setStory={setCurrentStory}
                   images={images}
                   handleImageSelect={handleImageSelect}
                   onToggleUploadImageScreen={toggleUploadImageScreen}
@@ -121,6 +126,7 @@ const Story = () => {
                 <>
                   <AnswerAndStats
                     story={story}
+                    setStory={setCurrentStory}
                     isEditing={isEditing}
                     toggleEditMode={toggleEditMode}
                     handleShowUploadImageScreen={toggleUploadImageScreen}

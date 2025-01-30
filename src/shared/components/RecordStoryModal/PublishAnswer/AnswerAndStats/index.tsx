@@ -24,30 +24,37 @@ const AnswerAndStats = ({
   onClose,
   story = null,
   isFreeStyle = false,
+  setStory,
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const [isPublished, setIsPublished] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [title, setTitle] = useState(story?.story_title || "freestyle");
   const user = useSessionContext();
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  console.log(story);
 
   const handlePublish = async () => {
-    // setIsPublished(true);
+    setIsPublishing(true);
+    console.log(story, typeof story?.story_images);
+
     const response = await publishStory(
       story?.story_id || "",
       title,
-      [],
+      story?.story_images || [],
       "all_friends",
       user
     );
 
     if (response.success) {
+      setIsPublishing(false);
+      setStory(null);
       setIsPublished(true);
     } else {
+      setIsPublishing(false);
+
       console.error(response.error);
     }
   };
@@ -82,6 +89,7 @@ const AnswerAndStats = ({
             />{" "}
             {onClose ? (
               <PublishModal
+                isPublishing={isPublishing}
                 handlePublish={handlePublish}
                 isPublished={isPublished}
                 onClose={onClose}

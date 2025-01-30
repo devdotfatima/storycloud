@@ -110,20 +110,6 @@ export type GetStoryParams = {
   userId: string;
 };
 
-// export type Story = {
-//   story_id: string;
-//   user: string;
-//   story_audio: string;
-//   story_synopsis: string;
-//   story_transcript: string;
-//   story_images: Record<string, string>;
-//   is_published: boolean;
-//   audience: string;
-//   creation_time: string;
-//   story_title: string;
-//   formatted_story_title: string;
-// };
-
 export type StoryAnswerT = {
   user_id?: string; // UUID of the user who owns the story
   creation_time?: string; // ISO 8601 date string

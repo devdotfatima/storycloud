@@ -23,7 +23,7 @@ export const deleteStory = async (
 export const publishStory = async (
   story_id: string,
   title: string,
-  images: File[],
+  images: File[] | Record<string, string>,
   audience: "close_friends" | "all_friends",
   user: UserT
 ): Promise<{ success?: boolean; error?: string }> => {
@@ -32,11 +32,30 @@ export const publishStory = async (
     formData.append("story_id", story_id);
     formData.append("story_title", title);
     formData.append("audience", audience);
+    formData.append("audience", audience);
+    if (Array.isArray(images) && images.length > 0) {
+      images.forEach((image) => {
+        formData.append("new_images", image);
+      });
+    }
+    // if (images && images.length > 0) {
+    //   images.forEach((image) => {
+    //     formData.append("new_images", image);
+    //   });
+    // }
+    if (!Array.isArray(images) && typeof images === "object") {
+      Object.entries(images).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+    }
 
-    images.forEach((image, index) => {
-      formData.append(`images[${index}]`, image);
-    });
-    console.log(formData);
+    for (const [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        console.log(`${key}:`, value.name); // Logs the file name for File objects
+      } else {
+        console.log(`${key}:`, value); // Logs other values
+      }
+    }
 
     const response = await fetch(
       `https://www.storycloudapi.com/stories/publish-story`,

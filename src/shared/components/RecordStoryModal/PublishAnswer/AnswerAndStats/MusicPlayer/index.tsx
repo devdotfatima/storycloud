@@ -112,7 +112,7 @@ const MusicPlayer = ({
     stopRecording?.();
     clearCanvas?.();
     goToPreviousStep?.();
-  }, [stopRecording, clearCanvas, goToPreviousStep]);
+  }, [stopRecording, clearCanvas, goToPreviousStep, deleteStory, story, user]);
 
   const forwardAudioThirtySeconds = () => {
     if (!audioRef.current) return;
