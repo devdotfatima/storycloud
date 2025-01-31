@@ -33,7 +33,7 @@ const UploadStoryImages = ({
         {images.map((selectedImage, index) => (
           <div
             key={index}
-            className=" min-h-[340px] md:h-full lg:min-h-full max-w-xl mx-auto w-full bg-purple-100 rounded-2xl flex items-center justify-center relative"
+            className=" min-h-[340px] lg:max-h-[130px] md:h-full lg:min-h-full max-w-xl mx-auto w-full bg-purple-100 rounded-2xl flex items-center justify-center relative"
           >
             <ImageDropzone
               index={index}
