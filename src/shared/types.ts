@@ -124,6 +124,8 @@ export type StoryAnswerT = {
   audience: "all_friends" | "private" | "public";
   reactions_count: number;
   comments_count: number;
+  user_handle: string;
+  user_profile_image: string;
 };
 export type FriendStatusT = {
   items: Array<{ friend_status: string }>;
@@ -139,4 +141,13 @@ export type CommentT = {
 
   commenter_id?: string;
   story_id?: string;
+};
+
+export type searchStoriesT = {
+  stories: StoryAnswerT[];
+  last_evaluated_key?: {
+    story_id: string;
+    creation_time: string;
+    user_id: string;
+  };
 };

@@ -1,66 +1,35 @@
 import React from "react";
 import StoryCard from "@/shared/components/StoryCard";
-import { StoryAnswerT, UserT } from "@/shared/types";
-import { bookmarkedStoriesResponseT } from "../../saved/types";
-import { useSessionContext } from "@/app/providers/SessionProvider";
-import { useQuery } from "@tanstack/react-query";
+import { searchStoriesT, StoryAnswerT } from "@/shared/types";
 import { Loader } from "lucide-react";
 
-export const getFeedStories = async (
-  user: UserT | null
-): Promise<bookmarkedStoriesResponseT | { error: string }> => {
-  try {
-    if (!user) {
-      return { error: "Unauthorized" };
-    }
-    const response = await fetch("https://storycloudapi.com/get-story-feed", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.jwt_token}`,
-      },
-    });
-
-    if (!response.ok) {
-      console.error(
-        "API response error:",
-        response.status,
-        response.statusText
-      );
-      return { error: "Something went wrong." };
-    }
-
-    const data: bookmarkedStoriesResponseT = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error("Unexpected error:", error);
-    return { error: "Something went wrong. Please try again." };
-  }
+type StoriesFeedPropsT = {
+  error: unknown;
+  data?: { pages: searchStoriesT[]; pageParams: unknown[] } | { error: string };
+  isLoading: boolean;
 };
-
-const StoriesFeed = () => {
-  const user = useSessionContext();
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["feedStories"],
-    queryFn: () => getFeedStories(user),
-  });
+const StoriesFeed = ({ error, data, isLoading }: StoriesFeedPropsT) => {
   if (isLoading) {
     return <Loader fill="#6A6FD5" className="mx-auto my-auto animate-spin" />;
   }
 
-  if (error || (data && (data as { error: string }).error)) {
+  // Check if `data` is an error response
+  if (error || (data && "error" in data)) {
     return (
       <div className="text-red-500">
-        Error: {(data as { error: string }).error}
+        Error: {data && "error" in data ? data.error : "Something went wrong"}
       </div>
     );
   }
-  const { items: stories } = data as bookmarkedStoriesResponseT;
+
+  const stories: StoryAnswerT[] =
+    data && "pages" in data
+      ? data.pages.flatMap((page) => (page.stories ? page.stories : []))
+      : [];
+
   return (
-    <div className="flex flex-row flex-wrap gap-10  md:gap-y-8 md:gap-x-7 lg:gap-x-20 lg:gap-y-10  mx-auto max-w-[1100px] w-full justify-center items-center 2xl:justify-between">
-      {stories.map((story: StoryAnswerT) => (
+    <div className="flex flex-wrap gap-10 md:gap-y-8 md:gap-x-7 lg:gap-x-20 lg:gap-y-10 mx-auto max-w-[1100px] w-full justify-center items-center 2xl:justify-between">
+      {stories.map((story) => (
         <StoryCard key={story.story_id} story={story} />
       ))}
     </div>
