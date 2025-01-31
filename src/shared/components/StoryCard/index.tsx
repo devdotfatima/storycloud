@@ -7,13 +7,8 @@ import { StoryCardPropsT } from "./types";
 import { formatDate } from "@/lib/formatDate";
 import UploadIcon from "@/assets/icons/image_file_input.svg";
 import { timeAgo } from "@/lib/timeAgo";
-// import { useParams } from "next/navigation";
-// import { useSessionContext } from "@/app/providers/SessionProvider";
 
 const StoryCard = ({ story }: StoryCardPropsT) => {
-  // const { userHandle } = useParams();
-  // const user = useSessionContext();
-  // const handle = typeof userHandle === "string" ? userHandle : user.user_id;
   return (
     <div className="flex flex-col sm:h-[610px] max-w-[400px] sm:max-w-[500px] w-full  p-4 sm:p-6 bg-white gap-3 sm:gap-6 rounded-2xl ">
       <div className=" flex items-center gap-2.5 sm:gap-3 text-sm sm:text-lg">
@@ -21,7 +16,6 @@ const StoryCard = ({ story }: StoryCardPropsT) => {
           href={`/profile/${story.user_id}`}
           className=" flex items-center gap-3"
         >
-          {" "}
           <Image
             src={story.user_profile_image || ProfileImage}
             alt="profile"
