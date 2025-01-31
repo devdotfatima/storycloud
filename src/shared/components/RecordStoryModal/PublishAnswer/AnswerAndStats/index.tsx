@@ -180,6 +180,7 @@ const AnswerAndStats = ({
       </div>
 
       {/* Upload Section */}
+
       {goToPreviousStep || isEditing ? (
         <div className=" flex flex-col gap-3 items-center ">
           <div
@@ -188,7 +189,7 @@ const AnswerAndStats = ({
                 ? handleShowUploadImageScreen
                 : undefined
             }
-            className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-56 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
+            className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-96 xl:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer"
           >
             <Image src={UploadIcon} alt="attach photo" width={50} height={50} />
             <p className="text-grey text-base">upload</p>
