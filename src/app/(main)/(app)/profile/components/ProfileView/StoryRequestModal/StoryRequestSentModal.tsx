@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useTransition } from "react";
 import Image from "next/image";
 import {
   DialogContent,
@@ -10,6 +12,7 @@ import StorySentIcon from "@/assets/images/story_sent.png";
 import { StoryRequestSentPropsT } from "./types";
 import { deleteStoryRequest } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const StoryRequestSentModal = ({
   onClose,
@@ -17,15 +20,18 @@ const StoryRequestSentModal = ({
   storyRequest,
 }: StoryRequestSentPropsT) => {
   const user = useSessionContext();
+  const [isPending, startTransition] = useTransition();
+
   const handleUnsend = async () => {
     if (!requestId) return;
-
-    const response = await deleteStoryRequest(requestId, user);
-    if (response.success) {
-      onClose(); // Close modal after successful delete
-    } else {
-      console.error("Failed to unsend story request:", response.error);
-    }
+    startTransition(async () => {
+      const response = await deleteStoryRequest(requestId, user);
+      if (response.success) {
+        onClose();
+      } else {
+        console.error("Failed to unsend story request:", response.error);
+      }
+    });
   };
   return (
     <DialogContent className="bg-transparent w-full  h-[100svh] sm:h-[90svh]  lg:overflow-hidden sm:max-w-[600px] lg:max-h-[600px]  pt-[20px] lg:pr-10 border-0 outline-none rounded-2xl ">
@@ -65,12 +71,14 @@ const StoryRequestSentModal = ({
 
         {/* <section className="flex flex-col  items-center gap-7 w-full overflow-y-auto pr-1"> */}
         <footer className="flex   gap-6 sm:gap-10 w-full self-end  justify-between mt-auto ">
-          <button
-            className="bg-red-100 text-red w-full h-11"
+          <LoadingButton
+            loading={isPending}
+            disabled={isPending}
+            className="bg-red-100 text-red w-full h-11 hover:bg-red hover:text-red-100"
             onClick={handleUnsend}
           >
             unsend
-          </button>
+          </LoadingButton>
           <button
             onClick={onClose}
             className="bg-purple-100 text-purple w-full h-11"

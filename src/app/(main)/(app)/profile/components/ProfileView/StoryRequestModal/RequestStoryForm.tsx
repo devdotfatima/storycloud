@@ -52,18 +52,18 @@ const RequestStoryForm = ({
           {...form.register("request_text")}
           className="block px-5 h-16 sm:h-18 w-full z-20    rounded-xl  border border-purple focus:border-[1px] pr-10"
           placeholder="type your question"
-
-          // maxLength={100}
-          // value={inputValue}
-          // onChange={handleInputChange}
         />
         <button
           type="submit"
-          disabled={!form.watch("request_text")}
+          disabled={!form.watch("request_text") || isPending}
           className="absolute -top-0 end-0 p-2.5 h-full  font-medium text-white rounded-e-lg border-0   "
         >
           {isPending ? (
-            <Loader className="animate-spin size-4" />
+            <Loader
+              className="animate-spin size-8 text-purple cursor-default"
+              fill="red"
+              color="purple"
+            />
           ) : (
             <Image
               src={form.watch("request_text") ? SendPurpleIcon : SendGreyIcon}
