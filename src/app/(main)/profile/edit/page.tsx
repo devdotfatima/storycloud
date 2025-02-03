@@ -18,6 +18,7 @@ import EditWhiteIcon from "@/assets/icons/edit-white.svg";
 import UserPurpleIcon from "@/assets/icons/user-purple.svg";
 import { updateProfile } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const EditProfile = () => {
   const [isPending, startTransition] = useTransition();
@@ -167,14 +168,15 @@ const EditProfile = () => {
             />
 
             <div className="flex items-center justify-between mb-4">
-              <button
+              <LoadingButton
+                loading={isPending}
                 disabled={isPending}
-                className={`w-full px-4 py-2 font-medium text-center focus:outline-none disabled:opacity-50  disabled:cursor-progress disabled:bg-grey-100 enabled:bg-purple-100 enabled:text-purple"
+                className={`w-full px-4 py-2 font-medium text-center focus:outline-none disabled:opacity-50 disabled:cursor-progress disabled:bg-grey-100 enabled:bg-purple-100 enabled:text-purple "
                 }`}
                 type="submit"
               >
                 done
-              </button>
+              </LoadingButton>
             </div>
           </form>
         </Form>

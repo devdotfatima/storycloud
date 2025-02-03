@@ -23,6 +23,8 @@ import { StoryAnswerT } from "@/shared/types";
 const Story = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { storyId, userId } = useParams();
+  const [isOpen, setIsOpen] = React.useState(true);
+  const router = useRouter();
 
   const id = typeof storyId === "string" ? storyId : "";
   const user = useSessionContext();
@@ -38,6 +40,7 @@ const Story = () => {
 
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
     useState(false);
+
   const [images, setImages] = useState<(File | null)[]>([
     null,
     null,
@@ -56,9 +59,9 @@ const Story = () => {
   const toggleUploadImageScreen = () => {
     setUploadImageScreenVisibility((prevState) => !prevState);
   };
-  const [isOpen, setIsOpen] = React.useState(true);
-
-  const router = useRouter();
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
   const handleOnClose = () => {
     router.back();
     setIsOpen(false);
@@ -128,6 +131,7 @@ const Story = () => {
                     story={story}
                     setStory={setCurrentStory}
                     isEditing={isEditing}
+                    onClose={closeDialog}
                     toggleEditMode={toggleEditMode}
                     handleShowUploadImageScreen={toggleUploadImageScreen}
                   />

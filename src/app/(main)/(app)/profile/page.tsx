@@ -12,6 +12,7 @@ const Profile = () => {
     router.push("/login");
     return null; // Prevent further rendering
   }
+  console.log(user);
 
   return (
     <ProfileView
@@ -21,7 +22,7 @@ const Profile = () => {
       userHandle={user.user_handle}
       userBio={user.user_bio}
       postCount={user.num_stories_posted}
-      friendCount={user.num_stories_posted}
+      friendCount={user.num_friends}
       profileImage={user.user_profile_image || ProfileImage}
     />
   );

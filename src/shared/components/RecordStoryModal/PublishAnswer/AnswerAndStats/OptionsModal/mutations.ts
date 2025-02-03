@@ -10,15 +10,12 @@ export const useDeleteStory = (story_id: string, user: UserT) => {
   const queryClient = useQueryClient();
 
   const queryFilter: QueryFilters = {
-    queryKey: [story_id, user.user_id],
+    queryKey: ["userStories", user.user_id, user],
   };
   return useMutation({
     mutationFn: () => deleteStory(story_id, user),
-
-    // No optimistic updates; we wait for confirmation
     onSuccess: () => {
-      // Remove the story from the cache after successful deletion
-      queryClient.invalidateQueries(queryFilter); // Refetch story list or details as needed
+      queryClient.invalidateQueries(queryFilter);
     },
     onError: (error) => {
       console.error("Failed to delete the story:", error);

@@ -113,7 +113,11 @@ const AnswerAndStats = ({
             </button>
           </div>
         ) : (
-          <OptionsModal toggleEditMode={toggleEditMode} story={story} />
+          <OptionsModal
+            toggleEditMode={toggleEditMode}
+            story={story}
+            onClose={onClose}
+          />
         )}
       </div>
 

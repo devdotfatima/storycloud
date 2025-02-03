@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import React, { startTransition, useState } from "react";
+import React, { useTransition, useState } from "react";
 import SendGreyIcon from "@/assets/icons/send-grey.svg";
 import SendPurpleIcon from "@/assets/icons/send.svg";
 import { RequestStoryFormPropsT } from "./types";
@@ -10,6 +10,7 @@ import { storyRequestSchema, StoryRequestT } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sendStoryRequest } from "./actions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import { Loader } from "lucide-react";
 
 const RequestStoryForm = ({
   onSend,
@@ -18,6 +19,7 @@ const RequestStoryForm = ({
 }: RequestStoryFormPropsT) => {
   const [error, setError] = useState<string>();
   const { userHandle } = useParams();
+  const [isPending, startTransition] = useTransition();
   const handle = typeof userHandle === "string" ? userHandle : "";
   const user = useSessionContext();
   const form = useForm<StoryRequestT>({
@@ -60,13 +62,17 @@ const RequestStoryForm = ({
           disabled={!form.watch("request_text")}
           className="absolute -top-0 end-0 p-2.5 h-full  font-medium text-white rounded-e-lg border-0   "
         >
-          <Image
-            src={form.watch("request_text") ? SendPurpleIcon : SendGreyIcon}
-            className="h-5 w-5 sm:h-6 sm:w-6"
-            width={25}
-            height={25}
-            alt="send"
-          />
+          {isPending ? (
+            <Loader className="animate-spin size-4" />
+          ) : (
+            <Image
+              src={form.watch("request_text") ? SendPurpleIcon : SendGreyIcon}
+              className="h-5 w-5 sm:h-6 sm:w-6"
+              width={25}
+              height={25}
+              alt="send"
+            />
+          )}
         </button>
       </div>
 

@@ -15,8 +15,13 @@ import CopyPurpleIcon from "@/assets/icons/copy-purple.svg";
 import { OptionsModalPropsT } from "../../types";
 import { useDeleteStory } from "./mutations";
 import { useSessionContext } from "@/app/providers/SessionProvider";
+import LoadingButton from "@/shared/components/LoadingButton";
 
-const OptionsModal = ({ toggleEditMode, story }: OptionsModalPropsT) => {
+const OptionsModal = ({
+  toggleEditMode,
+  story,
+  onClose,
+}: OptionsModalPropsT) => {
   const [showLink, setShowLink] = useState(false);
   const [deleteStory, setDeleteStory] = useState(false);
   const pathname = usePathname();
@@ -34,6 +39,8 @@ const OptionsModal = ({ toggleEditMode, story }: OptionsModalPropsT) => {
     deleteStoryMutation(undefined, {
       onSuccess: () => {
         setDeleteStory(true);
+
+        onClose?.();
       },
       onError: (error) => {
         console.log("error", error);
@@ -120,14 +127,16 @@ const OptionsModal = ({ toggleEditMode, story }: OptionsModalPropsT) => {
               delete story?
             </DialogTitle>
             <div className="my-auto ">
-              {" "}
-              <button
+              <LoadingButton
+                disabled={isDeleting}
+                loading={isDeleting}
                 type="button"
                 onClick={handleDeleteStory}
-                className="p-2 transition duration-150 mb-6 ease-in text-red bg-red-100 w-full  "
+                className="p-2 transition duration-150 mb-6 ease-in text-red bg-red-100 hover:bg-red hover:text-red-100 w-full  "
               >
                 delete
-              </button>{" "}
+              </LoadingButton>
+              <button></button>{" "}
               <button
                 type="button"
                 onClick={() => setDeleteStory(false)}

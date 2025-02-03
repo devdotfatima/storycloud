@@ -30,6 +30,7 @@ export type TranscriptAndCommentsPropsT = {
 export type OptionsModalPropsT = {
   toggleEditMode: () => void;
   story: StoryAnswerT | null;
+  onClose?: () => void;
 };
 
 export type PublishModalPropsT = {

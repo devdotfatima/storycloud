@@ -4,8 +4,8 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { deleteStory } from "./actions";
 import { UserT } from "@/shared/types";
+import { deleteStory } from "./AnswerAndStats/OptionsModal/actions";
 
 export const useDeleteStory = () => {
   const queryClient = useQueryClient();
