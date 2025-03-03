@@ -84,12 +84,12 @@ const Comments = ({ story = null }: CommentsPropsT) => {
             )}
           </div>
 
-          <div className="flex items-center justify-between w-[96%] h-11 gap-2 px-2 bg-white rounded-xl">
+          <div className="flex items-center justify-between w-[96%] h-12 gap-2 px-2 bg-white rounded-xl">
             <textarea
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Add comment"
-              className="w-full h-7 mt-1 overflow-y-auto leading-tight outline-none resize-none caret-secondaryBlue ring-0"
+              className="w-full h-8  mt-1 overflow-y-auto leading-tight outline-none resize-none caret-secondaryBlue ring-0"
             />
             <button
               onClick={handleAddComment}
