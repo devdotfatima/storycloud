@@ -6,11 +6,12 @@ import { TranscriptAndCommentsPropsT } from "../types";
 const TranscriptAndComments = ({
   isEditing,
   story,
+  setStory,
 }: TranscriptAndCommentsPropsT) => {
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-  const tabs = getTranscriptAndCommentsTabs(isEditing, story);
+  const tabs = getTranscriptAndCommentsTabs(isEditing, setStory, story);
   useEffect(() => {
     if (activeTabIndex === null) {
       return;

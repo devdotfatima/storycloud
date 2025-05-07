@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { AnswerAndStatsPropsT } from "../types";
 import ProfileImage from "@/assets/images/profile_image.png";
 import MessageIcon from "@/assets/icons/message.svg";
-import BookmarkIcon from "@/assets/icons/bookmark.svg";
 import UploadIcon from "@/assets/icons/image_file_input.svg";
 import ArrowIcon from "@/assets/icons/arrow-red.svg";
 import OptionsModal from "./OptionsModal";
@@ -14,6 +14,9 @@ import { formatDate } from "@/lib/formatDate";
 import StoryReactions from "./StoryReactions";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { publishStory } from "../actions";
+import StoryBookmark from "./StoryBookmark";
+import ImageSlider from "@/shared/components/ImageSlider";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const AnswerAndStats = ({
   recorderControls,
@@ -24,16 +27,21 @@ const AnswerAndStats = ({
   onClose,
   story = null,
   isFreeStyle = false,
-  setStory,
+  setStory, isSavingEdits,
+  requestText
 }: AnswerAndStatsPropsT) => {
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const [isPublished, setIsPublished] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
-  const [title, setTitle] = useState(story?.story_title || "freestyle");
+  const [title, setTitle] = useState(story?.story_title || requestText||"freestyle");
+  const router = useRouter();
   const user = useSessionContext();
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
+    setStory(prevStory => prevStory
+      ? { ...prevStory, story_title: e.target.value }
+      : prevStory)
   };
 
   const handlePublish = async () => {
@@ -52,6 +60,7 @@ const AnswerAndStats = ({
       setIsPublishing(false);
       setStory(null);
       setIsPublished(true);
+      router.push("/profile");
     } else {
       setIsPublishing(false);
 
@@ -59,6 +68,8 @@ const AnswerAndStats = ({
     }
   };
 
+
+  
   return (
     <div className="lg:w-1/2 lg:h-full custom-h760-w1024:h-fit flex-col flex gap-4 sm:gap-4 xl:gap-6 2xl:gap-9 md:bg-purple-100 p-5 sm:p-8 xl:p-10 2xl:p-12  ">
       {/* Header Section */}
@@ -105,19 +116,17 @@ const AnswerAndStats = ({
               width={80}
               className="h-12 sm:h-12 w-20 "
             />{" "}
-            <button
-              onClick={toggleEditMode}
-              className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple"
-            >
-              save
-            </button>
+           
+            
+        
+              <LoadingButton className="px-4 h-10 flex items-center justify-center py-1.5 sm:py-2 bg-purple-400 text-white w-24 sm:w-32 border-0 hover:bg-purple" onClick={toggleEditMode} loading={isSavingEdits}>  save</LoadingButton>
           </div>
         ) : (
-          <OptionsModal
+         user? <OptionsModal
             toggleEditMode={toggleEditMode}
             story={story}
             onClose={onClose}
-          />
+          />:null
         )}
       </div>
 
@@ -132,7 +141,7 @@ const AnswerAndStats = ({
         {story ? (
           isEditing || !story.is_published ? (
             <textarea
-              className="border-0 outline-none overflow-y-auto h-16 pt-4 w-full resize-none text-center rounded"
+              className="border-0 outline-none overflow-y-auto h-16 pt-4 mt-1 w-full resize-none text-center rounded"
               value={title}
               onChange={handleTitleChange} // Update state on change
             />
@@ -168,24 +177,13 @@ const AnswerAndStats = ({
               {story?.is_published ? story.comments_count : 10}
             </span>
           </div>
-          <div className="flex items-center  gap-1 sm:gap-2">
-            <Image
-              src={BookmarkIcon}
-              alt="saves"
-              height={24}
-              width={24}
-              className="h-5 w-5 sm:h-6 sm:w-6"
-            />
-            <span className="text-sm sm:text-xl">
-              {!story?.is_published ? 0 : 10}
-            </span>
-          </div>
+          <StoryBookmark story={story}/>
         </div>
       </div>
 
       {/* Upload Section */}
 
-      {goToPreviousStep || isEditing ? (
+      {goToPreviousStep  ? (
         <div className=" flex flex-col gap-3 items-center ">
           <div
             onClick={
@@ -201,8 +199,8 @@ const AnswerAndStats = ({
           <div className={`rounded-full p-1 h-2 w-2 bg-purple-400`}></div>
         </div>
       ) : story?.story_images && Object.keys(story.story_images).length > 0 ? (
-        // <ImageSlider images={story.story_images} />
-        <p></p>
+        <ImageSlider images={story.story_images} />
+      
       ) : (
         <div className=" flex flex-col gap-3 items-center h-full ">
           <div className="w-full max-h-64 min-h-64 sm:max-h-96 h-full md:min-h-64 lg:min-h-56 xl:lg:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer">
@@ -230,3 +228,5 @@ const AnswerAndStats = ({
 };
 
 export default AnswerAndStats;
+
+

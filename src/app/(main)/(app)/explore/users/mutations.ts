@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { UserT } from "@/shared/types";
 import { fetchUsers } from "./actions";
 
-export const useFetchUsers = (user: UserT, searchTerm: string) => {
+export const useFetchUsers = (user: UserT | null, searchTerm: string) => {
   return useInfiniteQuery({
     queryKey: ["users", searchTerm],
     queryFn: ({ pageParam }: { pageParam: { user_id: string } | null }) =>

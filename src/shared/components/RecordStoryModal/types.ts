@@ -5,4 +5,6 @@ export type RecordStoryModalPropsT = {
   isFreeStyle?: boolean;
   questionOfTheWeek?: string;
   freestyleStory?: StoryAnswerT | null;
+   requestId:string|null,
+  requestText:string|null
 };

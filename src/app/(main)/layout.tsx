@@ -1,13 +1,18 @@
-import { redirect } from "next/navigation";
+
 import React from "react";
 import { MainLayoutPropsT } from "@/shared/types";
 import { validateUser } from "@/lib/dal";
 import SessionProvider from "../providers/SessionProvider";
+import ClientLayout from "./ClientLayout";
 
 const Layout = async ({ children }: MainLayoutPropsT) => {
   const { user } = await validateUser();
-  if (!user) redirect("/login");
-  return <SessionProvider value={user}>{children}</SessionProvider>;
+
+  return (
+    <SessionProvider value={user ?? null}>
+      <ClientLayout>{children}</ClientLayout>
+    </SessionProvider>
+  );
 };
 
 export default Layout;

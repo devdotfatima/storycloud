@@ -40,7 +40,7 @@ const AccountInfo = () => {
           <input
             type="email"
             name=""
-            value={user.user_email}
+            value={user?.user_email}
             placeholder="user@gmail.com"
             id="email"
             readOnly
@@ -53,7 +53,7 @@ const AccountInfo = () => {
           <input
             type="date"
             name=""
-            value={user.birthday || "2013-10-02"}
+            value={user?.birthday || "2013-10-02"}
             readOnly
             placeholder="mm/dd/yyyy"
             id="dob"

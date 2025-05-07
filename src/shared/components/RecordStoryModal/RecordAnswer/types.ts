@@ -7,4 +7,7 @@ export type RecordAnswerPropsT = {
   recorderControls: Controls;
   story: StoryAnswerT | null;
   setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
+    requestId:string|null,
+  requestText:string|null
 } & RecordStoryModalPropsT;
+

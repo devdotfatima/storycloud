@@ -41,6 +41,8 @@ const QuestionOfTheWeek = () => {
       <RecordStoryModal
         onClose={closeDialog}
         questionOfTheWeek="What is your favorite travel destination?"
+        requestId={null}
+        requestText={null}
       />
     </Dialog>
   );

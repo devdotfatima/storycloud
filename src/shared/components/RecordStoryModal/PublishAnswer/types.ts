@@ -7,6 +7,8 @@ export type PublishAnswerPropsT = {
   story: StoryAnswerT | null;
   isFreeStyle?: boolean;
   setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
+  requestId:string|null,
+  requestText:string|null
 };
 
 export type AnswerAndStatsPropsT = {
@@ -20,11 +22,15 @@ export type AnswerAndStatsPropsT = {
   story?: StoryAnswerT | null;
   isFreeStyle?: boolean;
   setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>;
+  isSavingEdits:boolean
+   requestId:string|null,
+  requestText:string|null
 };
 
 export type TranscriptAndCommentsPropsT = {
   isEditing: boolean;
   story?: StoryAnswerT | null;
+  setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>
 };
 
 export type OptionsModalPropsT = {

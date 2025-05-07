@@ -37,8 +37,8 @@ const Freestyle = () => {
 
   const { data: story, isLoading: isStoryLoading } = useGetStory(
     freestyleStory?.story_id ?? "",
-    user,
-    user.user_id
+    // user,
+    user?user.user_id:""
   );
 
   return (
@@ -64,6 +64,8 @@ const Freestyle = () => {
           onClose={closeDialog}
           isFreeStyle={true}
           freestyleStory={story}
+          requestId={freestyleStory?.request_id ?? null}
+          requestText={freestyleStory?.request_text ?? null}
         />
       ) : null}
       {isRecordStoryModalOpen && isStoryLoading ? (

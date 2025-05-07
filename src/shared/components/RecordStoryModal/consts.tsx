@@ -12,12 +12,13 @@ export const steps = [
 
 export const getTranscriptAndCommentsTabs = (
   isEditing: boolean,
-  story?: StoryAnswerT | null
+  setStory: React.Dispatch<React.SetStateAction<StoryAnswerT | null>>,
+  story?: StoryAnswerT | null,
 ) => [
   {
     id: 0,
     name: "transcript",
-    content: <Transcript isEditing={isEditing} story={story} />, // Pass isEditing prop to Transcript
+    content: <Transcript isEditing={isEditing} story={story} setStory={setStory} />, 
   },
   {
     id: 1,

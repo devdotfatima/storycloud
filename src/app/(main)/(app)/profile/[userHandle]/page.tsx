@@ -30,6 +30,8 @@ const Profile = () => {
         fetchUser(handle, loggedInUser),
         getFriendStatus(handle, loggedInUser),
       ]);
+      console.log(user,friendStatus);
+      
       return { user, friendStatus };
     },
     enabled: !!userHandle && !!loggedInUser?.jwt_token,

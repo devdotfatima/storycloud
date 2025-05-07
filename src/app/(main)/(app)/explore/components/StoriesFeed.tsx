@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import StoryCard from "@/shared/components/StoryCard";
 import { searchStoriesT, StoryAnswerT } from "@/shared/types";

@@ -40,7 +40,7 @@ const QuestionCard = ({ request }: QuestionCardPropsT) => {
           <h4 className="font-crimson text-4xl">{request.request_text} </h4>
         </div>
       </DialogTrigger>
-      <RecordStoryModal onClose={closeDialog} />
+      <RecordStoryModal onClose={closeDialog} requestId={request.request_id} requestText={request.request_text} />
     </Dialog>
   );
 };

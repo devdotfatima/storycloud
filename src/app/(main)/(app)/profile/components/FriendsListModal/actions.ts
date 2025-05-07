@@ -2,7 +2,7 @@ import { UserT } from "@/shared/types";
 import { FriendsListT } from "./types";
 
 export const fetchFriends = async (
-  user: UserT,
+  user: UserT | null,
   pageParam: { user_id: string } | null,
 
   userId = ""

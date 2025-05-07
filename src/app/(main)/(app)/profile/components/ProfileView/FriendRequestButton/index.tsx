@@ -58,7 +58,7 @@ const FriendRequestButton = ({
     mutationFn: () => unfriend(userId, user),
     onMutate: async () => {
       const previousState = friendStatus;
-      setFriendStatus(undefined);
+      setFriendStatus("stranger");
       return { previousState };
     },
     onError: (error, variables, context) => {
@@ -68,6 +68,8 @@ const FriendRequestButton = ({
       refetchUserData?.();
     },
   });
+
+  
 
   if (friendStatus === "accepted") {
     return (
@@ -93,7 +95,7 @@ const FriendRequestButton = ({
   if (friendStatus === "pending") {
     return (
       <Select>
-        <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[10vw] sm:pl-[68px] text-center text-grey bg-white outline-none rounded-2xl">
+        <SelectTrigger className="flex text-base sm:text-xl items-center justify-between max-w-60 w-full py-[16px] sm:py-[22px] mt-2 sm:pr-3 pl-[10vw] sm:pl-[68px] text-center text-grey border-0 bg-white outline-none rounded-2xl">
           <SelectValue placeholder="requested" />
         </SelectTrigger>
         <SelectContent className="w-full overflow-auto rounded-2xl border-0 h-full ring-0 focus:outline-none p-0 bg-transparent">

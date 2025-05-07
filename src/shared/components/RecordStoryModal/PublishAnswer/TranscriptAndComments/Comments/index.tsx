@@ -9,6 +9,7 @@ import Comment from "./Comment";
 import { CommentT } from "@/shared/types";
 import { Loader } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const Comments = ({ story = null }: CommentsPropsT) => {
   const { ref, inView } = useInView();
@@ -28,7 +29,7 @@ const Comments = ({ story = null }: CommentsPropsT) => {
       addCommentMutation.mutate({
         story_id: story?.story_id,
         comment_text: commentText,
-        commenter_id: user.user_id,
+        commenter_id: user?.user_id||"",
         author_id: story?.user_id || "",
       });
       setCommentText("");
@@ -53,7 +54,12 @@ const Comments = ({ story = null }: CommentsPropsT) => {
           : " "
       } `}
     >
-      {!story?.story_id ? (
+      {!user ? (
+        <div className="h-full w-full flex justify-center items-center">
+          please &nbsp;<Link href="/login" className="text-purple hover:underline ">login</Link>&nbsp;to comment or like on this post.
+        
+        </div>
+      ):!story?.story_id ? (
         <span> comments on your posts will appear here</span>
       ) : (
         <div className="flex justify-between flex-col h-full ">

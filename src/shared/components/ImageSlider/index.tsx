@@ -12,7 +12,7 @@ import "swiper/css";
 const ImageSlider = ({ images }: ImageSliderPropsT) => {
   const [activeIndex, setActiveIndex] = useState(0);
   SwiperCore.use([Mousewheel, Keyboard]);
-
+  const imageArray = Object.values(images ?? {});
   return (
     <div className="h-full flex flex-col w-full gap-3 ">
       <div className="md:max-w-[600px] h-full ">
@@ -23,9 +23,9 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
           className="mySwiper h-full"
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
-          {images.map((image, index) => (
+          {imageArray.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="w-full max-h-64 min-h-64 sm:min-h-96 lg:min-h-56 rounded-xl object-fill">
+              {/* <div className="w-full max-h-64 min-h-64 sm:min-h-96 lg:min-h-56 rounded-xl object-fill">
                 <Image
                   src={image}
                   alt={`Slide ${index + 1}`}
@@ -33,18 +33,27 @@ const ImageSlider = ({ images }: ImageSliderPropsT) => {
                   objectFit="cover"
                   className="rounded-2xl"
                 />
+              </div> */}
+              <div className="w-full max-h-64 min-h-64 sm:min-h-96 h-full md:min-h-64 lg:min-h-96 xl:min-h-80 2xl:min-h-72 rounded-xl flex flex-col items-center justify-center bg-purple-100 sm:bg-white cursor-pointer">
+                <Image
+                  src={image}
+                  alt="cover picture for story"
+                  height={"100"}
+                  width={"100"}
+                  className="rounded-2xl h-full w-full object-contain"
+                />
               </div>
+
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <div className="flex justify-center gap-2 ">
-        {images.map((_, index) => (
+        {imageArray.map((_, index) => (
           <div
             key={index}
-            className={`rounded-full p-1 h-2 w-2 ${
-              activeIndex === index ? "bg-purple" : "bg-purple-400"
-            }`}
+            className={`rounded-full p-1 h-2 w-2 ${activeIndex === index ? "bg-purple" : "bg-purple-400"
+              }`}
           ></div>
         ))}
       </div>

@@ -13,11 +13,16 @@ const RecordAnswer = ({
   isFreeStyle = false,
   questionOfTheWeek = "",
   setStory,
+  requestId,
+  requestText
+  
 }: RecordAnswerPropsT) => {
-  const [title, setTitle] = useState(questionOfTheWeek || "freestyle");
+  console.log(requestText || questionOfTheWeek || "freestyle");
+  
+  const [title, setTitle] = useState(requestText||questionOfTheWeek || "freestyle");
   const user = useSessionContext();
   const [isConverting, setIsConverting] = useState(false);
-  const createStoryMutation = useCreateStory(user);
+  const createStoryMutation = useCreateStory(user,requestId);
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
@@ -177,7 +182,7 @@ const RecordAnswer = ({
             onChange={handleTitleChange}
           />
         ) : (
-          <p className="h-fit "> {questionOfTheWeek} </p>
+          <p className="h-fit "> {questionOfTheWeek||requestText} </p>
         )}
       </div>
       <div className=" pr-1  bg-purple-100 w-full  max-w-[600px]  mx-auto rounded-2xl lg:max-h-[450px] overflow-hidden min-h-[220px] h-full py-2 ">

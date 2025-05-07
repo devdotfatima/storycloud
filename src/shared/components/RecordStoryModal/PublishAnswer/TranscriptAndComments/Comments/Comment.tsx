@@ -64,7 +64,7 @@ const Comment = ({ comment, myStory }: CommentPropT) => {
           </p>
           <div className="flex items-center gap-2 text-grey">
             <span>{timeAgo(comment.creation_time)}</span>
-            {myStory || comment.commenter_id === user.user_id ? (
+            {myStory || comment.commenter_id === user?.user_id ? (
               <button>
                 <Ellipsis
                   className="cursor-pointer"

@@ -13,7 +13,7 @@ type InfiniteComments = {
   pageParams: (string | null)[];
 };
 
-export const useAddComment = (user: UserT, story_id: string) => {
+export const useAddComment = (user: UserT|null, story_id: string) => {
   const queryClient = useQueryClient();
   const queryFilter: QueryFilters = {
     queryKey: ["comments", story_id],
@@ -53,8 +53,8 @@ export const useAddComment = (user: UserT, story_id: string) => {
                     items: [
                       {
                         comment_id: "temp-id", // Temporary ID for the optimistic update
-                        commenter_user_handle: user.user_handle,
-                        commenter_photo: user.user_profile_image,
+                        commenter_user_handle: user?.user_handle ?? "Unknown",
+                        commenter_photo: user?.user_profile_image??null,
                         comment_text: newComment.comment_text,
                         creation_time: new Date().toISOString(),
                         commenter_id: newComment.commenter_id,
@@ -86,7 +86,7 @@ export const useAddComment = (user: UserT, story_id: string) => {
   });
 };
 
-export const useFetchComments = (user: UserT, story_id: string) => {
+export const useFetchComments = (user: UserT|null, story_id: string) => {
   return useInfiniteQuery({
     queryKey: ["comments", story_id],
     queryFn: ({
@@ -101,7 +101,7 @@ export const useFetchComments = (user: UserT, story_id: string) => {
   });
 };
 
-export const useDeleteComment = (user: UserT, story_id: string) => {
+export const useDeleteComment = (user: UserT|null, story_id: string) => {
   const queryClient = useQueryClient();
   const queryFilter: QueryFilters = {
     queryKey: ["comments", story_id],

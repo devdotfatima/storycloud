@@ -13,6 +13,8 @@ const RecordStoryModal = ({
   isFreeStyle = false,
   questionOfTheWeek = "",
   freestyleStory = null,
+  requestId=null,
+  requestText=""
 }: RecordStoryModalPropsT) => {
   const [currentStep, setCurrentStep] = useState(0);
   const recorderControls = useVoiceVisualizer();
@@ -62,6 +64,8 @@ const RecordStoryModal = ({
           </DialogClose>
 
           <CurrentStepComponent
+          requestId={requestId}
+          requestText={requestText}
             setStory={setStory}
             goToPreviousStep={goToPreviousStep}
             recorderControls={recorderControls}

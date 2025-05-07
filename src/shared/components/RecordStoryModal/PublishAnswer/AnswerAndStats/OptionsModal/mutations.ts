@@ -6,11 +6,12 @@ import {
 import { deleteStory } from "./actions";
 import { UserT } from "@/shared/types";
 
-export const useDeleteStory = (story_id: string, user: UserT) => {
+export const useDeleteStory = (story_id: string, user: UserT|null) => {
   const queryClient = useQueryClient();
 
+
   const queryFilter: QueryFilters = {
-    queryKey: ["userStories", user.user_id, user],
+    queryKey: ["userStories", user?.user_id, user],
   };
   return useMutation({
     mutationFn: () => deleteStory(story_id, user),

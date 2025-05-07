@@ -2,7 +2,7 @@ import { UserT } from "@/shared/types";
 import { searchUsersT } from "./types";
 
 export const fetchUsers = async (
-  user: UserT,
+  user: UserT | null,
   pageParam: { user_id: string } | null,
   searchTerm = ""
 ): Promise<searchUsersT> => {

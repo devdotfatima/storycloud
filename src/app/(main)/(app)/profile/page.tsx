@@ -12,7 +12,7 @@ const Profile = () => {
     router.push("/login");
     return null; // Prevent further rendering
   }
-  console.log(user);
+
 
   return (
     <ProfileView

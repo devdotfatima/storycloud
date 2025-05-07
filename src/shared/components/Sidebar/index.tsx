@@ -10,6 +10,7 @@ import Notifications from "../Notifications";
 const Sidebar = () => {
   const [showNotifications, setShowNotifications] = useState(false);
 
+
   const toggleNotifications = () => setShowNotifications(!showNotifications);
   const onClose = () => setShowNotifications(false);
 
@@ -17,6 +18,8 @@ const Sidebar = () => {
     () => menuItems.filter((item) => item.name !== "settings"),
     []
   );
+  
+ 
   return (
     <>
       {/* Desktop */}
