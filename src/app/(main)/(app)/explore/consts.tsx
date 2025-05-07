@@ -5,7 +5,9 @@ export const storiesAndUsersTabs = [
   {
     id: 0,
     name: "stories",
-    content: <Stories />,
+    content:
+    // <p>sdfsj</p>,
+    <Stories />,
   },
   {
     id: 1,

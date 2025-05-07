@@ -26,7 +26,7 @@ const OptionsModal = ({
   const [deleteStory, setDeleteStory] = useState(false);
   const pathname = usePathname();
   const user = useSessionContext();
-  const myStory = true;
+  const myStory = story?.user_id===user?.user_id;
   const handleCopyClick = () => {
     navigator.clipboard.writeText(` http://localhost:3000${pathname}`);
   };

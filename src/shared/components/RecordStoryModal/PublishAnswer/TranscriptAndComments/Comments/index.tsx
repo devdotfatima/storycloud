@@ -9,6 +9,7 @@ import Comment from "./Comment";
 import { CommentT } from "@/shared/types";
 import { Loader } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const Comments = ({ story = null }: CommentsPropsT) => {
   const { ref, inView } = useInView();
@@ -28,7 +29,7 @@ const Comments = ({ story = null }: CommentsPropsT) => {
       addCommentMutation.mutate({
         story_id: story?.story_id,
         comment_text: commentText,
-        commenter_id: user.user_id,
+        commenter_id: user?.user_id||"",
         author_id: story?.user_id || "",
       });
       setCommentText("");
@@ -53,7 +54,12 @@ const Comments = ({ story = null }: CommentsPropsT) => {
           : " "
       } `}
     >
-      {!story?.story_id ? (
+      {!user ? (
+        <div className="h-full w-full flex justify-center items-center">
+          please &nbsp;<Link href="/login" className="text-purple hover:underline ">login</Link>&nbsp;to comment or like on this post.
+        
+        </div>
+      ):!story?.story_id ? (
         <span> comments on your posts will appear here</span>
       ) : (
         <div className="flex justify-between flex-col h-full ">
@@ -84,12 +90,12 @@ const Comments = ({ story = null }: CommentsPropsT) => {
             )}
           </div>
 
-          <div className="flex items-center justify-between w-[96%] h-11 gap-2 px-2 bg-white rounded-xl">
+          <div className="flex items-center justify-between w-[96%] h-12 gap-2 px-2 bg-white rounded-xl">
             <textarea
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Add comment"
-              className="w-full h-7 mt-1 overflow-y-auto leading-tight outline-none resize-none caret-secondaryBlue ring-0"
+              className="w-full h-8  mt-1 overflow-y-auto leading-tight outline-none resize-none caret-secondaryBlue ring-0"
             />
             <button
               onClick={handleAddComment}

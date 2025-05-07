@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/shared/components/ui/dialog";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ClosePurpleIcon from "@/assets/icons/close-purple.svg";
 import AnswerAndStats from "@/shared/components/RecordStoryModal/PublishAnswer/AnswerAndStats";
@@ -19,25 +19,25 @@ import { useGetStory } from "@/hooks/useGetStory";
 import { useSessionContext } from "@/app/providers/SessionProvider";
 import { Loader } from "lucide-react";
 import { StoryAnswerT } from "@/shared/types";
+import { useUpdateStory } from "@/shared/components/RecordStoryModal/PublishAnswer/mutations";
 
 const Story = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { storyId, userId } = useParams();
   const [isOpen, setIsOpen] = React.useState(true);
   const router = useRouter();
-
   const id = typeof storyId === "string" ? storyId : "";
   const user = useSessionContext();
+  const { mutateAsync: updateStoryMutation, isPending: isUpdating } = useUpdateStory();
 
   const { data: story, isLoading: isStoryLoading } = useGetStory(
     id ?? "",
-    user,
+    // user,
     typeof userId === "string" ? userId : ""
   );
-  const [, setCurrentStory] = useState<StoryAnswerT | null>(
+  const [currentStory, setStory] = useState<StoryAnswerT | null>(
     story ? story : null
   );
-
   const [isUploadImageScreenVisible, setUploadImageScreenVisibility] =
     useState(false);
 
@@ -65,11 +65,41 @@ const Story = () => {
   const handleOnClose = () => {
     router.back();
     setIsOpen(false);
+    if (story) { setStory(story) }
   };
 
-  const toggleEditMode = () => {
-    setIsEditing((prevState) => !prevState);
+  const toggleEditMode = async () => {
+    if (!isEditing) {
+      setIsEditing(true);
+      return;
+    }
+
+    try {
+      const response = await updateStoryMutation({
+        story_id: currentStory?.story_id || "",
+        title: currentStory?.story_title || "",
+        images: currentStory?.story_images || {},
+        transcript: currentStory?.story_transcript !== story?.story_transcript ? currentStory?.story_transcript || "" : null,
+        synopsis: currentStory?.story_synopsis || "",
+        user,
+      });
+
+      if (response.success) {
+        setIsEditing(false);
+      } else {
+        console.error(response.error);
+      }
+    } catch (error) {
+      console.error("Error updating story:", error);
+    }
   };
+
+  useEffect(() => {
+    if (story) {
+      setStory(story);
+    }
+  }, [story]);
+
   return (
     <Dialog open={isOpen}>
       <DialogOverlay onClick={handleOnClose}>
@@ -120,7 +150,7 @@ const Story = () => {
 
               {isUploadImageScreenVisible ? (
                 <UploadStoryImages
-                  setStory={setCurrentStory}
+                  setStory={setStory}
                   images={images}
                   handleImageSelect={handleImageSelect}
                   onToggleUploadImageScreen={toggleUploadImageScreen}
@@ -128,15 +158,18 @@ const Story = () => {
               ) : (
                 <>
                   <AnswerAndStats
+                    isSavingEdits={isUpdating}
                     story={story}
-                    setStory={setCurrentStory}
+                    setStory={setStory}
                     isEditing={isEditing}
                     onClose={closeDialog}
                     toggleEditMode={toggleEditMode}
                     handleShowUploadImageScreen={toggleUploadImageScreen}
+                    requestId={null}
+                    requestText={null}
                   />
 
-                  <TranscriptAndComments isEditing={isEditing} story={story} />
+                  <TranscriptAndComments isEditing={isEditing} story={story} setStory={setStory} />
                 </>
               )}
             </div>

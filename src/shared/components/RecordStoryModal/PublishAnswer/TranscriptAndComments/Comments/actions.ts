@@ -7,7 +7,7 @@ export const addComment = async (
     author_id: string;
     commenter_id: string;
   },
-  user: UserT
+  user: UserT|null
 ): Promise<{ success?: boolean; error?: string }> => {
   try {
     const response = await fetch(
@@ -15,7 +15,7 @@ export const addComment = async (
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${user.jwt_token}`,
+          Authorization: `Bearer ${user?.jwt_token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
@@ -49,7 +49,7 @@ const encodePagingKey = (key: { story_id: string; creation_time: string }) => {
 };
 
 export const fetchComments = async (
-  user: UserT,
+  user: UserT|null,
   story_id: string,
   pageParam: { story_id: string; creation_time: string } | null,
   page_size = 10
@@ -69,7 +69,7 @@ export const fetchComments = async (
     {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${user.jwt_token}`,
+        Authorization: `Bearer ${user?.jwt_token}`,
         Accept: "application/json",
       },
     }
@@ -84,7 +84,7 @@ export const fetchComments = async (
 
 export const deleteComment = async (
   comment_id: string,
-  user: UserT
+  user: UserT|null
 ): Promise<{ success?: boolean; error?: string }> => {
   try {
     const response = await fetch(
@@ -92,7 +92,7 @@ export const deleteComment = async (
       {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${user.jwt_token}`,
+          Authorization: `Bearer ${user?.jwt_token}`,
           "Content-Type": "application/json",
         },
       }

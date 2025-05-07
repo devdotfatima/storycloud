@@ -3,14 +3,14 @@ import { UserT } from "@/shared/types";
 // Delete Story
 export const deleteStory = async (
   story_id: string,
-  user: UserT
+  user: UserT|null
 ): Promise<void> => {
   const response = await fetch(
     `https://storycloudapi.com/stories/delete-story?story_id=${story_id}`,
     {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${user.jwt_token}`,
+        Authorization: `Bearer ${user?.jwt_token}`,
       },
     }
   );

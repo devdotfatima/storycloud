@@ -1,7 +1,9 @@
-"use client";
 
+"use client";
+export const dynamic = "force-dynamic";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import UnlockIcon from "@/assets/icons/unlock.svg";
@@ -16,10 +18,13 @@ import {
 import { Input } from "@/shared/components/ui/input";
 import { updatePasswordSchema, UpdatePasswordT } from "@/lib/validations";
 import { updatePassword } from "./actions";
+import LoadingButton from "@/shared/components/LoadingButton";
 
 const ForgotPassword = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string>();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
   const form = useForm<UpdatePasswordT>({
     resolver: zodResolver(updatePasswordSchema),
@@ -32,13 +37,20 @@ const ForgotPassword = () => {
   async function onSubmit(data: UpdatePasswordT) {
     setError(undefined);
     startTransition(async () => {
-      const response = await updatePassword(data);
+      const response = await updatePassword(data.password, token); 
 
       if (response?.error) {
         setError(response.error);
         return;
       }
-      if (data.password) {
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+
+      if (res.ok) {
+        window.location.href = "/login";
+      } else {
+        console.error("Logout failed");
       }
     });
   }
@@ -104,13 +116,10 @@ const ForgotPassword = () => {
               />
 
               <div className="flex items-center justify-between mt-10">
-                <button
-                  disabled={isPending}
+               
+                <LoadingButton disabled={isPending}
                   type="submit"
-                  className="w-full px-4 py-2 text-center  outline-none border-0 ring-0 text-purple bg-purple-100 focus:outline-none disabled:cursor-progress enabled:cursor-default"
-                >
-                  save password
-                </button>
+                  className="w-full px-4 py-2 text-center  outline-none border-0 ring-0 text-purple bg-purple-100 focus:outline-none disabled:cursor-progress enabled:cursor-default" loading={isPending}> save password</LoadingButton>
               </div>
             </form>
           </Form>
@@ -120,4 +129,16 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+// export default ForgotPassword;
+
+
+
+import { Suspense } from "react";
+
+export default function UpdatePasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ForgotPassword />
+    </Suspense>
+  );
+}

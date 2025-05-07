@@ -31,14 +31,10 @@ export function timeAgo(inputTime: string | number | Date): string {
   ];
 
   const seconds = (Date.now() - time) / 1000;
-  let token = "ago";
-  let listChoice = 1;
 
-  // Handle future times
-  if (seconds < 0) {
-    token = "from now";
-    listChoice = 2;
-  }
+  const listChoice = 1;
+
+ 
 
   const absSeconds = Math.abs(seconds);
   const format = timeFormats.find(([limit]) => absSeconds < limit);
@@ -55,11 +51,11 @@ export function timeAgo(inputTime: string | number | Date): string {
 
     // Handle regular cases where divisorOrMessage is a number
     const value = Math.floor(absSeconds / divisorOrMessage);
-    return `${value} ${unit} ${token}`;
+    return `${value} ${unit}`;
   }
 
   // Fallback for very large time differences
   const [, unit, divisor] = timeFormats[timeFormats.length - 1];
   const value = Math.floor(absSeconds / (divisor as number));
-  return `${value} ${unit} ${token}`;
+  return `${value} ${unit}`;
 }

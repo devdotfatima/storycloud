@@ -14,55 +14,48 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
   const { userId } = useParams();
   const storyId = story?.story_id;
 
-  // Fetch user's reactions for this story using the query hook
-  const { data: userReactions } = useQuery<UserReactionsResponse>({
-    queryKey: ["userReactions", storyId],
+  // Fetch if user has reacted to the story using the new API
+  const { data: hasUserReacted, isLoading ,refetch} = useQuery<boolean>({
+    queryKey: ["hasUserReacted", storyId],
     queryFn: async () => {
       const response = await fetch(
-        `https://www.storycloudapi.com/reactions/get-user-reactions?story_id=${storyId}`,
+        `https://www.storycloudapi.com/reactions/has-user-reacted-to-story?story_id=${storyId}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.jwt_token}`,
+            Authorization: `Bearer ${user?.jwt_token}`,
           },
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch user reactions");
+        throw new Error("Failed to check user reaction status");
       }
 
-      return response.json(); // Assuming a successful JSON response
+      return response.json(); // Returns true or false
     },
     enabled: !!storyId && !!user?.jwt_token,
   });
 
-  // Check if the current user has liked the story
-  const hasLiked = userReactions?.items.some(
-    (reaction) =>
-      reaction.reaction_emoji === "\\u2764\\ufe0f" &&
-      reaction.user_id === user.user_id
-  );
-
   // Mutation for adding/removing a reaction
   const { mutate: reactToStory, isPending } = useMutation({
     mutationFn: async () => {
-      const url = hasLiked
+      const url = hasUserReacted
         ? `https://www.storycloudapi.com/reactions/unreact?story_id=${storyId}&author_id=${userId}`
         : `https://www.storycloudapi.com/reactions/react?story_id=${storyId}&author_id=${userId}`;
 
       const response = await fetch(url, {
-        method: hasLiked ? "DELETE" : "POST",
+        method: hasUserReacted ? "DELETE" : "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.jwt_token}`,
+          Authorization: `Bearer ${user?.jwt_token}`,
         },
-        body: hasLiked
-          ? JSON.stringify({ reaction: "\\u2764\\ufe0f" })
+        body: hasUserReacted
+          ? JSON.stringify({ reaction: "\\u2764\\ufe0f" }) // Unicode for ❤️
           : JSON.stringify({ reaction: "\\u2764\\ufe0f" }), // Unicode for ❤️
       });
-
+refetch()
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to update reaction");
@@ -73,6 +66,7 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
     onMutate: async () => {
       // Cancel outgoing queries for this story to prevent overwrites
       await queryClient.cancelQueries({ queryKey: [storyId, userId] });
+      await queryClient.cancelQueries({queryKey: ["hasUserReacted", storyId] })
 
       const previousReactions = queryClient.getQueryData<UserReactionsResponse>(
         ["userReactions", storyId]
@@ -88,9 +82,9 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
         (oldData: UserReactionsResponse | undefined) => {
           if (!oldData) return oldData;
 
-          const updatedReactions = hasLiked
+          const updatedReactions = hasUserReacted
             ? oldData.items.filter(
-                (reaction) => reaction.user_id !== user.user_id
+                (reaction) => reaction.user_id !== user?.user_id
               ) // Remove reaction
             : [
                 ...oldData.items,
@@ -99,13 +93,13 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
                   user_id_reaction: "\\u2764\\ufe0f",
                   reaction_emoji: "\\u2764\\ufe0f", // Unicode for ❤️
                   timestamp: new Date().toISOString(),
-                  user_id: user.user_id,
-                  user_handle: user.user_handle,
-                  user_name: user.user_name,
-                  user_photo: user.user_profile_image,
+                  user_id: user?.user_id,
+                  user_handle: user?.user_handle,
+                  user_name: user?.user_name,
+                  user_photo: user?.user_profile_image,
                 },
               ];
-
+            
           return {
             ...oldData,
             items: updatedReactions,
@@ -118,11 +112,12 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
 
         return {
           ...old,
-          reactions_count: hasLiked
+          reactions_count: hasUserReacted
             ? old.reactions_count - 1
             : old.reactions_count + 1,
         };
       });
+      queryClient.setQueryData<boolean>(["hasUserReacted", storyId], !hasUserReacted);
 
       return { previousReactions, previousStory };
     },
@@ -138,23 +133,23 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
         queryClient.setQueryData(["story", storyId], context.previousStory);
       }
     },
-    // onSettled: () => {
-    //   // Refetch data to ensure accuracy after the mutation
-    //   queryClient.invalidateQueries({ queryKey: [storyId, userId] });
-    //   queryClient.invalidateQueries({ queryKey: ["userReactions", storyId] });
-    // },
   });
+
+  // Check if user is still loading the reaction status
+  if (isLoading) return <div>Loading...</div>;
+
+  
 
   return (
     <div className="flex items-center gap-1 sm:gap-2">
       <button
         onClick={() => !isPending && reactToStory()}
         className={`h-5 w-5 sm:h-6 sm:w-6 cursor-pointer ${
-          hasLiked ? "text-red-500" : "text-gray-500"
+          hasUserReacted ? "text-red-500" : "text-gray-500"
         } ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
         disabled={isPending}
       >
-        {hasLiked ? (
+        {hasUserReacted ? (
           <Heart fill="red" color="red" size={24} className="h-6 w-6 " />
         ) : (
           <Image

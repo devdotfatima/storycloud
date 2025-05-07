@@ -1,5 +1,6 @@
-import { StaticImageData } from "next/image";
+// import { StaticImageData } from "next/image";
 
 export type ImageSliderPropsT = {
-  images: string[] | StaticImageData[];
+  //  string[] | StaticImageData[];
+ images: Record<string, string>|Record<string, { file: File; url: string }>
 };

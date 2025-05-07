@@ -3,7 +3,7 @@ import { UserT } from "@/shared/types";
 
 export const sendStoryRequest = async (
   payload: StoryRequestT,
-  user: UserT
+  user: UserT | null
 ): Promise<{ success?: boolean; error?: string; request_id?: string }> => {
   try {
     const { receiver_id, request_text } = payload;
@@ -14,7 +14,7 @@ export const sendStoryRequest = async (
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.jwt_token}`,
+          Authorization: `Bearer ${user?.jwt_token}`,
         },
         body: JSON.stringify({ request_text }),
       }
@@ -36,7 +36,7 @@ export const sendStoryRequest = async (
 
 export const deleteStoryRequest = async (
   request_id: string,
-  user: UserT
+  user: UserT | null
 ): Promise<{ success?: boolean; error?: string }> => {
   try {
     const response = await fetch(
@@ -45,7 +45,7 @@ export const deleteStoryRequest = async (
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.jwt_token}`,
+          Authorization: `Bearer ${user?.jwt_token}`,
         },
       }
     );

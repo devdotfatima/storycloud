@@ -1,6 +1,6 @@
 import { UserT } from "@/shared/types";
 
-export const sendFriendRequest = async (userId: string, user: UserT) => {
+export const sendFriendRequest = async (userId: string, user: UserT | null) => {
   try {
     if (!user) {
       throw new Error("Unauthorized");
@@ -67,7 +67,7 @@ export const getFriendStatus = async (friendId: string, user: UserT) => {
   }
 };
 
-export const unfriend = async (friendId: string, user: UserT) => {
+export const unfriend = async (friendId: string, user: UserT | null) => {
   if (!user) {
     throw new Error("Unauthorized");
   }
@@ -90,7 +90,7 @@ export const unfriend = async (friendId: string, user: UserT) => {
   return await response.json();
 };
 
-export const acceptFriendRequest = async (friendId: string, user: UserT) => {
+export const acceptFriendRequest = async (friendId: string, user: UserT | null) => {
   if (!user) {
     throw new Error("Unauthorized");
   }

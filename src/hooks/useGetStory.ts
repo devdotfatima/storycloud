@@ -1,14 +1,14 @@
 import { getStory } from "@/shared/actions/story";
-import { StoryAnswerT, UserT } from "@/shared/types";
+import { StoryAnswerT } from "@/shared/types";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetStory = (story_id: string, user: UserT, userId: string) => {
+export const useGetStory = (story_id: string, 
+  userId: string) => {
   return useQuery<StoryAnswerT, Error>({
     queryKey: [story_id, userId],
     queryFn: () =>
       getStory({
         story_id,
-        user,
         userId,
         include_audio: true,
         include_transcript: true,

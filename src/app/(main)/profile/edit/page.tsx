@@ -58,11 +58,11 @@ const EditProfile = () => {
 
   useEffect(() => {
     form.reset({
-      user_name: user.user_name,
+      user_name: user?.user_name,
       // user_image: user.user_profile_image,
-      user_bio: user.user_bio,
+      user_bio: user?.user_bio,
     });
-    setSelectedProfileImage(user.user_profile_image);
+    setSelectedProfileImage(user?user.user_profile_image:null);
   }, [user, form]);
   return (
     <>

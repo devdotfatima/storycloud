@@ -102,7 +102,6 @@ export type StoryRequestT = {
 // api/story.ts
 export type GetStoryParams = {
   story_id: string;
-  user: UserT;
   include_audio?: boolean;
   include_transcript?: boolean;
   include_images?: boolean;
@@ -117,7 +116,7 @@ export type StoryAnswerT = {
   story_title: string;
   formatted_story_title: string;
   story_audio?: string; // Optional, URL for audio
-  story_images?: Record<string, string>; // Optional, key-value pairs of image URLs
+  story_images?: Record<string, string> | Record<string, { file: File; url: string }>; 
   story_synopsis?: string; // Optional, synopsis text
   story_transcript?: string; // Optional, transcript text
   is_published: boolean;

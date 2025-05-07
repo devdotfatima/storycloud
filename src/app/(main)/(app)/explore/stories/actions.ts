@@ -1,7 +1,7 @@
 import { UserT, searchStoriesT } from "@/shared/types";
 
 export const fetchStories = async (
-  user: UserT,
+  user: UserT|null,
   pageParam: { story_id: string } | null,
   searchTerm = ""
 ): Promise<searchStoriesT> => {
@@ -25,7 +25,7 @@ export const fetchStories = async (
   const response = await fetch(
     `https://storycloudapi.com/get-story-feed?${
       searchTerm ? `&search_key=${searchTerm}` : ""
-    }${exclusiveStartKey}&page_size=10`,
+    }${exclusiveStartKey}&page_size=10000`,
     {
       method: "GET",
       headers: {

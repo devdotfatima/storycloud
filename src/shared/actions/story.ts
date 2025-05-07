@@ -18,8 +18,7 @@ export const getStory = async (
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${params.user.jwt_token}`,
-      },
+        },
     }
   );
 
