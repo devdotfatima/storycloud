@@ -6,7 +6,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import HeartIcon from "@/assets/icons/heart.svg";
 import { StoryReactionsPropsT, UserReactionsResponse } from "./types";
 import { StoryAnswerT } from "@/shared/types";
-import { Heart } from "lucide-react";
+import { Heart, Loader } from "lucide-react";
 
 const StoryReactions = ({ story }: StoryReactionsPropsT) => {
   const queryClient = useQueryClient();
@@ -136,7 +136,7 @@ refetch()
   });
 
   // Check if user is still loading the reaction status
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><Loader className="animate-spin text-purple" /></div>;
 
   
 
