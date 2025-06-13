@@ -56,6 +56,14 @@ const EditProfile = () => {
     }
   };
 
+  const userBio = form.watch("user_bio"); // Using watch to get the user bio value
+  const bioCharCount = userBio?.length;
+
+  const handleBioChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length <= 100) {
+      form.setValue("user_bio", e.target.value); // Update the bio value only if it has 100 or fewer characters
+    }
+  };
   useEffect(() => {
     form.reset({
       user_name: user?.user_name,
@@ -63,6 +71,7 @@ const EditProfile = () => {
       user_bio: user?.user_bio,
     });
     setSelectedProfileImage(user?user.user_profile_image:null);
+   
   }, [user, form]);
   return (
     <>
@@ -159,9 +168,13 @@ const EditProfile = () => {
                         className="w-full px-3 py-2 leading-tight  border appearance-none   border-purple-400  focus:outline-none h-28 resize-none rounded-xl sm:rounded-2xl ring-purple focus:ring-2 focus:border-0"
                         {...field}
                         placeholder="enter your bio"
+                        onChange={handleBioChange}
                       />
+                      <div className="text-right text-purple absolute bottom-2 right-2 ">{bioCharCount}/100</div> 
                     </div>
                   </FormControl>
+                  {/* Show character count */}
+
                   <FormMessage />
                 </FormItem>
               )}

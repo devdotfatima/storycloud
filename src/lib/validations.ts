@@ -44,13 +44,13 @@ export const updatePasswordSchema = z
       .string()
       .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
         message:
-          "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+          "Must be 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
       }),
     confirmPassword: z
       .string()
       .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, {
         message:
-          "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+          "Must be 8 characters contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
       }),
   })
   .refine((data) => data.password === data.confirmPassword, {

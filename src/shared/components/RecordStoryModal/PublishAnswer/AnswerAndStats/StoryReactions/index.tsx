@@ -35,7 +35,7 @@ const StoryReactions = ({ story }: StoryReactionsPropsT) => {
 
       return response.json(); // Returns true or false
     },
-    enabled: !!storyId && !!user?.jwt_token,
+    enabled: !!storyId && !!user?.jwt_token && story?.is_published,
   });
 
   // Mutation for adding/removing a reaction

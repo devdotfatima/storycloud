@@ -33,7 +33,7 @@ const AnswerAndStats = ({
   const { audioSrc, stopRecording, clearCanvas } = recorderControls || {};
   const [isPublished, setIsPublished] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
-  const [title, setTitle] = useState(story?.story_title || requestText||"freestyle");
+  const [title, setTitle] = useState(story?.story_title || requestText ||"My Story");
   const router = useRouter();
   const user = useSessionContext();
 
@@ -152,14 +152,16 @@ const AnswerAndStats = ({
           <p className="">
             {" "}
             {isFreeStyle
-              ? "freestyle"
+                ? "My Story"
               : "What is your favorite travel destination?"}
           </p>
         )}
       </div>
 
       {/* Stats (Likes, Comments, etc.) */}
-      <div className="flex justify-between items-center space-x-4">
+   
+      
+      { <div className="flex justify-between items-center space-x-4">
         <p className=" text-sm sm:text-xl text-purple">
           {formatDate(story?.creation_time)}
         </p>
@@ -174,12 +176,12 @@ const AnswerAndStats = ({
               className="h-5 w-5 sm:h-6 sm:w-6"
             />
             <span className="text-sm sm:text-xl">
-              {story?.is_published ? story.comments_count : 10}
+              {story?.is_published ? story.comments_count : 0}
             </span>
           </div>
           <StoryBookmark story={story}/>
         </div>
-      </div>
+      </div>}
 
       {/* Upload Section */}
 

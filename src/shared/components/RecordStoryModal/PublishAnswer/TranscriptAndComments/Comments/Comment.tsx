@@ -56,7 +56,7 @@ const Comment = ({ comment, myStory }: CommentPropT) => {
           className="self-start w-10 h-10 rounded-full object-cover "
         />
         <div className="mt-0 ml-3">
-          <p className="">
+          <p className="break-all">
             <span className="mr-2 text-purple font-medium">
               {comment.commenter_user_handle}
             </span>

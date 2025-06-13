@@ -5,7 +5,7 @@ import { Loader } from "lucide-react";
 
 const QuestionsFromFriends = () => {
   const { storyRequests: questions, isLoading } = useStoryRequests();
-  // Filter out freestyle questions
+  
   const filteredQuestions = questions.filter(
     (request) =>
       !request.request_id.startsWith("00000000-0000-0000-0000-000000000000")

@@ -107,7 +107,7 @@ const OptionsModal = ({
               share link
             </DialogTitle>
             <div className="bg-purple-100 px-5 relative  flex-col  mt-4 text-purple w-full h-full rounded-2xl flex items-center justify-center">
-              http://localhost:3000{pathname}
+              https://storycloud-five.vercel.app{pathname}
               <button
                 type="button"
                 onClick={handleCopyClick}

@@ -48,7 +48,7 @@ const Freestyle = () => {
           className="flex flex-col gap-3 lg:gap-6 md:w-1/2 cursor-pointer"
           onClick={openDialog}
         >
-          <h2 className="text-purple">freestyle</h2>
+          <h2 className="text-purple">record a story</h2>
           <Image
             src={BookImage}
             alt="book image"

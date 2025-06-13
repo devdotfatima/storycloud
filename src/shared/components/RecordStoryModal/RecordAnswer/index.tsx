@@ -17,9 +17,8 @@ const RecordAnswer = ({
   requestText
   
 }: RecordAnswerPropsT) => {
-  console.log(requestText || questionOfTheWeek || "freestyle");
   
-  const [title, setTitle] = useState(requestText||questionOfTheWeek || "freestyle");
+  const [title, setTitle] = useState(requestText||questionOfTheWeek || "My story");
   const user = useSessionContext();
   const [isConverting, setIsConverting] = useState(false);
   const createStoryMutation = useCreateStory(user,requestId);

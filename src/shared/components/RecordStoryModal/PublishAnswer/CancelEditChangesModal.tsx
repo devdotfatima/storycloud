@@ -28,15 +28,15 @@ const CancelEditChangesModal = ({ onClose }: CancelEditChangesModalPropsT) => {
         <button
           // href={"/login"}
           onClick={onClose}
-          className="p-2 transition duration-150 ease-in text-green w-full bg-green-100 text-center hover:bg-green hover:text-white "
+          className="p-2 transition duration-150 ease-in text-red w-full bg-red-100 text-center  hover:bg-red hover:text-white "
         >
-          yes
+          yes, cancel changes
         </button>
         <DialogClose
           type="button"
-          className="p-2 transition duration-150 ease-in text-red w-full  bg-red-100 hover:bg-red hover:text-white"
+          className="p-2 transition duration-150 ease-in  text-green w-full bg-green-100 hover:bg-green hover:text-white"
         >
-          no
+          no, return to editing
         </DialogClose>
       </div>
     </DialogContent>
